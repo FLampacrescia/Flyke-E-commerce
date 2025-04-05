@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+:root {
+  --primary-color: crimson;
+  --secondary-color: royalblue;
+  --background-color-white: #ffffff;
+  --background-color-gray: #fafafa;
+  --text-color: #121212;
+  --text-color-secondary: #000000;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--background-color-gray);
+  color: var(--text-color);
+  /* min-height: 100vh; */
+}

@@ -1,0 +1,99 @@
+.main-title {
+    font-size: clamp(3.2rem, 3.75vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    word-spacing: 5px;
+    letter-spacing: -1px;
+    line-height: 4.5rem;
+    color: var(--text-color);
+}
+.features-main-title {
+    font-size: clamp(3rem, 3.5vw, 3.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    word-spacing: 5px;
+    letter-spacing: -1px;
+  }
+.about-title-gray {
+    color: #bbbbbb;
+}
+.about-title {
+    font-size: clamp(3.2rem, 3.75vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    word-spacing: 5px;
+    letter-spacing: -1px;
+    line-height: 4.5rem;
+}
+.contact-title {
+    font-size: clamp(3rem, 3.75vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: -10px;
+}
+.form-title {
+    font-size: clamp(3.5rem, 3.75vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+}
+.admin-main-title {
+    font-size: clamp(3.2rem, 3vw, 4rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    word-spacing: 5px;
+    line-height: 3rem;
+}
+@media screen and (max-width: 1229px) {
+    .about-title-container {
+        .about-title, .about-title-gray {
+            font-size: clamp(4rem, 3.8vw, 4.5rem);
+            line-height: 4rem;
+        }
+    }
+}
+@media screen and (max-width: 835px) {
+    .about-title-container {
+        .about-title, .about-title-gray {
+            font-size: clamp(3.5rem, 3.75vw, 4.5rem);
+            line-height: 3.5rem;
+        }
+    }
+}
+@media screen and (max-width: 690px) {
+    .about-title-container {
+        .about-title, .about-title-gray {
+            font-size: clamp(3rem, 3.75vw, 4.5rem);
+            line-height: 3rem;
+        }
+    }
+    .form-title {
+        margin-bottom: 15px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .about-title-container {
+        .about-title, .about-title-gray {
+            font-size: clamp(2.5rem, 3.75vw, 4.5rem);
+            line-height: 2.5rem;
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    .features-main-title {
+        font-size: clamp(2.5rem, 2.5vw, 3rem);
+    }
+}
+@media screen and (max-width: 410px) {
+    .features-main-title {
+        font-size: clamp(2rem, 2vw, 2.5rem);
+    }
+}

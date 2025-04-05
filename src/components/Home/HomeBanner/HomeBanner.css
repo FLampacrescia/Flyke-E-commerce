@@ -1,0 +1,112 @@
+.section-banner {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.hero-img {
+    width: 100%;
+    aspect-ratio: 1/0.303;
+}
+.img-sm {
+    display: none;
+}
+.hero-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 40px;
+    gap: 10px;
+}
+.hero-description {
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+}
+.hero-title {
+    font-size: clamp(3.2rem, 3.75vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    word-spacing: 5px;
+    letter-spacing: -1px;
+}
+.hero-btn {
+    background-color: var(--text-color);
+    color: var(--background-color-white);
+    font-weight: 500;
+    line-height: 40px;
+    border-radius: 9999px;
+    height: 40px;
+    min-height: 40px;
+    transition: opacity .2s;
+    cursor: pointer;
+    padding: 0 28px;
+    margin-top: 5px;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+@media screen and (max-width: 1543px) {
+    .hero-text-container {
+        flex-grow: 0;
+        transform: translateY(0);
+        padding-top: 40px;
+    }
+}
+@media screen and (max-width: 1393px) {
+    .section-banner {
+        min-height: auto;
+    }
+    .hero-text-container {
+        flex-grow: 0;
+        transform: translateY(0);
+        padding-top: 40px;
+        gap: 20px;
+    }
+    .hero-title {
+        padding: 0 70px;
+        line-height: 3rem;
+    }
+}
+@media screen and (max-width: 686px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 3.75vw, 4.5rem);
+        line-height: 2.5rem;
+    }
+}
+@media screen and (max-width: 640px) {
+    .img-lg {
+        display: none;
+    }
+    .img-sm {
+        display: block;
+        height: 100%;
+        aspect-ratio: unset;
+    }
+    .hero-description {
+        display: none;
+    }
+}
+@media screen and (max-width: 584px) {
+    .hero-text-container {
+        padding-top: 20px;
+    }
+    .hero-title {
+        font-size: clamp(2rem, 3.75vw, 4.5rem);
+        line-height: 2rem;
+    }
+    .hero-description {
+        font-size: .9rem;
+    }
+}
+@media screen and (max-width: 500px) {
+    .hero-text-container {
+        gap: 15px;
+    }
+}

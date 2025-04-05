@@ -1,0 +1,72 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    height: fit-content;
+    background: white;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+}
+.admin-modal-title-container {
+    background-color: #ddd;
+    border-radius: 8px 8px 0px 0px / 8px 8px 25px 25px;
+    padding: 8px;
+}
+.admin-modal-upper-title {
+    font-size: 1.3rem;
+}
+.admin-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 40px;
+}
+.admin-modal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.admin-modal-label {
+    text-align: left;
+}
+.admin-modal-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    &:focus {
+        outline: none;
+        border-color: #818181;
+    }
+}
+.admin-modal-textarea {
+    resize: none;
+    padding: 2.5px;
+}
+.admin-modal-input[type=number]::-webkit-inner-spin-button,
+.admin-modal-input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.modal-error {
+    text-align: left;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    cursor: pointer;
+}

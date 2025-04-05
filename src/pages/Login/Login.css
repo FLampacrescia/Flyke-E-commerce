@@ -1,0 +1,24 @@
+.login-form-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 70px auto 100px auto;
+  max-width: 500px;
+}
+@media screen and (max-width: 984px) {
+  .login-form-main-container {
+      max-width: 600px;
+  }
+}
+@media screen and (max-width: 690px) {
+  .login-form-main-container {
+      max-width: 400px;
+  }
+}
+@media screen and (max-width: 478px) {
+  .login-form-main-container {
+      padding: 0 40px;
+      margin: 20px auto;
+  }
+}

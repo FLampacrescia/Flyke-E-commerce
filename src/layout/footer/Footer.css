@@ -1,0 +1,124 @@
+footer {
+    height: auto;
+    background-color: var(--text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px;
+    z-index: 40;
+
+    div {
+        color: var(--background-color-gray);
+    }
+}
+.footer-column-1, .footer-column-2 {
+    display: flex;
+    flex-direction: column;
+}
+.footer-column-1 {
+    flex-grow: .33;
+}
+.footer-column-3 {
+    display: flex;
+    align-items: center;
+}
+.footer-link {
+    text-decoration: none;
+    color: #b1b1b1;
+    font-size: 0.8rem;
+
+    &:hover {
+        text-decoration: underline 1px;
+    }
+}
+.footer-main-logo {
+    font-style: italic;
+}
+.footer-container-1, .footer-container-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.92rem;
+
+    .footer-title {
+        font-weight: 800;
+        letter-spacing: 0.020rem;
+    }
+}
+.flex-footer-sm {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: .48;
+}
+.footer-column-2 {
+    align-items: center;
+    gap: 10px;
+
+    span {
+        color: #b1b1b1;
+        font-size: 0.9rem;
+    }
+}
+.footer-logo {
+    height: 32px;
+    width: fit-content;
+}
+
+@media screen and (max-width: 1543px) {
+    footer {
+        padding: 40px 70px;
+    }
+}
+@media screen and (max-width: 899px) {
+    .flex-footer-sm {
+        flex-direction: column;
+        flex-grow: 0;
+        gap: 10px
+    }
+    .footer-column-1 {
+        flex-grow: 0;
+    }
+    .footer-column-2 {
+        align-items: end;
+    }
+    .footer-column-3 {
+        justify-content: flex-end;
+    }
+    .footer-logo {
+        display: none;
+    }
+}
+@media screen and (max-width: 725px) {
+    .footer-column-1 {
+        flex-grow: 1;
+    }
+    .footer-column-2 {
+        align-items: flex-start;
+
+        & > span {
+            font-size: .8rem;
+            text-wrap: balance;
+        }
+    }
+    .flex-footer-sm {
+        max-width: 158px;
+    }
+}
+@media screen and (max-width: 562px) {
+    footer {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-container-1 {
+        align-items: center;
+    }
+    .flex-footer-sm {
+        max-width: fit-content;
+        align-items: center;
+        gap: 15px;
+    }
+    .footer-column-2 span {
+        text-wrap: nowrap;
+    }
+}

@@ -1,0 +1,65 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.register-input, .login-input {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.placeholder-label {
+    font-size: .8rem;
+    font-weight: 600;
+}
+.form-item {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #999;
+    background-color: var(--background-color-gray);
+    display: block;
+    width: 100%;
+    color: var(--text-color);
+    font-family: "Poppins";
+    font-size: 1em;
+    font-weight: 400;
+    height: 2.5rem;
+    padding: 0 .4rem;
+    transition: all .2s ease-in-out;
+
+    &::placeholder {
+        font-size: .9rem;
+        font-family: "Poppins";
+    }
+
+    &:focus {
+        border-bottom: 1px solid #000000;
+    }
+}
+.error-container {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.error-icon {
+    font-size: 1.1rem;
+    color: red;
+}
+.error-msg {
+    font-size: .85rem;
+    color: red;
+    transform: translateY(.032rem);
+}
+
+@media screen and (max-width: 899px) {
+    .input-group {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 409px) {
+    .form-item {
+        &::placeholder {
+            font-size: .8rem;
+        }
+    }
+}

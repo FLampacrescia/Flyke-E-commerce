@@ -1,0 +1,212 @@
+.section-features {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.features-banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 35%;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+  opacity: .12;
+}
+.features-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6%;
+  position: relative;
+  margin: 0 auto;
+  padding: 100px 70px;
+}
+.features-small-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  position: relative;
+  gap: 40px;
+  flex: 1;
+  background-color: #f7f7f7;
+  height: 270px;
+  max-width: 400px;
+  border-radius: 30px;
+  padding: 0 40px;
+  box-shadow: 0 0 15px 0 #00000050;
+  transition: all .2s ease-in-out;
+
+  &:hover > .feature-icon-container {
+      height: 110px;
+      width: 110px;
+  }
+  &:hover > .feature-icon-container > .feature-icon {
+      font-size: 45px;
+  }
+  &:hover > .color-1 {
+      background-color: #eeb955;
+  } 
+  &:hover > .color-2 {
+      background-color: #76c04c;
+  } 
+  &:hover > .color-3 {
+      background-color: #627bec;
+  } 
+  &:hover > .feature-text-container > .feature-description {
+      color: var(--text-color);
+  }
+  &:hover > .feature-text-container > .feature-btn {
+      color: var(--text-color);
+
+      &::before {
+          background-color: var(--text-color);
+          width: 100%;
+      }
+  }
+}
+.feature-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  left: 40px;
+  height: 100px;
+  width: 100px;
+  border-radius: 9999px;
+  background-color: var(--text-color);
+  transition: all .2s ease-in-out;
+}
+.feature-icon {
+  font-size: 40px;
+  transition: all .2s ease-in-out;
+  color: var(--background-color-gray);
+}
+.feature-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 27%;
+  gap: 10px;
+
+  .feature-title {
+      font-weight: 500;
+      font-size: 1.2rem;
+  }
+  .feature-description {
+      font-size: .9rem;
+      text-wrap: balance;
+      text-wrap: pretty;
+      color: #5e5e5e;
+      transition: all .2s ease-in-out;
+  }
+  .feature-btn {
+      font-size: .9rem;
+      color: #5e5e5e;
+      position: relative;
+      width: fit-content;
+      margin-top: 10px;
+      transition: all .2s ease-in-out;
+      
+      &::before {
+          content: "";
+          position: absolute;
+          background-color: #5e5e5e;
+          height: 2px;
+          width: 0;
+          left: 0;
+          bottom: -10%;
+          transition: width 0.2s ease-in-out;
+      }
+  }
+}
+@media screen and (max-width: 1179px) {
+  .feature-text-container {
+    margin-top: 35%;
+  }
+}
+
+@media screen and (max-width: 985px) {
+  .features-main-container {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      margin: 0 auto;
+  }
+  .features-small-container {
+      flex-direction: row;
+      width: 100%;
+      padding: 50px;
+      
+      &:hover > .feature-icon-container {
+          height: 100px;
+          width: 100px;
+      }
+      &:hover > .feature-icon-container > .feature-icon {
+          font-size: 50px;
+      }
+  }
+  .feature-text-container {
+      width: 462px;
+      align-items: flex-start;
+      margin-top: 5%;
+
+      .feature-title {
+          text-align: left;
+      }
+      .feature-description {
+          text-align: left
+      };
+  }
+}
+@media screen and (max-width: 702px) {
+  .features-main-container {
+    padding: 100px 0;
+}
+}
+@media screen and (max-width: 584px) {
+  .section-features {
+    gap: 70px;
+  }
+  .features-main-container {
+      padding: 0 40px 60px 40px;
+  }
+  .feature-icon-container {
+      height: 60px;
+      width: 80px;
+  }
+  .feature-icon {
+      font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .feature-icon-container {
+      height: 40px;
+      width: 80px;
+  }
+  .feature-icon {
+      font-size: 20px;
+  }
+  .feature-text-container {
+    width: 100%;
+
+    .feature-title {
+      font-size: 1rem;
+    }
+    .feature-description {
+      font-size: .8rem;
+    }
+    .feature-btn {
+      font-size: .8rem;
+    }
+  }
+  .features-small-container {
+    width: 300px;
+    padding: 30px 50px;
+  }
+}

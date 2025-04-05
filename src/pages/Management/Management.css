@@ -1,0 +1,170 @@
+.admin-main-container {
+    width: 90%;
+    margin: 50px auto;
+    min-height: 83dvh;
+}
+.admin-layout-header-container {
+    display: flex;
+    justify-content: space-between;
+}
+.admin-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+.admin-product-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.bold-text {
+    font-weight: 700;
+}
+.admin-table-select-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    justify-content: center;
+    height: fit-content;
+    width: 200px;
+    background-color: #e6e6e6;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    margin-bottom: 50px;
+    border-radius: 0.5rem;
+}
+.admin-table-select-title {
+    color: var(--text-color);
+    padding: 1px 8px 5px 8px;
+}
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #e6e6e6;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+.radio-inputs .radio {
+    width: 100%;
+    text-align: center;
+}
+.radio-inputs .radio input {
+    display: none;
+}
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: var(--text-color);
+    transition: all .15s ease-in-out;
+}
+.radio-inputs .radio input:checked+.name {
+    background-color: var(--text-color);
+    color: var(--background-color-gray);
+    font-weight: 600;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.admin-table-upper-title, .admin-table-datacell {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+.admin-table-upper-title {
+    background-color: var(--text-color);
+    color: var(--background-color-gray);
+    font-weight: 600;
+    font-size: 16px;
+}
+.admin-table-upper-title:first-child {
+    border-top-left-radius: 10px;
+}
+.admin-table-upper-title:last-child {
+    border-top-right-radius: 10px;
+}
+.admin-table-body .admin-table-row:nth-child(even) {
+    background-color: #f9fafb;
+}
+.admin-table-upper-title:nth-child(1), .admin-table-datacell:nth-child(1) {
+    width: 10%;
+}
+.admin-table-upper-title:nth-child(2), .admin-table-datacell:nth-child(2) {
+    width: 20%;
+}
+.admin-table-upper-title:nth-child(3), .admin-table-datacell:nth-child(3) {
+    width: 45%;
+}
+.admin-table-upper-title:nth-child(4), .admin-table-datacell:nth-child(4) {
+    width: 15%;
+}
+.admin-table-upper-title:nth-child(5), .admin-table-datacell:nth-child(5) {
+    width: 10%;
+}
+.admin-table-datacell img {
+    width: 70px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    filter: contrast(.9);
+}
+.admin-table-datacell {
+    font-size: 15px;
+    color: #4b5563;
+}
+.text-padding {
+    padding-left: 36px;
+}
+.text-center {
+    text-align: center;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.admin-action-btn {
+    border: none;
+    cursor: pointer;
+    padding: 8px 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit-btn {
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 5px;
+    
+    &:hover {
+        background-color: #326fd1;
+    }
+}
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #ca3939;
+    }
+}
+.admin-table-body .admin-table-row:hover {
+    background-color: #f0f2f5;
+}

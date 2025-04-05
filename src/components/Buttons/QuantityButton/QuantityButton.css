@@ -1,0 +1,75 @@
+.quantity-btn-main-container {
+    position: relative;
+    display: flex;
+    width: 6rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.quantity-input {
+    height: 30px;
+    padding: 5px;
+    border-radius: 2rem;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+}
+.order-quantity-input {
+    border: 1px solid #ddd;
+}
+.product-quantity-input {
+    border: 1px solid var(--text-color);
+}
+.quantity-input:focus {
+    outline: none;
+    box-shadow: 0 1px 20px -10px rgba(0, 0, 0, 0.4), 0 0 2px #c0c0c0;
+}
+.quantity-input[type=number]::-webkit-inner-spin-button,
+.quantity-input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.quantity-btn {
+    position: absolute;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    
+    cursor: pointer;
+}
+.order-quantity-btn {
+    background-color: #ddd;
+
+    span {
+        color: #222;
+    }
+}
+.product-quantity-btn {
+    background-color: var(--text-color);
+
+    span {
+        color: var(--background-color-gray);
+    }
+}
+.quantity-btn:active {
+    box-shadow: inset 0 2px 12px -4px #9b9b9b;
+}
+.quantity-btn:focus {
+    outline: none;
+}
+.quantity-btn.sub {
+    left: 0;
+    border-radius: 32px 0px 0px 32px;
+}
+.quantity-btn-text-sub {
+    display: block;
+    transform: translateY(-.090rem);
+}
+.quantity-btn.add {
+    right: 0;
+    border-radius: 0px 32px 32px 0px;
+}

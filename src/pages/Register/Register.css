@@ -1,0 +1,24 @@
+.form-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    max-width: 850px;
+}
+@media screen and (max-width: 984px) {
+    .form-main-container {
+        max-width: 600px;
+    }
+}
+@media screen and (max-width: 690px) {
+    .form-main-container {
+        max-width: 400px;
+    }
+}
+@media screen and (max-width: 478px) {
+    .form-main-container {
+        padding: 0 40px;
+        margin: 20px auto;
+    }
+}
