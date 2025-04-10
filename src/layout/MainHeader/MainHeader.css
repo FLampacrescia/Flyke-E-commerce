@@ -77,87 +77,9 @@
 .user-container {
     height: 29px;
 }
-.toggle-checkbox {
-    display: none;
-}
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 130%;
-    right: -10%;
-    width: 250px;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-}
-.toggle-checkbox:checked + label + .dropdown-menu {
-    display: block;
-}
-.dropdown-menu::before {
-    content: "";
-    position: absolute;
-    top: -3.7%;
-    right: 15px;
-    width: 12px;
-    height: 12px;
-    background-color: white;
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    transform: rotate(45deg);
-    z-index: -1;
-}
-.dropdown-menu a {
-    display: block;
-    color: #494949;
-    text-decoration: none;
-    padding: 10px 0px;
-    text-wrap: nowrap;
-    transition: color .2s ease-in-out;
-
-    &:hover {
-        color: var(--text-color);
-        background-color: #f7f7f7;
-    }
-}
-.user-menu-link {
-    margin-top: -10px;
-    font-size: .95rem;
-}
-.user-menu-line {
-    margin-bottom: 12px;
-}
-.login-btn {
-    text-align: center;
-    background-color: var(--text-color-secondary);
-    color: var(--background-color-gray) !important;
-    font-weight: 500;
-    border-radius: 9999px;
-    margin: 5px 0;
-    transition: all .1s ease-in-out !important;
-
-    &:hover {
-        color: var(--background-color-gray) !important;
-        background-color: #444444 !important;
-    }
-}
-.register-btn {
-    text-align: center;
-    color: var(--text-color-secondary) !important;
-    font-weight: 500;
-    border: solid 1px #bbbbbb !important;
-    border-radius: 9999px;
-    transition: all .2s ease-in-out !important;
-
-    &:hover {
-        border-color: #000000 !important;
-    }
-}
 .user-avatar {
     font-size: 26px;
     transform: translateY(.05rem);
-    /* filter: brightness(.3); */
     cursor: pointer;
     transition: all .2s ease-in-out;
 
@@ -182,6 +104,7 @@
         right: -10px;
         width: 20px;
         height: 20px;
+        user-select: none;
         background-color: red;
         color: white;
         border-radius: 50%;

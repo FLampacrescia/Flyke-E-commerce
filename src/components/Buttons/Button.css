@@ -1,5 +1,5 @@
-.button, .dropdown-menu .button {
-    font-family: "Poppins", sans-serif;
+.button {
+    font-family: "Poppins", sans-serif !important;
     text-align: center;
     font-weight: 500;
     border-radius: 9999px;
@@ -7,6 +7,9 @@
     margin: 5px 0;
     padding: 10px;
     transition: all .1s ease-in-out !important;
+}
+.menu-btn {
+    display: block;
 }
 .order-button {
     font-family: "Poppins", sans-serif;

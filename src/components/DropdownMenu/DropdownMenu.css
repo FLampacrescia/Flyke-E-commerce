@@ -1,0 +1,118 @@
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 140%;
+    right: -13%;
+    width: 250px;
+    border-radius: 8px;
+    background-color: white;
+    user-select: none;
+    border: 1px solid #ccc;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+.dropdown-menu.open {
+    display: block;
+}
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -3.2%;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+.user-menu-link-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    margin-top: -10px;
+
+    &:hover + .user-menu-line {
+        border-color: #cecece;
+    }
+    &:hover > .user-menu-icon {
+        color: var(--text-color);
+    }
+    &:hover > .user-menu-link {
+        color: var(--text-color);
+    }
+    &:hover > .user-menu-language-container > .user-menu-language {
+        color: var(--text-color);
+    }
+}
+.dropdown-menu .user-menu-link {
+    display: block;
+    color: #494949;
+    text-decoration: none;
+    text-wrap: nowrap;
+    transition: color .2s ease-in-out;
+}
+.user-menu-link {
+    font-size: .95rem;
+}
+.user-menu-admin-link {
+    color: var(--text-color);
+}
+.user-menu-icon {
+    padding-right: 2px;
+    font-size: 1.1rem;
+    color: #707070;
+    transition: color .2s ease-in-out;
+
+    &:hover {
+        color: var(--text-color);
+    }
+}
+.user-menu-flag-icon {
+    padding-right: 2px;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.user-menu-line {
+    transition: color .2s ease-in-out;
+    margin-bottom: 12px;
+}
+.user-menu-language-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-menu-language {
+    font-size: .9rem;
+    color: #494949;
+    transition: color .2s ease-in-out;
+}
+.login-btn {
+    text-align: center;
+    background-color: var(--text-color-secondary);
+    color: var(--background-color-gray) !important;
+    font-weight: 500;
+    border-radius: 9999px;
+    margin: 5px 0;
+    transition: all .1s ease-in-out !important;
+
+    &:hover {
+        color: var(--background-color-gray) !important;
+        background-color: #444444 !important;
+    }
+}
+.register-btn {
+    text-align: center;
+    color: var(--text-color-secondary) !important;
+    font-weight: 500;
+    border: solid 1px #bbbbbb !important;
+    border-radius: 9999px;
+    transition: all .2s ease-in-out !important;
+
+    &:hover {
+        border-color: #000000 !important;
+    }
+}
