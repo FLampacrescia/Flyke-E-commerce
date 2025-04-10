@@ -18,7 +18,7 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 setValue("price", dataToEdit.price);
             } else {
                 setValue("name", dataToEdit.name);
-                setValue("surname", dataToEdit.surname);
+                setValue("lastName", dataToEdit.lastName);
                 setValue("email", dataToEdit.email);
                 setValue("isAdmin", dataToEdit.isAdmin.toString());
             }
@@ -96,8 +96,8 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                                 <input className="admin-modal-input" type="text" id="name" {...register("name", { required: true })} />
                             </div>
                             <div className="admin-modal-input-group">
-                                <label className="admin-modal-label" htmlFor="surname">Apellido</label>
-                                <input className="admin-modal-input" type="text" id="surname" {...register("surname", { required: true })} />
+                                <label className="admin-modal-label" htmlFor="lastName">Apellido</label>
+                                <input className="admin-modal-input" type="text" id="lastName" {...register("lastName", { required: true })} />
                             </div>
                             <div className="admin-modal-input-group">
                                 <label className="admin-modal-label" htmlFor="email">Email</label>
@@ -122,88 +122,3 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
         </div>
     );
 }
-
-
-// import { useState, useEffect } from "react";
-// import { useForm } from "react-hook-form";
-// import "./ModalPanel.css";
-// import toast from "react-hot-toast";
-
-// export default function ModalPanel({ closeModal, getProducts, productToEdit }) {
-//     const { register, handleSubmit, reset, setValue } = useForm();
-//     const [loading, setLoading] = useState(false);
-
-//     useEffect(() => {
-//         if (productToEdit) {
-//             setValue("title", productToEdit.title);
-//             setValue("image", productToEdit.image);
-//             setValue("description", productToEdit.description);
-//             setValue("price", productToEdit.price);
-//         } else {
-//             reset();
-//         }
-//     }, [productToEdit, setValue, reset]);
-
-//     const onSubmit = async (data) => {
-//         setLoading(true);
-//         try {
-//             const url = productToEdit 
-//                 ? `https://67dc785fe00db03c40682c8c.mockapi.io/products/${productToEdit.id}`
-//                 : "https://67dc785fe00db03c40682c8c.mockapi.io/products";
-            
-//             const method = productToEdit ? "PUT" : "POST";
-            
-//             const response = await fetch(url, {
-//                 method,
-//                 headers: { "Content-Type": "application/json" },
-//                 body: JSON.stringify({ ...data, createdAt: new Date().toISOString() })
-//             });
-            
-//             if (response.ok) {
-//                 getProducts();
-//                 toast.success(productToEdit ? "Producto editado correctamente." : "Producto agregado correctamente.");
-//                 closeModal();
-//                 reset(); 
-//             } else {
-//                 toast.error("Error al guardar el producto.");
-//             }
-//         } catch (error) {
-//             console.error(error);
-//             toast.error("Error en la solicitud.");
-//         } finally {
-//             setLoading(false);
-//         }
-//     };
-
-//     return (
-//         <div className="modal-overlay">
-//             <div className="modal-content">
-//                 <div className="admin-modal-title-container">
-//                     <h2 className="admin-modal-upper-title">{productToEdit ? "Editar Producto" : "Agregar Nuevo Producto"}</h2>
-//                 </div>
-//                 <form className="admin-modal-form" onSubmit={handleSubmit(onSubmit)}>
-//                     <div className="admin-modal-input-group">
-//                         <label className="admin-modal-label" htmlFor="title">Nombre del producto</label>
-//                         <input className="admin-modal-input" type="text" id="title" {...register("title", { required: true })} />
-//                     </div>
-//                     <div className="admin-modal-input-group">
-//                         <label className="admin-modal-label" htmlFor="image">Imagen (URL)</label>
-//                         <input className="admin-modal-input" type="text" id="image" {...register("image", { required: true })} />
-//                     </div>
-//                     <div className="admin-modal-input-group">
-//                         <label className="admin-modal-label" htmlFor="description">Descripción</label>
-//                         <textarea className="admin-modal-input admin-modal-textarea" id="description" {...register("description", { required: true })} />
-//                     </div>
-//                     <div className="admin-modal-input-group">
-//                         <label className="admin-modal-label" htmlFor="price">Precio</label>
-//                         <input className="admin-modal-input" type="number" id="price" {...register("price", { required: true })} />
-//                     </div>
-//                     <div className="modal-buttons">
-//                         <button className="button btn-secondary" type="button" onClick={closeModal} disabled={loading}>Cancelar</button>
-//                         <button className="button btn-primary" type="submit" disabled={loading}>{loading ? "Guardando..." : "Guardar"}</button>
-//                     </div>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// }

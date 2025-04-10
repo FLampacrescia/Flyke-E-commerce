@@ -5,9 +5,9 @@ import './MainHeader.css';
 import { Link } from "react-router";
 import { useOrder } from '../../context/OrderContext';
 import { useAuth } from '../../context/AuthContext';
-import LogoutModal from "../../components/Common/LogoutModal/LogoutModal";
 import Button from '../../components/Buttons/MenuButton/Button';
 import { useState } from 'react';
+import ConfirmationModal from '../../components/Common/ConfirmationModal/ConfirmationModal';
 
 export default function MainHeader() {
 
@@ -62,9 +62,15 @@ export default function MainHeader() {
                         <hr className="user-menu-line" />
                         {user ? (
                             <>
-                                <Button text="Cerrar sesión" type="btn-secondary" onClick={() => setIsLogoutModalOpen(true)} />
+                                <Button
+                                    text="Cerrar sesión"
+                                    type="btn-secondary"
+                                    onClick={() => setIsLogoutModalOpen(true)}
+                                />
                                 {isLogoutModalOpen && (
-                                    <LogoutModal
+                                    <ConfirmationModal
+                                        title="¿Estás seguro que querés cerrar sesión?"
+                                        confirmText="Cerrar sesión"
                                         onClose={() => setIsLogoutModalOpen(false)}
                                         onConfirm={() => {
                                             logout();

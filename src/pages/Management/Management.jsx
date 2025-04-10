@@ -112,7 +112,7 @@ export default function Management() {
           getProducts={getProducts}
           setProductToEdit={setProductToEdit}
           setIsModalOpen={setIsModalOpen}
-          deleteProduct={deleteProduct} // <-- Pasamos deleteProduct
+          deleteProduct={deleteProduct}
         />
       ) : (
         <UserManagement
@@ -120,7 +120,7 @@ export default function Management() {
           getUsers={getUsers}
           setUserToEdit={setUserToEdit}
           setIsModalOpen={setIsModalOpen}
-          deleteUser={deleteUser} // <-- Pasamos deleteUser
+          deleteUser={deleteUser}
         />
       )}
 
