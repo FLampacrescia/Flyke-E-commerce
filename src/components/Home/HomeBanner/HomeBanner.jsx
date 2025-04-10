@@ -10,9 +10,6 @@ export default function HomeBanner() {
             <div className="hero-text-container">
                 <p className="hero-description">Air Jordan 4 Retro</p>
                 <h2 className="hero-title">Conseguí las nuevas zapatillas.</h2>
-                {/* <Link className="hero-btn" to="#gallery">
-                    Comprar
-                </Link> */}
                 <a className="hero-btn" href="#gallery">
                     Comprar
                 </a>

@@ -10,7 +10,6 @@ import OrderSidebar from "./Layout/OrderSidebar/OrderSidebar";
 import Management from "./pages/Management/Management";
 import Login from "./pages/Login/Login";
 import ProtectedRoute from "./context/ProtectedRoute";
-// import Order from "./pages/Order/Order";
 
 
 export default function App() {

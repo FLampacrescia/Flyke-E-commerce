@@ -28,11 +28,6 @@ export default function Order() {
       <div className="order-buttons">
         <OrderButton text="Finalizar Compra" type="btn-primary" type2="order-button" />
         <OrderButton text="Vaciar Carrito" type="btn-secondary" type2="order-button"  onClick={clearCart}/>
-        {/* <button onClick={(e) => {
-                        e.preventDefault();
-                        console.log("Botón presionado")
-                        clearCart();
-                    }}>Vaciar Carrito</button> */}
       </div>
     </div>
   );
