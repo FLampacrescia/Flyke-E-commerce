@@ -1,0 +1,34 @@
+.about-description-row-container {
+    display: flex;
+    gap: 3rem;
+}
+.about-description-left, .about-description-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.about-description-title {
+    color: var(--text-color);
+}
+.about-description {
+    text-wrap: pretty;
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 906px) {
+    .about-description-row-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .about-description-title {
+        font-size: 1.1rem;
+    }
+    .about-description {
+        font-size: 1.1rem;
+    }
+}
+@media screen and (max-width: 360px) {
+    .about-description-row-container {
+        gap: 20px;
+    }
+}
