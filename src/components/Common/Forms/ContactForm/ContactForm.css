@@ -84,9 +84,6 @@
 
 @media screen and (max-width: 969px) {
     .flex-row-container {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
         width: 100%;
     }
     .text-main-container {
@@ -110,7 +107,6 @@
         height: auto;
     }
     .flex-row-container {
-        display: flex;
         flex-direction: row;
         justify-content: space-between;
         gap: 20px;
@@ -168,6 +164,10 @@
 }
 
 @media screen and (max-width: 409px) {
+    .flex-row-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
     .contact-form-item {
         &::placeholder {
             font-size: .8rem;

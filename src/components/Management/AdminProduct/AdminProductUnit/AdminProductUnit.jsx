@@ -2,6 +2,7 @@ import { useState } from "react";
 import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ConfirmationModal from "../../../Common/ConfirmationModal/ConfirmationModal";
+import { useTranslation } from '../../../../hooks/useTranslations';
 
 export default function AdminProductUnit({ product, deleteProduct, editProduct }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,6 +11,8 @@ export default function AdminProductUnit({ product, deleteProduct, editProduct }
         deleteProduct(product.id);
         setIsModalOpen(false);
     };
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -34,9 +37,7 @@ export default function AdminProductUnit({ product, deleteProduct, editProduct }
 
             {isModalOpen && (
                 <ConfirmationModal
-                    title={`¿Querés eliminar el producto "${product.title}"?`}
-                    confirmText="Eliminar"
-                    cancelText="Cancelar"
+                    title={`${t('modal_product_delete_confirmation')} "${product.title}"?`}
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={handleDelete}
                 />

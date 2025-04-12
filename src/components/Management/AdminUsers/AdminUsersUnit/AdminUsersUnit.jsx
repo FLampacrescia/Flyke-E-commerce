@@ -2,6 +2,7 @@ import { faPencil, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ConfirmationModal from "../../../Common/ConfirmationModal/ConfirmationModal";
 import { useState } from "react";
+import { useTranslation } from '../../../../hooks/useTranslations';
 
 export default function AdminUsersUnit({ user, deleteUser, editUser }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,6 +12,7 @@ export default function AdminUsersUnit({ user, deleteUser, editUser }) {
             setIsModalOpen(false);
         };
 
+        const { t } = useTranslation();
 
     return (
         <>
@@ -18,7 +20,7 @@ export default function AdminUsersUnit({ user, deleteUser, editUser }) {
                 <td className="admin-table-datacell bold-text text-padding">{user.name}</td>
                 <td className="admin-table-datacell bold-text">{user.lastName}</td>
                 <td className="admin-table-datacell">{user.email}</td>
-                <td className="admin-table-datacell">{user.isAdmin ? "Sí" : "No"}</td>
+                <td className="admin-table-datacell">{user.isAdmin ? t('management_page_modal_panel_admin_yes') : t('management_page_modal_panel_admin_no')}</td>
                 <td className="admin-table-datacell flex-center">
                     <div className="actions">
                         <button className="admin-action-btn edit-btn" onClick={() => editUser(user)}>
@@ -32,9 +34,7 @@ export default function AdminUsersUnit({ user, deleteUser, editUser }) {
             </tr>
             {isModalOpen && (
                 <ConfirmationModal
-                    title={`¿Querés eliminar al usuario "${user.name} ${user.lastName}"?`}
-                    confirmText="Eliminar"
-                    cancelText="Cancelar"
+                    title={`${t('modal_user_delete_confirmation')} "${user.name} ${user.lastName}"?`}
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={handleDelete}
                 />

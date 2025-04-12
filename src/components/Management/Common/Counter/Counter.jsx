@@ -1,5 +1,10 @@
+import { useTranslation } from '../../../../hooks/useTranslations';
+
 export default function Counter({text}) {
+
+    const { t } = useTranslation();
+
     return (
-        <p>Hay un total de <span className="bold-text">{text}</span>.</p> 
+        <p>{t('management_page_counter')} <span className="bold-text">{text}</span>.</p> 
     )
 }

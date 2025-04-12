@@ -8,6 +8,7 @@ import { useAuth } from '../../context/AuthContext';
 import Button from '../../components/Buttons/MenuButton/Button';
 import { useRef, useState } from 'react';
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
+import { useTranslation } from '../../hooks/useTranslations';
 
 export default function MainHeader() {
     const avatarRef = useRef(null);
@@ -19,6 +20,8 @@ export default function MainHeader() {
     const handleAvatarClick = () => {
         setIsDropdownOpen(prev => !prev);
     };
+
+    const { t } = useTranslation();
 
     return (
         <header className="main-header">
@@ -32,13 +35,13 @@ export default function MainHeader() {
                 <img className="logo" src={LogoImg} alt="Logo" />
             </Link>
             <nav className="navbar">
-                <Link className="navlink" to="/">Inicio</Link>
-                <Link className="navlink" to="/about">Nosotros</Link>
-                <Link className="navlink" to="/contact">Contacto</Link>
+                <Link className="navlink" to="/">{t('home')}</Link>
+                <Link className="navlink" to="/about">{t('about')}</Link>
+                <Link className="navlink" to="/contact">{t('contact')}</Link>
                 <hr className="user-menu-line line-menu-navbar" />
                 <div className="user-navbar">
                     <a className="user-navlink" href="/pages/admin.html">Admin</a>
-                    <a className="user-navlink" href="">Wishlist</a>
+                    <a className="user-navlink" href="">{t('menu_wishlist')}</a>
                     <hr className="user-menu-line" />
                     <div className="navbar-btn-container">
                         <Button text="Inicio de Sesión" type="btn-primary" url="/login" />

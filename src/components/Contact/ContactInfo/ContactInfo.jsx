@@ -3,24 +3,28 @@ import ContactImg from "../../../assets/contact1.webp";
 import SocialIcons from "../../Common/SocialIcons/SocialIcons";
 import "./ContactInfo.css";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from '../../../hooks/useTranslations';
 
 export default function ContactInfo() {
+
+    const { t } = useTranslation();
+
     return (
         <>
             <div className="contact-column column-dark">
                 <img className="column-img" src={ContactImg} alt="" />
                 <div className="text-main-container">
                     <div className="text-wrap">
-                        <h2>Encontranos</h2>
+                        <h2>{t('contact_page_info_main_title')}</h2>
                         <div className="text-small-container">
                             <div className="text-sub-container">
-                                <h3 className="contact-small-title">Dirección</h3>
+                                <h3 className="contact-small-title">{t('contact_page_info_address_title')}</h3>
                                 <p>Calle Ejemplo 1234</p>
                                 <p>Buenos Aires, Argentina</p>
-                                <p>Piso 32, Timbre 5.</p>
+                                <p>{t('contact_page_info_address_apartment')}</p>
                             </div>
                             <div className="text-sub-container">
-                                <h3 className="contact-small-title">Contacto</h3>
+                                <h3 className="contact-small-title">{t('contact_page_info_contact_title')}</h3>
                                 <div className="contact-wrap">
                                     <FontAwesomeIcon icon={ faPhone } className="icon" />
                                     <span>+54 9 1123562356</span>

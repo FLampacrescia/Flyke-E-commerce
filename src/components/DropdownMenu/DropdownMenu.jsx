@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import Button from '../../components/Buttons/MenuButton/Button';
 import ConfirmationModal from '../../components/Common/ConfirmationModal/ConfirmationModal';
+import { useLanguage } from '../../context/LanguageContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop } from '@fortawesome/free-solid-svg-icons';
 import './DropdownMenu.css';
+import { useTranslation } from '../../hooks/useTranslations';
 
 export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogoutModalOpen, setIsLogoutModalOpen, avatarRef }) {
     const dropdownRef = useRef(null);
@@ -28,35 +30,44 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
         setIsOpen(false);
     }, [location.pathname]);
 
+    const { language, toggleLanguage } = useLanguage();
+    const { t } = useTranslation();
+
     return (
         <div className={`dropdown-menu ${isOpen ? 'open' : ''}`} ref={dropdownRef}>
             {user && (
                 <>
                     <Link className="user-menu-link-container" to="/my-account">
-                        <span className="user-menu-link">Mi Cuenta</span>
+                        <span className="user-menu-link">{t('menu_account')}</span>
                     </Link>
                     <hr className="user-menu-line" />
                 </>
             )}
 
             <Link className="user-menu-link-container" to="/wishlist">
-                <span className="user-menu-link">Lista de Deseos</span>
+                <span className="user-menu-link">{t('menu_wishlist')}</span>
             </Link>
             <hr className="user-menu-line" />
 
-            <Link className="user-menu-link-container" to="/wishlist">
-                <span className="user-menu-link">Idioma</span>
-                <div className="user-menu-language-container">
-                    <span className="user-menu-language">ES</span>
-                    <img src="https://us.puma.com/_next/static/assets/icons/flag-ar.svg#icon" alt="arg-flag" className="user-menu-flag-icon" />
-                </div>
+            <Link className="user-menu-link-container" onClick={toggleLanguage}>
+                <span className="user-menu-link">{t('menu_language')}</span>
+                {language === 'es' ? (
+                    <div className="user-menu-language-container">
+                        <span className="user-menu-language">ES</span>
+                        <img src="https://us.puma.com/_next/static/assets/icons/flag-ar.svg#icon" alt="arg-flag" className="user-menu-flag-icon" />
+                    </div>
+                ) : (
+                    <div className="user-menu-language-container">
+                        <span className="user-menu-language">EN</span>
+                        <img src="https://us.puma.com/_next/static/assets/icons/flag-us.svg#icon" alt="usa-flag" className="user-menu-flag-icon" />
+                    </div>)}
             </Link>
             <hr className="user-menu-line" />
 
             {user?.isAdmin && (
                 <>
                     <Link className="user-menu-link-container" to="/management">
-                        <span className="user-menu-link user-menu-admin-link">Administración</span>
+                        <span className="user-menu-link user-menu-admin-link">{t('menu_admin')}</span>
                         <FontAwesomeIcon icon={faDesktop} className="user-menu-icon" />
                     </Link>
                     <hr className="user-menu-line" />
@@ -66,14 +77,14 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
             {user ? (
                 <>
                     <Button
-                        text="Cerrar sesión"
+                        text={t('menu_logout')}
                         type="btn-secondary menu-btn"
                         onClick={() => setIsLogoutModalOpen(true)}
                     />
                     {isLogoutModalOpen && (
                         <ConfirmationModal
-                            title="¿Estás seguro que querés cerrar sesión?"
-                            confirmText="Cerrar sesión"
+                            title={t('menu_logout_confirmation')}
+                            confirmText={t('menu_logout_confirmation_btn')}
                             onClose={() => setIsLogoutModalOpen(false)}
                             onConfirm={() => {
                                 logout();
@@ -84,8 +95,8 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
                 </>
             ) : (
                 <>
-                    <Button text="Inicio de Sesión" type="btn-primary menu-btn" url="/login" />
-                    <Button text="Registro" type="btn-secondary menu-btn" url="/register" />
+                    <Button text={t('menu_login')} type="btn-primary menu-btn" url="/login" />
+                    <Button text={t('menu_register')} type="btn-secondary menu-btn" url="/register" />
                 </>
             )}
         </div>

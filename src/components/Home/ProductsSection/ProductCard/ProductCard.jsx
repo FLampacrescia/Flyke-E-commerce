@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icons';
 import toast, { Toaster } from 'react-hot-toast';
 import { useOrder } from "../../../../context/OrderContext";
+import { useTranslation } from '../../../../hooks/useTranslations';
 
-const notify = () => toast.success('Producto agregado al carrito.');
+
 
 export default function ProductCard({ product }) {
 
     const { addToCart } = useOrder();
-
+    const { t } = useTranslation();
+    const notify = () => toast.success(t('cart_add_success'));
+    
     return (
         <article className="card-container">
             <Link className="card-link" to="/product-detail"></Link>
@@ -29,7 +32,7 @@ export default function ProductCard({ product }) {
                     }}>
                         <FontAwesomeIcon icon={faCartShopping} className="fa-solid fa-cart-shopping" />
                     </Link>
-                    <div className="card-status">Nuevo</div>
+                    <div className="card-status">{t('product_status')}</div>
                 </Link>
                 <div className="card-icon-container">
                     <Link to={`/product-detail/${product.id}`}>

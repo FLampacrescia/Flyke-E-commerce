@@ -3,6 +3,9 @@ import FormInput from "../FormInput/FormInput";
 import "./RegisterForm.css";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useTranslation } from '../../../../hooks/useTranslations';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const API_URL = "https://67dc785fe00db03c40682c8c.mockapi.io/users";
 
@@ -29,10 +32,10 @@ export default function RegisterForm() {
         try {
             const response = await axios.post(API_URL, newUser);
             toast.success("Registro exitoso!");
-            console.log("Usuario registrado:", response.data);
+            console.log(`${t('register_success_log')}`, response.data);
             reset();
         } catch (error) {
-            console.error("Error al registrar usuario:", error);
+            console.error(`${t('register_error_log')}`, error);
             toast.error("Hubo un error al registrarte.");
         }
     };
@@ -40,54 +43,60 @@ export default function RegisterForm() {
     const password = watch("password");
     const email = watch("email");
 
+    const { t } = useTranslation();
+
     return (
         <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-section">
-                <h2 className="form-section-title">Datos Personales</h2>
+                <h2 className="form-section-title">{t('register_page_subtitle1')}</h2>
                 <div className="form-row">
                     <FormInput
                         classAdd="register-input"
-                        label="Nombre"
+                        label={t('register_page_input1_label')}
                         type="text"
                         name="name"
-                        placeholder="* Nombre"
+                        placeholder={t('register_page_input1_placeholder')}
                         register={register}
-                        required={{ value: true, message: "Este campo es obligatorio" }}
+                        required={{ value: true, message: t('form_required_input_message') }}
                         errors={errors}
                     />
 
                     <FormInput
                         classAdd="register-input"
-                        label="Apellido"
+                        label={t('register_page_input2_label')}
                         type="text"
                         name="lastName"
-                        placeholder="* Apellido"
+                        placeholder={t('register_page_input2_placeholder')}
                         register={register}
-                        required={{ value: true, message: "Este campo es obligatorio" }}
+                        required={{ value: true, message: t('form_required_input_message') }}
                         errors={errors}
                     />
                 </div>
 
                 <div className="form-row">
                     <div className="input-group register-input">
-                        <label className="select-label" htmlFor="birthDate">Fecha de Nacimiento</label>
+                        <label className="select-label" htmlFor="birthDate">{t('register_page_input3_label')}</label>
                         <input
                             type="date"
                             id="birthDate"
                             className="form-item"
-                            {...register("birthDate", { required: "Selecciona una fecha" })}
+                            {...register("birthDate", { required: t('register_form_birthdate_required_message') })}
                         />
-                        {errors.birthDate && <p className="error-msg">{errors.birthDate.message}</p>}
+                        {errors.birthDate && <div className="error-container">
+                                                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
+                                                <p className="error-msg">{errors.birthDate.message}</p>
+                                            </div>
+                                        }
                     </div>
 
                     <div className="input-group register-input">
-                        <label className="select-label" htmlFor="province">Provincia</label>
+                        <label className="select-label" htmlFor="province">{t('register_page_input4_label')}</label>
                         <select
                             id="province"
                             className="form-item"
-                            {...register("province", { required: "Selecciona una provincia" })}
+                            {...register("province", { required: t('register_form_province_required_message') })}
                         >
-                            <option value="">Selecciona tu provincia</option>
+                            <option value="">{t('register_page_input_select')}</option>
                             <option value="Buenos Aires">Buenos Aires</option>
                             <option value="Catamarca">Catamarca</option>
                             <option value="Chaco">Chaco</option>
@@ -112,56 +121,64 @@ export default function RegisterForm() {
                             <option value="Tierra del Fuego">Tierra del Fuego</option>
                             <option value="Tucumán">Tucumán</option>
                         </select>
-                        {errors.province && <p className="error-msg">{errors.province.message}</p>}
+                        {errors.province && <div className="error-container">
+                                                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
+                                                <p className="error-msg">{errors.province.message}</p>
+                                            </div>
+                                        }
                     </div>
                 </div>
             </div>
 
             <div className="form-section">
-                <h2 className="form-section-title">Datos de la Cuenta</h2>
+                <h2 className="form-section-title">{t('register_page_subtitle2')}</h2>
                 <div className="form-row">
                     <FormInput
                         classAdd="register-input"
-                        label="Correo Electrónico"
+                        label={t('register_page_input5_label')}
                         type="email"
                         name="email"
-                        placeholder="* Correo Electrónico"
+                        placeholder={t('register_page_input5_placeholder')}
                         register={register}
-                        required={{ value: true, message: "Este campo es obligatorio" }}
+                        required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
                             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                            message: "Correo inválido",
+                            message: t('form_invalid_email_message'),
                         }}
                         errors={errors}
                     />
                     <div className="input-group-column">
                     <FormInput
                         classAdd="register-input"
-                        label="Repetir Correo Electrónico"
+                        label={t('register_page_input6_label')}
                         type="email"
                         name="confirmEmail"
-                        placeholder="* Repetir Correo Electrónico"
+                        placeholder={t('register_page_input6_placeholder')}
                         register={register}
-                        required={{ value: true, message: "Este campo es obligatorio" }}
+                        required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
                             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                            message: "Correo inválido",
+                            message: t('form_invalid_email_message'),
                         }}
                         errors={errors}
                     />
-                    {email !== watch("confirmEmail") && <p className="error-msg">Los correos no coinciden</p>}
+                    {email !== watch("confirmEmail") && <div className="error-container match-error">
+                                                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
+                                                <p className="error-msg">{t('register_form_mail_match_error_message')}</p>
+                                            </div>
+                                        }
                     </div>
                 </div>
 
                 <div className="form-row">
                     <FormInput
                         classAdd="register-input"
-                        label="Contraseña"
+                        label={t('register_page_input7_label')}
                         type="password"
                         name="password"
-                        placeholder="* Contraseña"
+                        placeholder={t('register_page_input7_placeholder')}
                         register={register}
-                        required={{ value: true, message: "Este campo es obligatorio" }}
+                        required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
                             value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
                             message: "Mínimo 8 caracteres, al menos una letra y un número",
@@ -171,20 +188,24 @@ export default function RegisterForm() {
                     <div className="input-group-column">
                         <FormInput
                             classAdd="register-input"
-                            label="Repetir Contraseña"
+                            label={t('register_page_input8_label')}
                             type="password"
                             name="confirmPassword"
-                            placeholder="* Repetir Contraseña"
+                            placeholder={t('register_page_input8_placeholder')}
                             register={register}
-                            required={{ value: true, message: "Este campo es obligatorio" }}
+                            required={{ value: true, message: t('form_required_input_message') }}
                             errors={errors}
                         />
-                        {password !== watch("confirmPassword") && <p className="error-msg">Las contraseñas no coinciden</p>}
+                        {password !== watch("confirmPassword") && <div className="error-container match-error">
+                                                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
+                                                <p className="error-msg">{t('register_form_password_match_error_message')}</p>
+                                            </div>
+                                        }
                     </div>
                 </div>
             </div>
 
-            <button type="submit" className="submit-btn">Completar Registro</button>
+            <button type="submit" className="submit-btn">{t('register_page_btn')}</button>
         </form>
     );
 }

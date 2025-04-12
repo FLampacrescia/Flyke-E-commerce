@@ -39,6 +39,7 @@
     text-align: left;
 }
 .admin-modal-input {
+    font-family: "Poppins", sans-serif;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -50,7 +51,7 @@
 }
 .admin-modal-textarea {
     resize: none;
-    padding: 2.5px;
+    height: 42px;
 }
 .admin-modal-input[type=number]::-webkit-inner-spin-button,
 .admin-modal-input[type=number]::-webkit-outer-spin-button {

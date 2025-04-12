@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import FormInput from "../FormInput/FormInput";
 import "./ContactForm.css";
+import { useTranslation } from '../../../../hooks/useTranslations';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ContactForm() {
@@ -14,46 +17,52 @@ export default function ContactForm() {
         console.log("Datos enviados:", data);
     };
 
+    const { t } = useTranslation();
+
     return (
         <form className="contact-form-container" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex-row-container">
                 <FormInput
-                    label="Nombre y Apellido"
+                    label={t('contact_page_input1_label')}
                     type="text"
                     name="fullName"
-                    placeholder="* Nombre y Apellido"
+                    placeholder={t('contact_page_input1_placeholder')}
                     register={register}
-                    required={{ value: true, message: "Este campo es obligatorio" }}
+                    required={{ value: true, message: t('form_required_input_message') }}
                     errors={errors}
                 />
 
                 <FormInput
-                    label="Correo Electrónico"
+                    label={t('contact_page_input2_label')}
                     type="email"
                     name="email"
-                    placeholder="* Correo Electrónico"
+                    placeholder={t('contact_page_input2_placeholder')}
                     register={register}
-                    required={{ value: true, message: "Este campo es obligatorio" }}
+                    required={{ value: true, message: t('form_required_input_message') }}
                     pattern={{
                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                        message: "Correo inválido",
+                        message: t('form_invalid_email_message'),
                     }}
                     errors={errors}
                 />
             </div>
 
             <div className="contact-input-group flex-width">
-                <label className="contact-placeholder-label" htmlFor="message">Contanos tu consulta</label>
+                <label className="contact-placeholder-label" htmlFor="message">{t('contact_page_input3_label')}</label>
                 <textarea
                     id="message"
                     className="contact-form-item form-message"
-                    placeholder="* Escribí tu mensaje"
-                    {...register("message", { required: "Este campo es obligatorio" })}
+                    placeholder={t('contact_page_input3_placeholder')}
+                    {...register("message", { required: t('form_required_input_message') })}
                 />
-                {errors.message && <p className="error-msg">{errors.message.message}</p>}
+                {errors.message && <div className="error-container">
+                        <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
+                        <p className="error-msg">{errors.message.message}</p>
+                    </div>
+                }
             </div>
 
-            <button type="submit" className="submit-btn">Enviar</button>
+            <button type="submit" className="submit-btn">{t('contact_page_btn')}</button>
         </form>
     );
 }
