@@ -6,6 +6,7 @@ import ProductDetailTitle from "../ProductDetailTitle/ProductDetailTitle";
 import QuantityButton from "../../Buttons/QuantityButton/QuantityButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruckFast } from "@fortawesome/free-solid-svg-icons";
+import config from '../../../config/env.config';
 
 const notify = () => toast.success("Producto agregado al carrito.");
 
@@ -15,11 +16,11 @@ export default function ProductMainInfo({ product }) {
 
     return (
         <div className="product-detail-info-container">
-            <img className="product-detail-img" src={product.image} alt={product.title}/>
+            <img className="product-detail-img" src={`${config.FILES_URL}/products/${product.image}`} alt={product.title}/>
             <div className="product-detail-info-inner-container">
                 <div className="product-detail-title-container">
                     <h2 className="product-detail-product-title">{product.title}</h2>
-                    <h3 className="product-detail-description">{product.description}</h3>
+                    <h3 className="product-detail-description">{product.category}</h3>
                 </div>
                 <div className="product-detail-price-container">
                     <ProductDetailTitle classAdd="product-detail-title product-detail-price" text={`$${product.price}`} />

@@ -5,6 +5,7 @@ import { faCartShopping, faEye, faHeart } from '@fortawesome/free-solid-svg-icon
 import toast, { Toaster } from 'react-hot-toast';
 import { useOrder } from "../../../../context/OrderContext";
 import { useTranslation } from '../../../../hooks/useTranslations';
+import config from '../../../../config/env.config';
 
 
 
@@ -18,10 +19,10 @@ export default function ProductCard({ product }) {
         <article className="card-container">
             <Link className="card-link" to="/product-detail"></Link>
             <div className="card-content">
-                <Link className="card-link" to={`/product-detail/${product.id}`}>
+                <Link className="card-link" to={`/product-detail/${product._id}`}>
                     
                     <img
-                        src={product.image}
+                        src={`${config.FILES_URL}/products/${product.image}`}
                         alt={product.title}
                         className="card-image"
                     />
@@ -35,7 +36,7 @@ export default function ProductCard({ product }) {
                     <div className="card-status">{t('product_status')}</div>
                 </Link>
                 <div className="card-icon-container">
-                    <Link to={`/product-detail/${product.id}`}>
+                    <Link to={`/product-detail/${product._id}`}>
                         <div className="icon-circle">
                             <FontAwesomeIcon icon={ faEye } className="fa-regular fa-eye" />
                         </div>
@@ -47,10 +48,10 @@ export default function ProductCard({ product }) {
                     </Link>
                 </div>
             </div>
-            <Link className="card-link-bottom" to={`/product-detail/${product.id}`}>
+            <Link className="card-link-bottom" to={`/product-detail/${product._id}`}>
                 <div className="card-info">
                     <h3 className="card-title">{product.title}</h3>
-                    <h4 className="card-description">{product.description}</h4>
+                    <h4 className="card-category">{product.category}</h4>
                     <h3 className="card-price">${product.price}</h3>
                 </div>
             </Link>

@@ -27,6 +27,9 @@
     font-size: 1rem;
     padding: 1rem;
 }
+.btn-img {
+    height: max-content;
+}
 .btn-primary {
     background-color: var(--text-color);
     border: solid 1px var(--text-color) !important;

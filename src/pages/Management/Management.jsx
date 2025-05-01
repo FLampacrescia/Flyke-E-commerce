@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import axios from "axios";
 import ProductManagement from "../../components/Management/AdminProduct/ProductManagement/ProductManagement";
 import UserManagement from "../../components/Management/AdminUsers/UserManagement/UserManagement";
@@ -7,10 +8,8 @@ import OrderButton from "../../components/Buttons/OrderButton/OrderButton";
 import "./Management.css";
 import Counter from "../../components/Management/Common/Counter/Counter";
 import ModalPanel from "../../components/Management/Common/ModalPanel/ModalPanel";
-import toast from "react-hot-toast";
+import config from '../../config/env.config';
 import { useTranslation } from '../../hooks/useTranslations';
-
-const URL = "https://67dc785fe00db03c40682c8c.mockapi.io/";
 
 export default function Management() {
   const [selectedSection, setSelectedSection] = useState("products");
@@ -31,9 +30,11 @@ export default function Management() {
 
   async function getProducts() {
     try {
-      const response = await axios.get(`${URL}/products`);
-      setProducts(response.data);
-      setProductCount(response.data.length);
+      const response = await axios.get(`${config.API_URL}/products`);
+      setProducts(response.data.products);
+      console.log(response.data.products);
+      
+      setProductCount(response.data.products.length);
     } catch (error) {
       console.error(error);
       toast.error(t('management_products_load_error'));
@@ -42,8 +43,10 @@ export default function Management() {
 
   async function getUsers() {
     try {
-      const response = await axios.get(`${URL}/users`);
+      const response = await axios.get(`${config.API_URL}/users`);
       setUsers(response.data);
+      console.log(response.data);
+      
       setUserCount(response.data.length);
     } catch (error) {
       console.error(error);
@@ -53,8 +56,8 @@ export default function Management() {
 
   async function deleteProduct(id) {
     try {
-      await axios.delete(`${URL}/products/${id}`);
-      setProducts(products.filter((product) => product.id !== id));
+      await axios.delete(`${config.API_URL}/products/${id}`);
+      setProducts(products.filter((product) => product._id !== id));
       setProductCount((prevCount) => prevCount - 1);
       toast.success(t('management_product_delete_success'));
     } catch (error) {
@@ -65,8 +68,8 @@ export default function Management() {
   
   async function deleteUser(id) {
     try {
-      await axios.delete(`${URL}/users/${id}`);
-      setUsers(users.filter((user) => user.id !== id));
+      await axios.delete(`${config.API_URL}/users/${id}`);
+      setUsers(users.filter((user) => user._id !== id));
       setUserCount((prevCount) => prevCount - 1);
       toast.success(t('management_user_delete_success'));
     } catch (error) {

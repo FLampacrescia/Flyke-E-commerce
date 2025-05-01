@@ -1,34 +1,48 @@
 import axios from "axios";
-import { useEffect } from "react";
-import { useState, createContext, useContext } from "react";
+import { useEffect, useState, createContext, useContext, useMemo } from "react";
 
-const URL = "localhost:3000/api";
+const URL = "http://localhost:3000/api";
 
 const UserContext = createContext();
-export const useUser = () => useContext(UserContext)
+export const useUser = () => useContext(UserContext);
 
 export function UserProvider({ children }) {
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
 
-    const [ user, setUser ] = useState(null);
-    const [ token, setToken ] = useState(null);
+    const [token, setToken] = useState(() => {
+        return localStorage.getItem("token") || null;
+    });
+
+    const isAdmin = useMemo(() => {
+        return user?.role === "admin";
+    }, [user]);
 
     useEffect(() => {
-        user ? localStorage.setItem("user", JSON.stringify(user))
+        user
+            ? localStorage.setItem("user", JSON.stringify(user))
             : localStorage.removeItem("user");
-        token ? localStorage.setItem("token", token)
-            : localStorage.removeItem("token");
-    }, [user, token]); 
 
-    async function login(data) {
+        token
+            ? localStorage.setItem("token", token)
+            : localStorage.removeItem("token");
+    }, [user, token]);
+
+    async function login(credentials) {
         try {
-            const response = await axios.post(`${URL}/login`, data);
+            const response = await axios.post(`${URL}/login`, credentials);
             const { user, token } = response.data;
             setUser(user);
             setToken(token);
-            
+            return { success: true };
         } catch (error) {
             console.error("Error during login", error);
-            
+            return {
+                success: false,
+                message: error.response?.data?.message || "Error al iniciar sesión",
+            };
         }
     }
 
@@ -37,10 +51,9 @@ export function UserProvider({ children }) {
         setToken(null);
     }
 
-
     return (
-        <UserContext.Provicer value={{login, logout}}>
+        <UserContext.Provider value={{ user, token, isAdmin, login, logout }}>
             {children}
-        </UserContext.Provicer>
-    )
+        </UserContext.Provider>
+    );
 }

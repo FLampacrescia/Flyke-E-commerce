@@ -1,0 +1,39 @@
+.description-modal-outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: hidden;
+    text-align: center;
+}
+.description-modal-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+    padding: 50px 40px 40px 40px;
+    overflow-y: auto;
+}
+.admin-modal-description-content {
+    max-height: 40vh;
+    width: 100% !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-y: auto;
+}
+.description-modal-textarea {
+    min-height: 100px;
+    width: 100% !important;
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+.description-modal-textarea:focus {
+    outline: none;
+}

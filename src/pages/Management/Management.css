@@ -107,12 +107,15 @@
     width: 20%;
 }
 .admin-table-upper-title:nth-child(3), .admin-table-datacell:nth-child(3) {
-    width: 45%;
+    width: 25%;
 }
 .admin-table-upper-title:nth-child(4), .admin-table-datacell:nth-child(4) {
-    width: 15%;
+    width: 20%;
 }
 .admin-table-upper-title:nth-child(5), .admin-table-datacell:nth-child(5) {
+    width: 10%;
+}
+.admin-table-upper-title:nth-child(6), .admin-table-datacell:nth-child(6) {
     width: 10%;
 }
 .admin-table-datacell img {
@@ -131,6 +134,22 @@
 }
 .text-center {
     text-align: center;
+}
+.admin-description-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: #4b5563;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+.admin-description-link:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
 }
 .actions {
     display: flex;

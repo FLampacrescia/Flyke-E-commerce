@@ -6,6 +6,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop } from '@fortawesome/free-solid-svg-icons';
 import './DropdownMenu.css';
+import { useUser } from '../../context/UserContext';
 import { useTranslation } from '../../hooks/useTranslations';
 
 export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogoutModalOpen, setIsLogoutModalOpen, avatarRef }) {
@@ -29,6 +30,8 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
     useEffect(() => {
         setIsOpen(false);
     }, [location.pathname]);
+
+    const { isAdmin } = useUser();
 
     const { language, toggleLanguage } = useLanguage();
     const { t } = useTranslation();
@@ -64,7 +67,7 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
             </Link>
             <hr className="user-menu-line" />
 
-            {user?.isAdmin && (
+            {isAdmin && (
                 <>
                     <Link className="user-menu-link-container" to="/management">
                         <span className="user-menu-link user-menu-admin-link">{t('menu_admin')}</span>

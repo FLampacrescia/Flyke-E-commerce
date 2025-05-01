@@ -19,7 +19,7 @@ export default function AdminUsersList({ users, deleteUser, editUser }) {
             <tbody className="admin-table-body">
                 {users.map((user) => (
                     <AdminUserUnit
-                        key={user.id}
+                        key={user._id}
                         user={user}
                         deleteUser={deleteUser}
                         editUser={editUser}

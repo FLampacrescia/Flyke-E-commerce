@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import config from "../../config/env.config";
 import ProductDescription from "../../components/ProductDetail/ProductDescription/ProductDescription";
 import ProductMainInfo from "../../components/ProductDetail/ProductMainInfo/ProductMainInfo";
 import "./ProductDetail.css";
-
-const URL = "https://67dc785fe00db03c40682c8c.mockapi.io/";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -15,7 +14,7 @@ export default function ProductDetail() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`${URL}/products/${id}`);
+                const response = await axios.get(`${config.API_URL}/products/${id}`);
                 setProduct(response.data);
             } catch (error) {
                 console.error("Error al cargar el producto:", error);
@@ -23,7 +22,6 @@ export default function ProductDetail() {
                 setLoading(false);
             }
         };
-
         fetchProduct();
     }, [id]);
 
@@ -37,4 +35,3 @@ export default function ProductDetail() {
         </div>
     );
 }
-

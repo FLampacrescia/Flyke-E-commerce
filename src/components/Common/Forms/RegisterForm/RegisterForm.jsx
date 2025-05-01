@@ -6,8 +6,7 @@ import axios from "axios";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
-
-const API_URL = "https://67dc785fe00db03c40682c8c.mockapi.io/users";
+import config from '../../../../config/env.config';
 
 export default function RegisterForm() {
     const {
@@ -26,11 +25,11 @@ export default function RegisterForm() {
             province: data.province,
             email: data.email,
             password: data.password,
-            isAdmin: false,
+            role: data.role,
         };
 
         try {
-            const response = await axios.post(API_URL, newUser);
+            const response = await axios.post(`${config.API_URL}/users`, newUser);
             toast.success("Registro exitoso!");
             console.log(`${t('register_success_log')}`, response.data);
             reset();

@@ -1,46 +1,35 @@
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
+import { useUser } from "../../../../context/UserContext";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import { useState, useEffect } from "react";
-
 import FormInput from "../FormInput/FormInput";
 import "./LoginForm.css";
 import "../../../Buttons/Button.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-const API_URL = "https://67dc785fe00db03c40682c8c.mockapi.io/users";
-
 export default function LoginForm() {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
-  const { login } = useAuth();
+  const { login } = useUser();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [authError, setAuthError] = useState("");
 
   const onSubmit = async (data) => {
-    try {
-      setAuthError("");
-      const response = await axios.get(API_URL);
-      const users = response.data;
-      const matchedUser = users.find(
-        (user) =>
-          user.email === data.confirmEmail && user.password === data.password
-      );
+    setAuthError("");
+    const { success, message } = await login({
+      email: data.confirmEmail,
+      password: data.password,
+    });
 
-      if (matchedUser) {
-        login(matchedUser);
-        toast.success(t("login_success"));
-        navigate("/");
-      } else {
-        setAuthError(t("login_invalid_credentials"));
-      }
-    } catch (error) {
-      console.error(error);
+    if (success) {
+      toast.success(t("login_success"));
+      navigate("/");
+    } else {
+      setAuthError(t("login_invalid_credentials") || message);
       toast.error(t("login_error"));
     }
   };
