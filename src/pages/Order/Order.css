@@ -58,6 +58,11 @@
 .order-product-title {
     display: flex;
     font-size: .8rem;
+    width: 100%;
+}
+.order-quantity-counter {
+    font-size: .8rem;
+    padding-bottom: 20px;
 }
 .order-summary {
     display: flex;

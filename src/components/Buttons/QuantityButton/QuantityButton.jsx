@@ -12,7 +12,7 @@ export default function QuantityButton({ classAdd, classAdd2, product, isInCart 
 
     const handleDecrement = () => {
         if (isInCart) {
-            updateQuantity(product.id, product.quantity - 1);
+            updateQuantity(product._id, product.quantity - 1);
         } else {
             setSelectedQuantity(Math.max(1, selectedQuantity - 1));
         }
@@ -20,7 +20,7 @@ export default function QuantityButton({ classAdd, classAdd2, product, isInCart 
 
     const handleIncrement = () => {
         if (isInCart) {
-            updateQuantity(product.id, product.quantity + 1);
+            updateQuantity(product._id, product.quantity + 1);
         } else {
             setSelectedQuantity(selectedQuantity + 1);
         }
@@ -29,7 +29,7 @@ export default function QuantityButton({ classAdd, classAdd2, product, isInCart 
     const handleInputChange = (e) => {
         const value = parseInt(e.target.value);
         if (isInCart) {
-            updateQuantity(product.id, isNaN(value) ? 1 : value);
+            updateQuantity(product._id, isNaN(value) ? 1 : value);
         } else {
             setSelectedQuantity(isNaN(value) ? 1 : value);
         }
