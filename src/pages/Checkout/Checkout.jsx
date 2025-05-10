@@ -6,6 +6,7 @@ import CheckoutCartUnit from "../../components/Checkout/CheckoutCartUnit/Checkou
 export default function Checkout() {
 
   const { cart, total } = useOrder();
+  const { t } = useTranslation();
 
   return (
     <div className='checkout-main-container'>
@@ -16,7 +17,7 @@ export default function Checkout() {
       </div>
       <div className="checkout-cart-summary">
         <div className="checkout-cart-summary-main-container">
-            <h3 className="checkout-cart-summary-title">Resúmen de la Compra</h3>
+            <h3 className="checkout-cart-summary-title">{t('checkout_cart_summary_title')}</h3>
             <div className="checkout-cart-summary-container">
                 <div className="checkout-cart-summary-sub-container">
                 <table className="checkout-cart-summary-table">

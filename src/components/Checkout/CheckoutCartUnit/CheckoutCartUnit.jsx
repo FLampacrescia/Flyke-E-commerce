@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
 import config from '../../../config/env.config';
-import { useOrder } from '../../../context/OrderContext';
 import "./CheckoutCartUnit.css";
+import { useTranslation } from '../../../hooks/useTranslations';
 
 
 export default function CheckoutCartUnit( { product }) {
-    
-  const { count } = useOrder();
+
+    const { t } = useTranslation();
 
     return (
         <>
@@ -14,7 +13,7 @@ export default function CheckoutCartUnit( { product }) {
                 <td className="checkout-image-cell"><img src={`${config.FILES_URL}/products/${product.image}`} alt={product.title} className="checkout-product-image" /></td>
                 <td className="checkout-product-details">
                     <span className="checkout-product-title">{product.title}</span>
-                    <span className='checkout-quantity-counter'>Cantidad: {product.quantity}</span>
+                    <span className='checkout-quantity-counter'>{`${t('checkout_cart_summary_quantity')}:`} {product.quantity}</span>
                 </td>
                 <td className="checkout-summary">
                     <span className="checkout-total">${(product.price * product.quantity).toFixed(2)}</span>
