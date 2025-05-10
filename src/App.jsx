@@ -4,7 +4,7 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Register from "./pages/Register/Register";
 import MainHeader from "./layout/MainHeader/MainHeader";
-import Footer from "./layout/Footer/Footer";
+import Footer from "./layout/footer/Footer";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Management from "./pages/Management/Management";
 import Login from "./pages/Login/Login";
