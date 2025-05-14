@@ -32,7 +32,6 @@ export default function Management() {
     try {
       const response = await axios.get(`${config.API_URL}/products`);
       setProducts(response.data.products);
-      console.log(response.data.products);
       
       setProductCount(response.data.products.length);
     } catch (error) {
@@ -45,7 +44,6 @@ export default function Management() {
     try {
       const response = await axios.get(`${config.API_URL}/users`);
       setUsers(response.data);
-      console.log(response.data);
       
       setUserCount(response.data.length);
     } catch (error) {
@@ -54,21 +52,31 @@ export default function Management() {
     }
   }
 
-  async function deleteProduct(id) {
-    try {
-      await axios.delete(`${config.API_URL}/products/${id}`);
-      setProducts(products.filter((product) => product._id !== id));
-      setProductCount((prevCount) => prevCount - 1);
-      toast.success(t('management_product_delete_success'));
-    } catch (error) {
-      console.log(error);
-      toast.error(t('management_product_delete_error'));
-    }
+async function deleteProduct(id) {
+  try {
+    const token = localStorage.getItem("token");
+    await axios.delete(`${config.API_URL}/products/${id}`, {
+      headers: {
+        ...(token && { access_token: token }),
+      },
+    });
+    setProducts(products.filter((product) => product._id !== id));
+    setProductCount((prevCount) => prevCount - 1);
+    toast.success(t('management_product_delete_success'));
+  } catch (error) {
+    console.log(error);
+    toast.error(t('management_product_delete_error'));
   }
+}
   
   async function deleteUser(id) {
     try {
-      await axios.delete(`${config.API_URL}/users/${id}`);
+      const token = localStorage.getItem("token");
+      await axios.delete(`${config.API_URL}/users/${id}`, {
+      headers: {
+        ...(token && { access_token: token }),
+      },
+    });
       setUsers(users.filter((user) => user._id !== id));
       setUserCount((prevCount) => prevCount - 1);
       toast.success(t('management_user_delete_success'));

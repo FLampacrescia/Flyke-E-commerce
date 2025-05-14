@@ -29,6 +29,7 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 setPreview(`${config.FILES_URL}/products/${dataToEdit.image}`);
             }
         }
+
         if (isEdit && selectedSection === "users") {
             setValue("name", dataToEdit.name);
             setValue("lastName", dataToEdit.lastName);
@@ -42,6 +43,7 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
     }, [dataToEdit, selectedSection, isEdit, reset, setValue]);
 
     const watchedImage = watch("image");
+
     useEffect(() => {
         if (watchedImage?.length) {
             const file = watchedImage[0];
@@ -59,6 +61,7 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 ? `${config.API_URL}/${endpoint}/${dataToEdit._id}`
                 : `${config.API_URL}/${endpoint}`;
             const method = isEdit ? "put" : "post";
+            const token = localStorage.getItem("token");
 
             if (selectedSection === "products") {
                 const formData = new FormData();
@@ -78,6 +81,9 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                     method,
                     url,
                     data: formData,
+                    headers: {
+                        ...(token && { access_token: token }),
+                    },
                 });
 
             } else {
@@ -85,7 +91,6 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 if (!isEdit) payload.createdAt = new Date().toISOString();
                 else delete payload.password;
 
-                const token = localStorage.getItem("token");
                 await axios({
                     method,
                     url,

@@ -17,14 +17,22 @@ export default function AdminUsersList({ users, deleteUser, editUser }) {
                 </tr>
             </thead>
             <tbody className="admin-table-body">
-                {users.map((user) => (
-                    <AdminUserUnit
-                        key={user._id}
-                        user={user}
-                        deleteUser={deleteUser}
-                        editUser={editUser}
-                    />
-                ))}
+                {users && users.length > 0 ? (
+                    users.map((user) => (
+                        <AdminUserUnit
+                            key={user._id}
+                            user={user}
+                            deleteUser={deleteUser}
+                            editUser={editUser}
+                        />
+                    ))
+                ) : (
+                    <tr className="admin-table-row-empty">
+                        <td colSpan={6} className="admin-table-empty-message text-center">
+                            {t('management_page_table_users_empty')}
+                        </td>
+                    </tr>
+                )}
             </tbody>
         </table>
     );

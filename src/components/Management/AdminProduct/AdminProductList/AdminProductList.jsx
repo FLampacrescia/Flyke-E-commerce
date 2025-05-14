@@ -18,14 +18,22 @@ export default function AdminProductList({ products, deleteProduct, editProduct 
                 </tr>
             </thead>
             <tbody className="admin-table-body">
-                {products.map((product) => (
-                    <AdminProductUnit
-                        key={product._id}
-                        product={product}
-                        deleteProduct={deleteProduct}
-                        editProduct={editProduct}
-                    />
-                ))}
+                {products && products.length > 0 ? (
+                    products.map((product) => (
+                        <AdminProductUnit
+                            key={product._id}
+                            product={product}
+                            deleteProduct={deleteProduct}
+                            editProduct={editProduct}
+                        />
+                    ))
+                ) : (
+                    <tr className="admin-table-row-empty">
+                        <td colSpan={6} className="admin-table-empty-message text-center">
+                            {t('management_page_table_products_empty')}
+                        </td>
+                    </tr>
+                )}
             </tbody>
         </table>
     );

@@ -4,16 +4,25 @@ import OrderUnit from "../../components/OrderUnit/OrderUnit";
 import OrderButton from "../../components/Buttons/OrderButton/OrderButton";
 import { useTranslation } from '../../hooks/useTranslations';
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 export default function Order() {
   const { cart, total, clearCart, toggleCart } = useOrder();
+  const { user, token } = useUser();
   const navigate = useNavigate();
 
   const { t } = useTranslation();
 
   function checkout() {
-    navigate("/checkout");
     toggleCart();
+
+    if (user && token) {
+      navigate("/checkout");
+    } else {
+      navigate("/login", {
+        state: { from: "/checkout" },
+      });
+    }
   }
   
   return (

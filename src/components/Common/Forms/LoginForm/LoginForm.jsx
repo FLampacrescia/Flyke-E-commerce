@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../../context/UserContext";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import { useState, useEffect } from "react";
@@ -9,12 +8,14 @@ import "./LoginForm.css";
 import "../../../Buttons/Button.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const { login } = useUser();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const location = useLocation();
 
   const [authError, setAuthError] = useState("");
 
@@ -27,7 +28,8 @@ export default function LoginForm() {
 
     if (success) {
       toast.success(t("login_success"));
-      navigate("/");
+      const redirectTo = location.state?.from || "/";
+      navigate(redirectTo);
     } else {
       setAuthError(t("login_invalid_credentials") || message);
       toast.error(t("login_error"));

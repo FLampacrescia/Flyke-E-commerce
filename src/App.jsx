@@ -12,7 +12,6 @@ import ProtectedRoute from "./context/ProtectedRoute";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderSidebar from "./layout/OrderSidebar/OrderSidebar";
 
-
 export default function App() {
   return (
     <>

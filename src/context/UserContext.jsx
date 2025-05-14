@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState, createContext, useContext, useMemo } from "react";
+import config from '../config/env.config';
 
-const URL = "http://localhost:3000/api";
+
 
 const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
@@ -32,7 +33,7 @@ export function UserProvider({ children }) {
 
     async function login(credentials) {
         try {
-            const response = await axios.post(`${URL}/login`, credentials);
+            const response = await axios.post(`${config.API_URL}/login`, credentials);
             const { user, token } = response.data;
             setUser(user);
             setToken(token);

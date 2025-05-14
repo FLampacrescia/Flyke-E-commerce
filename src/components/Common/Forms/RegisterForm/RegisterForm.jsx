@@ -179,8 +179,8 @@ export default function RegisterForm() {
                         register={register}
                         required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
-                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                            message: "Mínimo 8 caracteres, al menos una letra y un número",
+                            value: /^.{4,20}$/,
+                            message: "La contraseña debe tener entre 4 y 20 caracteres",
                         }}
                         errors={errors}
                     />

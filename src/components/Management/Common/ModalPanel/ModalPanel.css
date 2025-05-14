@@ -23,6 +23,9 @@
 }
 .admin-modal-upper-title {
     font-size: 1.3rem;
+    padding: .3rem;
+    background-color: #ddd;
+    border-radius: 8px 8px 0px 0px;
 }
 .admin-modal-form {
     display: flex;
@@ -117,10 +120,10 @@ input[type=file] {
 .modal-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
 .modal-buttons button {
-    padding: 10px 20px;
+    padding: 12px 20px;
+    width: 7rem;
     cursor: pointer;
 }
