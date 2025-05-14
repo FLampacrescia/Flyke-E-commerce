@@ -1,6 +1,7 @@
 import "./ConfirmationModal.css";
 import Button from "../../Buttons/MenuButton/Button";
 import { useTranslation } from '../../../hooks/useTranslations';
+import { createPortal } from 'react-dom';
 
 export default function ConfirmationModal({
   onClose,
@@ -12,7 +13,7 @@ export default function ConfirmationModal({
 
   const { t } = useTranslation();
 
-  return (
+  return createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         <h3 className="modal-title">{title}</h3>
@@ -21,6 +22,7 @@ export default function ConfirmationModal({
           <Button text={t('modal_confirmation_confirm')} type={confirmType} onClick={onConfirm} />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

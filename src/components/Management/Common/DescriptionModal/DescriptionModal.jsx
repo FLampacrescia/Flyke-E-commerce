@@ -1,5 +1,5 @@
-// src/components/Management/Common/DescriptionModal/DescriptionModal.jsx
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from 'react-dom';
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useTranslation } from '../../../../hooks/useTranslations';
@@ -20,7 +20,6 @@ export default function DescriptionModal({ product, onClose }) {
             (async () => {
                 try {
                     const res = await axios.get(`${config.API_URL}/products/${product._id}`);
-                    // si tu controlador devuelve { product: { … } } o el objeto
                     const desc = res.data.product?.description ?? res.data.description ?? "";
                     setDescription(desc);
                 } catch (err) {
@@ -55,7 +54,7 @@ export default function DescriptionModal({ product, onClose }) {
         }
     };
 
-    return (
+    return createPortal(
         <div className="modal-overlay">
             <div className="description-modal-outer-container">
                 <div className="admin-modal-title-container">
@@ -111,6 +110,7 @@ export default function DescriptionModal({ product, onClose }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }

@@ -54,38 +54,24 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
 
     const onSubmit = async (data) => {
         setLoading(true);
-        try {
-            const isEdit = !!dataToEdit;
-            const endpoint = selectedSection === "products" ? "products" : "users";
-            const url = isEdit
-                ? `${config.API_URL}/${endpoint}/${dataToEdit._id}`
-                : `${config.API_URL}/${endpoint}`;
-            const method = isEdit ? "put" : "post";
-            const token = localStorage.getItem("token");
+        const isEdit = !!dataToEdit;
+        const endpoint = selectedSection === "products" ? "products" : "users";
+        const url = isEdit
+            ? `${config.API_URL}/${endpoint}/${dataToEdit._id}`
+            : `${config.API_URL}/${endpoint}`;
+        const method = isEdit ? "put" : "post";
+        const token = localStorage.getItem("token");
 
+        const actionPromise = (async () => {
             if (selectedSection === "products") {
                 const formData = new FormData();
                 formData.append("title", data.title);
                 formData.append("category", data.category);
                 formData.append("price", data.price);
+                if (data.image?.length) formData.append("image", data.image[0]);
+                if (!isEdit) formData.append("createdAt", new Date().toISOString());
 
-                if (data.image && data.image.length > 0) {
-                    formData.append("image", data.image[0]);
-                }
-
-                if (!isEdit) {
-                    formData.append("createdAt", new Date().toISOString());
-                }
-
-                await axios({
-                    method,
-                    url,
-                    data: formData,
-                    headers: {
-                        ...(token && { access_token: token }),
-                    },
-                });
-
+                await axios({ method, url, data: formData, headers: { ...(token && { access_token: token }) } });
             } else {
                 const payload = { ...data };
                 if (!isEdit) payload.createdAt = new Date().toISOString();
@@ -95,24 +81,36 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                     method,
                     url,
                     data: payload,
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
+                    headers: { "Content-Type": "application/json", ...(token && { access_token: token }) },
                 });
             }
 
             await getData();
-            toast.success(
-                isEdit
-                    ? (`Producto ${t('management_edit_success')}`)
-                    : (`Producto ${t('management_add_success')}`)
+        })();
+
+        const actionTypeKey = isEdit
+            ? 'management_edit_success'
+            : 'management_add_success';
+        const subjectKey = selectedSection === 'products'
+            ? 'management_product_word'
+            : 'management_user_word';
+        const successMessage = `${t(subjectKey)} ${t(actionTypeKey)}`;
+
+        try {
+            await toast.promise(
+                actionPromise,
+                {
+                    loading: isEdit
+                        ? t('modal_confirmation_saving')
+                        : t('modal_confirmation_adding'),
+                    success: successMessage,
+                    error: t('management_edit_data_load_error'),
+                }
             );
             closeModal();
             reset();
         } catch (error) {
             console.error("Error al guardar:", error);
-            toast.error(t('management_edit_data_load_error'));
         } finally {
             setLoading(false);
         }
@@ -271,11 +269,10 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                         <button
                             type="submit"
                             className="button btn-primary"
-                            disabled={loading}
                         >
                             {dataToEdit
-                                ? (loading ? t('modal_confirmation_saving') : t('modal_confirmation_save'))
-                                : (loading ? t('modal_confirmation_adding') : t('modal_confirmation_add'))
+                                ? t('modal_confirmation_save')
+                                : t('modal_confirmation_add')
                             }
                         </button>
                     </div>

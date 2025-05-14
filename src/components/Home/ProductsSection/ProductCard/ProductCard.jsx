@@ -17,7 +17,6 @@ export default function ProductCard({ product }) {
     
     return (
         <article className="card-container">
-            <Link className="card-link" to="/product-detail"></Link>
             <div className="card-content">
                 <Link className="card-link" to={`/product-detail/${product._id}`}>
                     
@@ -26,13 +25,16 @@ export default function ProductCard({ product }) {
                         alt={product.title}
                         className="card-image"
                     />
-                    <Link className="add-icon" to="" onClick={(e) => {
-                        e.preventDefault();
-                        addToCart(product);
-                        notify();
-                    }}>
+                    <button
+                        className="add-icon"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            addToCart(product);
+                            notify();
+                        }}
+                    >
                         <FontAwesomeIcon icon={faCartShopping} className="fa-solid fa-cart-shopping" />
-                    </Link>
+                    </button>
                     <div className="card-status">{t('product_status')}</div>
                 </Link>
                 <div className="card-icon-container">

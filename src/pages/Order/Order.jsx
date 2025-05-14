@@ -5,6 +5,7 @@ import OrderButton from "../../components/Buttons/OrderButton/OrderButton";
 import { useTranslation } from '../../hooks/useTranslations';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import toast from "react-hot-toast";
 
 export default function Order() {
   const { cart, total, clearCart, toggleCart } = useOrder();
@@ -14,6 +15,11 @@ export default function Order() {
   const { t } = useTranslation();
 
   function checkout() {
+    if (cart.length === 0) {
+      toast.error(t('cart_empty_warning'));
+      return;
+    }
+
     toggleCart();
 
     if (user && token) {
