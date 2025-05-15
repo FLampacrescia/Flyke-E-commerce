@@ -279,9 +279,6 @@
     .navlink::after {
         content: none;
     }
-    .logo {
-        height: 1rem;
-    }
 }
 @media screen and (max-width: 725px) {
     .user-info {
