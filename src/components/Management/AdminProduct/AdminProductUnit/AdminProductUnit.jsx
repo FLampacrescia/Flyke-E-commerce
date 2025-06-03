@@ -6,7 +6,7 @@ import DescriptionModal from "../../Common/DescriptionModal/DescriptionModal";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 
-export default function AdminProductUnit({ product, deleteProduct, editProduct, refreshProducts }) {
+export default function AdminProductUnit({ product, deleteProduct, editProduct, refreshProducts, onUpdateProduct }) {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDescriptionModalOpen, setIsDescriptionModalOpen] = useState(false);
 
@@ -59,8 +59,13 @@ export default function AdminProductUnit({ product, deleteProduct, editProduct, 
                     product={product}
                     onClose={() => setIsDescriptionModalOpen(false)}
                     refreshProducts={refreshProducts}
+                    onUpdateProduct={onUpdateProduct}
                 />
             )}
+
+            
+
+            
         </>
     );
 }

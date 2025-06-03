@@ -32,7 +32,6 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
     }, [location.pathname]);
 
     const { isAdmin } = useUser();
-
     const { language, toggleLanguage } = useLanguage();
     const { t } = useTranslation();
 

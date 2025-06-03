@@ -35,7 +35,8 @@
 }
 .select-label {
     font-family: "Poppins";
-    font-size: .95rem;
+    font-size: .85rem;
+    line-height: 1.1rem;
     color: #727272;
 }
 .input-group-column {
@@ -45,6 +46,9 @@
 }
 .match-error {
     margin-top: -15px;
+}
+.register-submit-btn {
+    margin: 1.5rem auto 2rem auto !important;
 }
 
 @media screen and (max-width: 984px) {

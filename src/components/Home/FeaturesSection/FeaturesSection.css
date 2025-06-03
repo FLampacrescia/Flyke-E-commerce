@@ -39,11 +39,11 @@
   transition: all .2s ease-in-out;
 
   &:hover > .feature-icon-container {
-      height: 110px;
-      width: 110px;
+      height: 95px;
+      width: 95px;
   }
   &:hover > .feature-icon-container > .feature-icon {
-      font-size: 45px;
+      font-size: 35px;
   }
   &:hover > .color-1 {
       background-color: #eeb955;
@@ -74,14 +74,14 @@
   top: 0;
   transform: translateY(-50%);
   left: 40px;
-  height: 100px;
-  width: 100px;
+  height: 90px;
+  width: 90px;
   border-radius: 9999px;
   background-color: var(--text-color);
   transition: all .2s ease-in-out;
 }
 .feature-icon {
-  font-size: 40px;
+  font-size: 30px;
   transition: all .2s ease-in-out;
   color: var(--background-color-gray);
 }
@@ -140,14 +140,6 @@
       flex-direction: row;
       width: 100%;
       padding: 50px;
-      
-      &:hover > .feature-icon-container {
-          height: 100px;
-          width: 100px;
-      }
-      &:hover > .feature-icon-container > .feature-icon {
-          font-size: 50px;
-      }
   }
   .feature-text-container {
       width: 462px;
@@ -181,6 +173,15 @@
   .feature-icon {
       font-size: 30px;
   }
+  .features-small-container {
+      &:hover > .feature-icon-container {
+      height: 63px;
+      width: 83px;
+  }
+  &:hover > .feature-icon-container > .feature-icon {
+      font-size: 33px;
+  }
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -207,5 +208,14 @@
   .features-small-container {
     width: 300px;
     padding: 30px 50px;
+
+    &:hover>.feature-icon-container {
+        height: 43px;
+        width: 83px;
+      }
+    
+      &:hover>.feature-icon-container>.feature-icon {
+        font-size: 23px;
+      }
   }
 }

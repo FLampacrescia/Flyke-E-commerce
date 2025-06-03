@@ -93,7 +93,7 @@ const getOrders = async () => {
                 <div className="checkout-user-summary-section-number-container">
                   <span>1</span>
                 </div>
-                <h3 className="checkout-user-summary-title">{t("checkout_user_personal_data")}</h3>
+                <h3 className="checkout-user-summary-title">{t("title_personal_data")}</h3>
               </div>
 
               {activeSection === "shipping" && (
@@ -132,7 +132,7 @@ const getOrders = async () => {
               <div className="checkout-user-summary-section-number-container">
                 <span>2</span>
               </div>
-              <h3 className="checkout-user-summary-title">{t("checkout_user_shipping_data")}</h3>
+              <h3 className="checkout-user-summary-title">{t("title_shipping_data")}</h3>
             </div>
 
             {activeSection === "shipping" && user && (

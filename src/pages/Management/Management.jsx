@@ -133,6 +133,13 @@ async function deleteProduct(id) {
           setProductToEdit={setProductToEdit}
           setIsModalOpen={setIsModalOpen}
           deleteProduct={deleteProduct}
+          onUpdateProduct={(updatedProduct) => {
+            setProducts((prev) =>
+              prev.map((p) =>
+                p._id === updatedProduct._id ? updatedProduct : p
+              )
+            );
+          }}
         />
       ) : (
         <UserManagement

@@ -2,8 +2,6 @@ import axios from "axios";
 import { useEffect, useState, createContext, useContext, useMemo } from "react";
 import config from '../config/env.config';
 
-
-
 const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
 
@@ -52,8 +50,26 @@ export function UserProvider({ children }) {
         setToken(null);
     }
 
+    async function getUserData() {
+        try {
+            if (!user?._id || !token) return;
+
+            const res = await axios.get(`${config.API_URL}/users/${user._id}`, {
+                headers: {
+                    access_token: token
+                }
+            });
+
+            if (res.data?.user) {
+                setUser(res.data.user);
+            }
+        } catch (error) {
+            console.error("Error al obtener datos del usuario", error);
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ user, token, isAdmin, login, logout }}>
+        <UserContext.Provider value={{ user, token, isAdmin, login, logout, getUserData }}>
             {children}
         </UserContext.Provider>
     );

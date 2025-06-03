@@ -1,0 +1,76 @@
+.my-account-main-container {
+    display: flex;
+    justify-content: center;
+    min-height: 60dvh;
+    gap: 1.5rem;
+    width: 1200px;
+    margin: 100px auto;
+}
+.my-account-section-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem 1.4rem;
+    gap: 1.5rem;
+    height: fit-content;
+    width: 400px;
+    /* box-shadow: 0px 2px 8px 0px rgba(18, 18, 18, .15); */
+    transition: all 0.3s ease;
+}
+.my-account-right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.my-account-section-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+.my-account-section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.address-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.my-account-input-label {
+    font-size: .85rem;
+    font-weight: 600;
+    color: #7e7e7e;
+}
+.avatar-container {
+    position: relative;
+    margin: 0 auto;
+}
+.avatar-image {
+    height: 120px;
+    width: 120px;
+    border-radius: 999px;
+
+    &:hover {
+        filter: brightness(.4);
+    }
+    &:hover + .avatar-edit-icon {
+        display: inherit;
+    }
+}
+.avatar-edit-icon {
+    position: absolute;
+    height: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -62%);
+    color: white;
+    display: none;
+
+    &:hover {
+        display: inherit;
+    }
+    &:hover ~ .avatar-image {
+        filter: brightness(.4);
+    }
+}

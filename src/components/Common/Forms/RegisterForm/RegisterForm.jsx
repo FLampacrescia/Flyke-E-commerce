@@ -22,14 +22,23 @@ export default function RegisterForm() {
             name: data.name,
             lastName: data.lastName,
             birthDate: data.birthDate,
-            province: data.province,
+            dni: data.dni,
             email: data.email,
             password: data.password,
             role: data.role,
+            addresses: [
+                {
+                    street: data.street,
+                    neighborhood: data.neighborhood,
+                    province: data.province,
+                    zipCode: data.zipCode,
+                    isDefault: true
+                }
+            ],
         };
-
+        
         try {
-            const response = await axios.post(`${config.API_URL}/users`, newUser);
+            const response = await axios.post(`${config.API_URL}/register`, newUser);
             toast.success("Registro exitoso!");
             console.log(`${t('register_success_log')}`, response.data);
             reset();
@@ -87,9 +96,24 @@ export default function RegisterForm() {
                                             </div>
                                         }
                     </div>
+                    <FormInput
+                        classAdd="register-input"
+                        label={t('register_page_input4_label')}
+                        type="text"
+                        name="dni"
+                        placeholder={t('register_page_input4_placeholder')}
+                        register={register}
+                        required={{ value: true, message: t('form_required_input_message') }}
+                        errors={errors}
+                    />
+                </div>
 
+            </div>
+            <div className="form-section">
+                <h2 className="form-section-title">{t('register_page_subtitle2')}</h2>
+                <div className="form-row">
                     <div className="input-group register-input">
-                        <label className="select-label" htmlFor="province">{t('register_page_input4_label')}</label>
+                        <label className="select-label" htmlFor="province">{t('register_page_input5_label')}</label>
                         <select
                             id="province"
                             className="form-item"
@@ -121,23 +145,55 @@ export default function RegisterForm() {
                             <option value="Tucumán">Tucumán</option>
                         </select>
                         {errors.province && <div className="error-container">
-                                                <FontAwesomeIcon icon={faCircleExclamation} className="error-icon"/>
-                                                <p className="error-msg">{errors.province.message}</p>
-                                            </div>
-                                        }
+                            <FontAwesomeIcon icon={faCircleExclamation} className="error-icon" />
+                            <p className="error-msg">{errors.province.message}</p>
+                        </div>
+                        }
                     </div>
+                    <FormInput
+                        classAdd="register-input"
+                        label={t('register_page_input6_label')}
+                        type="text"
+                        name="neighborhood"
+                        placeholder={t('register_page_input6_placeholder')}
+                        register={register}
+                        required={{ value: true, message: t('form_required_input_message') }}
+                        errors={errors}
+                    />
                 </div>
-            </div>
-
-            <div className="form-section">
-                <h2 className="form-section-title">{t('register_page_subtitle2')}</h2>
                 <div className="form-row">
                     <FormInput
                         classAdd="register-input"
-                        label={t('register_page_input5_label')}
+                        label={t('register_page_input7_label')}
+                        type="text"
+                        name="street"
+                        placeholder={t('register_page_input7_placeholder')}
+                        register={register}
+                        required={{ value: true, message: t('form_required_input_message') }}
+                        errors={errors}
+                    />
+
+                    <FormInput
+                        classAdd="register-input"
+                        label={t('register_page_input8_label')}
+                        type="text"
+                        name="zipCode"
+                        placeholder={t('register_page_input8_placeholder')}
+                        register={register}
+                        required={{ value: true, message: t('form_required_input_message') }}
+                        errors={errors}
+                    />
+                </div>
+            </div>
+            <div className="form-section">
+                <h2 className="form-section-title">{t('register_page_subtitle3')}</h2>
+                <div className="form-row">
+                    <FormInput
+                        classAdd="register-input"
+                        label={t('register_page_input9_label')}
                         type="email"
                         name="email"
-                        placeholder={t('register_page_input5_placeholder')}
+                        placeholder={t('register_page_input9_placeholder')}
                         register={register}
                         required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
@@ -149,10 +205,10 @@ export default function RegisterForm() {
                     <div className="input-group-column">
                     <FormInput
                         classAdd="register-input"
-                        label={t('register_page_input6_label')}
+                        label={t('register_page_input10_label')}
                         type="email"
                         name="confirmEmail"
-                        placeholder={t('register_page_input6_placeholder')}
+                        placeholder={t('register_page_input10_placeholder')}
                         register={register}
                         required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
@@ -172,10 +228,10 @@ export default function RegisterForm() {
                 <div className="form-row">
                     <FormInput
                         classAdd="register-input"
-                        label={t('register_page_input7_label')}
+                        label={t('register_page_input11_label')}
                         type="password"
                         name="password"
-                        placeholder={t('register_page_input7_placeholder')}
+                        placeholder={t('register_page_input11_placeholder')}
                         register={register}
                         required={{ value: true, message: t('form_required_input_message') }}
                         pattern={{
@@ -187,10 +243,10 @@ export default function RegisterForm() {
                     <div className="input-group-column">
                         <FormInput
                             classAdd="register-input"
-                            label={t('register_page_input8_label')}
+                            label={t('register_page_input12_label')}
                             type="password"
                             name="confirmPassword"
-                            placeholder={t('register_page_input8_placeholder')}
+                            placeholder={t('register_page_input12_placeholder')}
                             register={register}
                             required={{ value: true, message: t('form_required_input_message') }}
                             errors={errors}
@@ -204,7 +260,7 @@ export default function RegisterForm() {
                 </div>
             </div>
 
-            <button type="submit" className="submit-btn">{t('register_page_btn')}</button>
+            <button type="submit" className="submit-btn register-submit-btn">{t('register_page_btn')}</button>
         </form>
     );
 }

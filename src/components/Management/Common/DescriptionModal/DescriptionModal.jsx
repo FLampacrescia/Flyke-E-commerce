@@ -6,12 +6,13 @@ import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 import "./DescriptionModal.css";
 
-export default function DescriptionModal({ product, onClose }) {
+export default function DescriptionModal({ product, onClose, onUpdateProduct }) {
     const { t } = useTranslation();
     const [isEditing, setIsEditing] = useState(false);
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
     const textareaRef = useRef();
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (product.description) {
@@ -41,10 +42,15 @@ export default function DescriptionModal({ product, onClose }) {
     const handleSave = async () => {
         setLoading(true);
         try {
-            await axios.put(`${config.API_URL}/products/${product._id}`, {
-                description,
-            });
+            const res = await axios.patch(
+                        `${config.API_URL}/products/${product._id}`,
+                        { description },
+                        {
+                            headers: { "Content-Type": "application/json", ...(token && { access_token: token }) }
+                        }
+                    );
             toast.success(t('management_description_edit_success'));
+            onUpdateProduct(res.data.product);
             setIsEditing(false);
         } catch (error) {
             console.error(error);

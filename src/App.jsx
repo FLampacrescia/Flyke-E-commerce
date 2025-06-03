@@ -8,9 +8,11 @@ import Footer from "./layout/footer/Footer";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Management from "./pages/Management/Management";
 import Login from "./pages/Login/Login";
-import ProtectedRoute from "./context/ProtectedRoute";
+import AdminProtectedRoute from "./context/AdminProtectedRoute";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderSidebar from "./layout/OrderSidebar/OrderSidebar";
+import MyAccount from "./pages/MyAccount/MyAccount";
+import UserProtectedRoute from "./context/UserProtectedRoute";
 
 export default function App() {
   return (
@@ -24,12 +26,17 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/my-account" element={
+          <UserProtectedRoute>
+            <MyAccount />
+          </UserProtectedRoute>
+          } />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
           <Route path="/management" element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <Management />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           } />
       </Routes>
     </main>

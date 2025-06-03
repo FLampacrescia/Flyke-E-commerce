@@ -3,7 +3,7 @@
     top: 0;
     right: -410px;
     width: 400px;
-    height: 100vh;
+    height: 100dvh;
     z-index: 1000;
     background-color: #fafafa;
     box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);

@@ -1,7 +1,7 @@
 import AdminProductUnit from "../AdminProductUnit/AdminProductUnit";
 import { useTranslation } from '../../../../hooks/useTranslations';
 
-export default function AdminProductList({ products, deleteProduct, editProduct }) {
+export default function AdminProductList({ products, deleteProduct, editProduct, onUpdateProduct }) {
 
     const { t } = useTranslation();
 
@@ -25,6 +25,7 @@ export default function AdminProductList({ products, deleteProduct, editProduct 
                             product={product}
                             deleteProduct={deleteProduct}
                             editProduct={editProduct}
+                            onUpdateProduct={onUpdateProduct}
                         />
                     ))
                 ) : (

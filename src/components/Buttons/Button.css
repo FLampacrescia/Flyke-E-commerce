@@ -30,6 +30,29 @@
 .btn-img {
     height: max-content;
 }
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    background-color: var(--text-color);
+    color: var(--background-color-white);
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.02rem;
+    text-wrap: nowrap;
+    border: none;
+    border-radius: 9999px;
+    transition: opacity .2s;
+    cursor: pointer;
+    padding: 15px 60px;
+    margin: 1rem auto 0 auto;
+
+    &:hover {
+        opacity: .8;
+    }
+}
 .btn-primary {
     background-color: var(--text-color);
     border: solid 1px var(--text-color) !important;
