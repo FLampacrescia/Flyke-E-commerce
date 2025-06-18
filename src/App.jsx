@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout/Checkout";
 import OrderSidebar from "./layout/OrderSidebar/OrderSidebar";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import UserProtectedRoute from "./context/UserProtectedRoute";
+import UserAddresses from "./pages/UserAddresses/UserAddresses";
 
 export default function App() {
   return (
@@ -31,7 +32,16 @@ export default function App() {
             <MyAccount />
           </UserProtectedRoute>
           } />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/user-addresses" element={
+          <UserProtectedRoute>
+            <UserAddresses />
+          </UserProtectedRoute>
+        } />
+        <Route path="/checkout" element={
+          <UserProtectedRoute>
+            <Checkout />
+          </UserProtectedRoute>
+        } />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
           <Route path="/management" element={
             <AdminProtectedRoute>

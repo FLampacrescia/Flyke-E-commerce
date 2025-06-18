@@ -6,16 +6,17 @@ import AvatarExample from "../../../assets/features-banner.webp";
 import { useState } from "react";
 import AccountEditModal from "../AccountEditModal/AccountEditModal";
 import MyAccountInput from "../MyAccountInput/MyAccountInput";
-import SelectUserAddressWrapper from "../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
-import toast from "react-hot-toast";
-import axios from "axios";
-import config from '../../../config/env.config';
+// import SelectUserAddressWrapper from "../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
+// import toast from "react-hot-toast";
+// import axios from "axios";
+// import config from '../../../config/env.config';
+import { Link } from "react-router-dom";
 
 export default function MyAccountSection({ section }) {
     const { user } = useUser();
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [mainAddressId, setMainAddressId] = useState(null);
+    // const [mainAddressId, setMainAddressId] = useState(null);
 
     const sectionTitles = {
         personalData: t("title_personal_data"),
@@ -26,39 +27,45 @@ export default function MyAccountSection({ section }) {
     const openEditModal = () => setIsModalOpen(true);
     const closeEditModal = () => setIsModalOpen(false);
 
-    const updateMainAddressInBackend = async (newMainId) => {
-        try {
-            const token = localStorage.getItem("token");
+    const defaultAddress = user?.addresses?.find(addr => addr.isDefault);
 
-            await axios.put(
-                `${config.API_URL}/users/${user._id}/addresses/${newMainId}/set-default`,
-                {},
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
-                }
-            );
+    // const updateMainAddressInBackend = async (newMainId) => {
+    //     try {
+    //         const token = localStorage.getItem("token");
 
-            toast.success("Dirección principal actualizada");
-        } catch (error) {
-            console.error("Error al actualizar la dirección principal:", error);
-            toast.error("No se pudo actualizar la dirección principal");
-        }
-    };
+    //         await axios.put(
+    //             `${config.API_URL}/users/${user._id}/addresses/${newMainId}/set-default`,
+    //             {},
+    //             {
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                     ...(token && { access_token: token }),
+    //                 },
+    //             }
+    //         );
+
+    //         toast.success("Dirección principal actualizada");
+    //     } catch (error) {
+    //         console.error("Error al actualizar la dirección principal:", error);
+    //         toast.error("No se pudo actualizar la dirección principal");
+    //     }
+    // };
 
     return (
         <div className="my-account-section-container">
             <div className="my-account-section-title-container">
                 <h3 className="my-account-section-title">{sectionTitles[section]}</h3>
-                <button
-                    className="checkout-edit-button"
-                    aria-label={`Editar ${sectionTitles[section]}`}
-                    onClick={openEditModal}
-                >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                </button>
+                {section === "personalData" || section === "password" ? (
+                    <button
+                        className="checkout-edit-button"
+                        aria-label={`Editar ${sectionTitles[section]}`}
+                        onClick={openEditModal}>
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                    </button> ) : (
+                        <Link to="/user-addresses"> 
+                            <span className="my-account-section-addresses-btn">Ver Direcciones</span>
+                        </Link>
+                    )}
             </div>
 
             {user && (
@@ -80,25 +87,12 @@ export default function MyAccountSection({ section }) {
 
                     {section === "shippingData" && user.addresses?.length > 0 && (
                         <>
-                            <SelectUserAddressWrapper
-                                userAddresses={user.addresses}
-                                selectedAddressId={mainAddressId}
-                                setSelectedAddressId={(id) => {
-                                    setMainAddressId(id);
-                                    updateMainAddressInBackend(id);
-                                }}
-                                label="Mi dirección principal"
-                            />
-                            {user.addresses.map((address, index) => (
-                                <div key={index} className="address-block">
-                                    <MyAccountInput
-                                        label={`Dirección ${index + 1}`}
-                                        value={`${address.street}, ${address.neighborhood}`}
-                                    />
-                                    <MyAccountInput label="Provincia" value={address.province} />
-                                    <MyAccountInput label="Código Postal" value={address.zipCode} />
-                                </div>
-                            ))}
+                            
+                                <MyAccountInput
+                                label="Dirección"
+                                value={`${defaultAddress?.street}, ${defaultAddress?.neighborhood}`} />
+                                <MyAccountInput label="Provincia" value={defaultAddress?.province} />
+                                <MyAccountInput label="Código Postal" value={defaultAddress?.zipCode} />
                         </>
                     )}
 
