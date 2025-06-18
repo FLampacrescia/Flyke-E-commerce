@@ -21,24 +21,35 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
         setPreview(null);
         setShowImageInput(false);
 
-        if (isEdit && selectedSection === "products") {
-            setValue("title", dataToEdit.title);
-            setValue("category", dataToEdit.category);
-            setValue("price", dataToEdit.price);
-            if (dataToEdit.image) {
-                setPreview(`${config.FILES_URL}/products/${dataToEdit.image}`);
+        if (isEdit) {
+            if (selectedSection === "products") {
+                setValue("title", dataToEdit.title);
+                setValue("category", dataToEdit.category);
+                setValue("price", dataToEdit.price);
+                if (dataToEdit.image) {
+                    setPreview(`${config.FILES_URL}/products/${dataToEdit.image}`);
+                }
             }
-        }
 
-        if (isEdit && selectedSection === "users") {
-            setValue("name", dataToEdit.name);
-            setValue("lastName", dataToEdit.lastName);
-            setValue("email", dataToEdit.email);
-            if (dataToEdit.birthDate) {
-                const d = new Date(dataToEdit.birthDate).toISOString().split("T")[0];
-                setValue("birthDate", d);
+            if (selectedSection === "users") {
+                setValue("name", dataToEdit.name);
+                setValue("lastName", dataToEdit.lastName);
+                setValue("email", dataToEdit.email);
+                if (dataToEdit.birthDate) {
+                    const d = new Date(dataToEdit.birthDate).toISOString().split("T")[0];
+                    setValue("birthDate", d);
+                }
+                setValue("province", dataToEdit.province);
             }
-            setValue("province", dataToEdit.province);
+
+            if (selectedSection === "stores") {
+                setValue("name", dataToEdit.name);
+                setValue("address", dataToEdit.address);
+                setValue("neighborhood", dataToEdit.neighborhood);
+                setValue("province", dataToEdit.province);
+                setValue("timetable", dataToEdit.timetable);
+                setValue("mapsLink", dataToEdit.mapsLink ?? "");
+            }
         }
     }, [dataToEdit, selectedSection, isEdit, reset, setValue]);
 
@@ -55,10 +66,16 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
     const onSubmit = async (data) => {
         setLoading(true);
         const isEdit = !!dataToEdit;
-        const endpoint = selectedSection === "products" ? "products" : "users";
+
+        const sectionEndpoint = {
+            products: "products",
+            users: "users",
+            stores: "stores"
+        }[selectedSection];
+
         const url = isEdit
-            ? `${config.API_URL}/${endpoint}/${dataToEdit._id}`
-            : `${config.API_URL}/${endpoint}`;
+            ? `${config.API_URL}/${sectionEndpoint}/${dataToEdit._id}`
+            : `${config.API_URL}/${sectionEndpoint}`;
         const method = isEdit ? "put" : "post";
         const token = localStorage.getItem("token");
 
@@ -71,11 +88,14 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 if (data.image?.length) formData.append("image", data.image[0]);
                 if (!isEdit) formData.append("createdAt", new Date().toISOString());
 
+                
+                
+
                 await axios({ method, url, data: formData, headers: { ...(token && { access_token: token }) } });
             } else {
                 const payload = { ...data };
                 if (!isEdit) payload.createdAt = new Date().toISOString();
-                else delete payload.password;
+                else if (selectedSection === "users") delete payload.password;
 
                 await axios({
                     method,
@@ -88,12 +108,13 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
             await getData();
         })();
 
-        const actionTypeKey = isEdit
-            ? 'management_edit_success'
-            : 'management_add_success';
+        const actionTypeKey = isEdit ? 'management_edit_success' : 'management_add_success';
         const subjectKey = selectedSection === 'products'
             ? 'management_product_word'
-            : 'management_user_word';
+            : selectedSection === 'users'
+                ? 'management_user_word'
+                : 'management_store_word';
+
         const successMessage = `${t(subjectKey)} ${t(actionTypeKey)}`;
 
         try {
@@ -196,7 +217,7 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                                 />
                             </div>
                         </>
-                    ) : (
+                    ) : selectedSection === "users" ? (
                         <>
                         <div className="admin-modal-input-group">
                             <label className="admin-modal-label" htmlFor="name">{t('management_page_table_users_title1')}</label>
@@ -255,6 +276,38 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                             </div>
                         )}
                     </>
+                    ) : (
+                        <>
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title1')}</label>
+                                <input type="text" className="admin-modal-input" {...register("name", { required: true })} />
+                            </div>
+
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title2')}</label>
+                                <input type="text" className="admin-modal-input" {...register("address", { required: true })} />
+                            </div>
+
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title3')}</label>
+                                <input type="text" className="admin-modal-input" {...register("neighborhood", { required: true })} />
+                            </div>
+
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title4')}</label>
+                                <input type="text" className="admin-modal-input" {...register("province", { required: true })} />
+                            </div>
+
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title5')}</label>
+                                <input type="text" className="admin-modal-input" {...register("timetable", { required: true })} />
+                            </div>
+
+                            <div className="admin-modal-input-group">
+                                <label className="admin-modal-label">{t('management_page_table_stores_title6')}</label>
+                                <input type="text" className="admin-modal-input" {...register("mapsLink", { required: true })} />
+                            </div>
+                        </>
                     )}
 
                     <div className="modal-buttons">

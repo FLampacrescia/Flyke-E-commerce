@@ -6,11 +6,16 @@ import AvatarExample from "../../../assets/features-banner.webp";
 import { useState } from "react";
 import AccountEditModal from "../AccountEditModal/AccountEditModal";
 import MyAccountInput from "../MyAccountInput/MyAccountInput";
+import SelectUserAddressWrapper from "../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
+import toast from "react-hot-toast";
+import axios from "axios";
+import config from '../../../config/env.config';
 
 export default function MyAccountSection({ section }) {
     const { user } = useUser();
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [mainAddressId, setMainAddressId] = useState(null);
 
     const sectionTitles = {
         personalData: t("title_personal_data"),
@@ -20,6 +25,28 @@ export default function MyAccountSection({ section }) {
 
     const openEditModal = () => setIsModalOpen(true);
     const closeEditModal = () => setIsModalOpen(false);
+
+    const updateMainAddressInBackend = async (newMainId) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            await axios.put(
+                `${config.API_URL}/users/${user._id}/addresses/${newMainId}/set-default`,
+                {},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token && { access_token: token }),
+                    },
+                }
+            );
+
+            toast.success("Dirección principal actualizada");
+        } catch (error) {
+            console.error("Error al actualizar la dirección principal:", error);
+            toast.error("No se pudo actualizar la dirección principal");
+        }
+    };
 
     return (
         <div className="my-account-section-container">
@@ -53,6 +80,15 @@ export default function MyAccountSection({ section }) {
 
                     {section === "shippingData" && user.addresses?.length > 0 && (
                         <>
+                            <SelectUserAddressWrapper
+                                userAddresses={user.addresses}
+                                selectedAddressId={mainAddressId}
+                                setSelectedAddressId={(id) => {
+                                    setMainAddressId(id);
+                                    updateMainAddressInBackend(id);
+                                }}
+                                label="Mi dirección principal"
+                            />
                             {user.addresses.map((address, index) => (
                                 <div key={index} className="address-block">
                                     <MyAccountInput

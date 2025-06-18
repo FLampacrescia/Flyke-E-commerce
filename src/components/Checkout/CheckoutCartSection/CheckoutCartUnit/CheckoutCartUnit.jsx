@@ -1,6 +1,6 @@
-import config from '../../../config/env.config';
+import config from '../../../../config/env.config';
 import "./CheckoutCartUnit.css";
-import { useTranslation } from '../../../hooks/useTranslations';
+import { useTranslation } from '../../../../hooks/useTranslations';
 
 
 export default function CheckoutCartUnit( { product }) {

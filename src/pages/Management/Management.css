@@ -121,6 +121,18 @@
 .admin-table-upper-title:nth-child(6), .admin-table-datacell:nth-child(6) {
     width: 10%;
 }
+.admin-table-mod-slot1 {
+    width: 17% !important;
+}
+.admin-table-mod-slot2 {
+    width: 20% !important;
+}
+.admin-table-mod-slot3 {
+    width: 15% !important;
+}
+.admin-table-mod-slot4 {
+    width: 15% !important;
+}
 .admin-table-datacell img {
     width: 70px;
     height: auto;
@@ -138,6 +150,10 @@
 .text-center {
     text-align: center;
 }
+.admin-table-padding-right {
+    text-wrap: nowrap;
+    padding-right: 3rem;
+}
 .admin-description-link {
     background: none;
     border: none;
@@ -149,7 +165,6 @@
     text-decoration: none;
     border-bottom: 1px dotted;
 }
-
 .admin-description-link:hover {
     color: var(--text-color);
     border-bottom-color: var(--text-color);

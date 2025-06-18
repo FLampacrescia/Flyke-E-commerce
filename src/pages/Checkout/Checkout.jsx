@@ -1,28 +1,39 @@
 import "./Checkout.css"
-import { useOrder } from "../../context/OrderContext";
 import { useTranslation } from '../../hooks/useTranslations';
-import CheckoutCartUnit from "../../components/Checkout/CheckoutCartUnit/CheckoutCartUnit";
 import { useUser } from "../../context/UserContext";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { useOrder } from "../../context/OrderContext";
+import { useState, useEffect } from "react";
 import axios from "axios"
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import config from '../../config/env.config';
+import CheckoutCartSummary from "../../components/Checkout/CheckoutCartSection/CheckoutCartSummary/CheckoutCartSummary";
+import CheckoutUserSummary from "../../components/Checkout/CheckoutUserSection/CheckoutUserSummary/CheckoutUserSummary";
 
 export default function Checkout() {
 
   const navigate = useNavigate();
-  const { cart, total, clearCart } = useOrder();
+  const [selectedSection, setSelectedSection] = useState("delivery");
   const { t } = useTranslation();
   const { user } = useUser();
+  const { cart, total, clearCart } = useOrder();
+  const address = user?.addresses?.[0];
   const token = localStorage.getItem("token");
-
-  const [activeSection, setActiveSection] = useState("personal");
+  const [selectedStore, setSelectedStore] = useState(null);
+  const [selectedAddressId, setSelectedAddressId] = useState(null);
 
   const handleSubmitOrder = async () => {
   try {
+    if (selectedSection === "pickup" && !selectedStore) {
+      toast.error(t("checkout_pickup_no_store_selected"));
+      return;
+    }
+
+    if (cart.length === 0) {
+      toast.error(t("cart_empty_warning"));
+      return;
+    }
+
     const orderData = {
       user: user._id,
       products: cart.map(item => ({
@@ -30,7 +41,10 @@ export default function Checkout() {
         quantity: item.quantity,
         price: item.price
       })),
-      total
+      total,
+      shipping: selectedSection,
+      store: selectedSection === "pickup" ? selectedStore?.name : null,
+      selectedAddressId: selectedSection === "delivery" ? selectedAddressId : null,
     };
 
     const response = await axios.post(`${config.API_URL}/orders`, orderData, {
@@ -51,6 +65,12 @@ export default function Checkout() {
     toast.error(t("checkout_order_error"));
   }
 };
+
+useEffect(() => {
+  if (selectedSection === "delivery") {
+    setSelectedStore(null);
+  }
+}, [selectedSection]);
 
 const getOrders = async () => {
   try {
@@ -84,96 +104,25 @@ const getOrders = async () => {
 
   return (
     <div className='checkout-main-container'>
-      <div className="checkout-user-summary">
-        <div className="checkout-user-summary-main-container">
+      
+      <CheckoutUserSummary 
+        user={user}
+        address={address}
+        selectedSection={selectedSection}
+        setSelectedSection={setSelectedSection}
+        selectedStore={selectedStore}
+        setSelectedStore={setSelectedStore}
+        selectedAddressId={selectedAddressId}
+        setSelectedAddressId={setSelectedAddressId}
+        handleSubmitOrder={handleSubmitOrder}
+      />
 
-          <div className={`checkout-section ${activeSection === "personal" ? "expanded" : "collapsed"}`}>
-            <div className="checkout-user-summary-title-main-container">
-              <div className="checkout-user-summary-title-sub-container">
-                <div className="checkout-user-summary-section-number-container">
-                  <span>1</span>
-                </div>
-                <h3 className="checkout-user-summary-title">{t("title_personal_data")}</h3>
-              </div>
-
-              {activeSection === "shipping" && (
-                <button
-                  className="checkout-edit-button"
-                  onClick={() => setActiveSection("personal")}
-                  aria-label="Editar datos personales"
-                >
-                  <FontAwesomeIcon icon={faPenToSquare} />
-                </button>
-              )}
-            </div>
-
-            {user && (
-              <div className="checkout-section-content">
-                <div className={`checkout-user-section-data-container ${activeSection === "shipping" ? "dimmed" : ""}`}>
-                  <p className="checkout-user-section-data">
-                    <strong>{t("checkout_user_name")}:</strong> {user.name} {user.lastName}
-                  </p>
-                  <p className="checkout-user-section-data">
-                    <strong>Email:</strong> {user.email}
-                  </p>
-                </div>
-
-                {activeSection === "personal" && (
-                  <button className="button btn-primary checkout-btn" onClick={() => setActiveSection("shipping")}>
-                    {t("checkout_next")}
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className={`checkout-section ${activeSection === "shipping" ? "expanded" : "collapsed"}`}>
-            <div className="checkout-user-summary-title-sub-container">
-              <div className="checkout-user-summary-section-number-container">
-                <span>2</span>
-              </div>
-              <h3 className="checkout-user-summary-title">{t("title_shipping_data")}</h3>
-            </div>
-
-            {activeSection === "shipping" && user && (
-              <div className="checkout-section-content">
-                <div className="checkout-user-section-data-container">
-                  <p className="checkout-user-section-data"><strong>{t("checkout_user_province")}:</strong> {user.province}</p>
-                </div>
-                <div className="checkout-user-buttons">
-                  <button className="button btn-primary checkout-btn" onClick={handleSubmitOrder}>
-                    {t("checkout_confirm")}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="checkout-cart-summary">
-        <div className="checkout-cart-summary-main-container">
-            <h3 className="checkout-cart-summary-title">{t('checkout_cart_summary_title')}</h3>
-            <div className="checkout-cart-summary-container">
-                <div className="checkout-cart-summary-sub-container">
-                <table className="checkout-cart-summary-table">
-                  <tbody>
-                    {cart.map((product) => (
-                        <CheckoutCartUnit key={product._id} product={product}/>
-                    ))}
-                  </tbody>
-                </table>
-                </div>
-                <div className="checkout-cart-summary-footer">
-                  <span>
-                    TOTAL
-                  </span>
-                  <span>
-                    ${total.toFixed(2)}
-                  </span> 
-                </div>
-            </div>
-        </div>
-      </div>
+      <CheckoutCartSummary
+        cart={cart}
+        total={total}
+      />
     </div>
+
+    
   )
 }

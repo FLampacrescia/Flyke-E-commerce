@@ -79,4 +79,13 @@
 .checkout-btn {
     width: 11rem;
 }
+.disabled {
+    background-color: #474747 !important;
+    border: solid 1px #474747 !important;
+    opacity: .9;
+
+    &:hover {
+        background-color: #474747 !important;
+    }
+}
 
