@@ -36,6 +36,7 @@ export default function Management() {
   async function getProducts() {
     try {
       const response = await axios.get(`${config.API_URL}/products`);
+      
       setProducts(response.data.products);
       
       setProductCount(response.data.products.length);
@@ -48,9 +49,9 @@ export default function Management() {
   async function getUsers() {
     try {
       const response = await axios.get(`${config.API_URL}/users`);
-      setUsers(response.data);
+      setUsers(response.data.users);
       
-      setUserCount(response.data.length);
+      setUserCount(response.data.users.length);
     } catch (error) {
       console.error(error);
       toast.error(t('management_users_load_error'));
