@@ -70,6 +70,29 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         }
     };
 
+    const deleteAddress = async (addressId) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            await axios.delete(`${config.API_URL}/users/${user._id}/addresses/${addressId}`,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token && { access_token: token }),
+                    },
+                }
+            );
+
+            toast.success("Dirección eliminada correctamente.");
+            getUserData();
+            
+        } catch (error) {
+            console.error("Error al eliminar la dirección:", error);
+            toast.error("Error al eliminar la dirección.");
+        }
+    }
+
     return {
         addresses,
         isAddressModalOpen,
@@ -80,5 +103,6 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         closeNewAddressModal: () => setIsNewAddressModalOpen(false),
         setAddressAsDefault,
         handleSaveNewAddress,
+        deleteAddress
     };
 }

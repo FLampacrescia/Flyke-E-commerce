@@ -8,6 +8,7 @@ export default function UserAddresses() {
         addresses,
         handleSaveNewAddress,
         setAddressAsDefault,
+        deleteAddress,
         isNewAddressModalOpen,
         openNewAddressModal,
         closeNewAddressModal,
@@ -28,6 +29,7 @@ export default function UserAddresses() {
                         key={address._id}
                         address={address}
                         onSetFavorite={setAddressAsDefault}
+                        onDeleteAddress={deleteAddress}
                     />
                 ))}
             </div>

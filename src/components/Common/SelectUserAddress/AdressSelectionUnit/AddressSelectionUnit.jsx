@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from '../../../../hooks/useTranslations';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import "./AddressSelectionUnit.css"
 
 export default function AddressSelectionUnit({ addr, localSelectedId, setLocalSelectedId, onSetDefault }) {
 

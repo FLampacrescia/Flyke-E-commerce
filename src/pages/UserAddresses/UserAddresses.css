@@ -32,28 +32,18 @@
     background-color: #333;
 }
 
-.user-addresses-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
+/* .user-addresses-list {
+    display: flex;
 
-.user-address-card {
-    background-color: #f9f9f9;
-    padding: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-    position: relative;
-}
+} */
 
 .user-address-card.default {
     border: 2px solid #4caf50;
 }
 
-.user-address-card:hover {
+/* .user-address-card:hover {
     transform: translateY(-3px);
-}
+} */
 
 .user-address-name {
     font-size: 1.2rem;

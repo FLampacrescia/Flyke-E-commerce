@@ -1,19 +1,20 @@
 .user-address-card {
-    background-color: #f9f9f9;
-    padding: 1.2rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-    position: relative;
+    padding: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border 0.3s ease;
+    background: #f7f7f7;
 }
 
 .user-address-card.default {
     border: 2px solid #4caf50;
 }
 
-.user-address-card:hover {
+/* .user-address-card:hover {
     transform: translateY(-3px);
-}
+} */
 
 .user-address-name {
     font-size: 1.2rem;
@@ -25,6 +26,13 @@
     font-size: 0.95rem;
     color: #555;
     margin: 2px 0;
+}
+
+.user-address-unit-icons-main-container {
+    display: flex;
+    gap: .5rem;
+    position: absolute;
+    right: 0;
 }
 
 .user-address-fav-button {
@@ -46,4 +54,22 @@
     background-color: #4caf50;
     color: white;
     cursor: default;
+}
+.address-selection-unit-icon-container {
+    background-color: transparent;
+    color: #979797;
+    border: 1px solid #979797;
+    /* position: absolute; */
+    width: 1.8rem;
+    height: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: color .13s ease-in-out, border .13s ease-in-out;
+
+    &:hover {
+        color: var(--text-color);
+        border: 1px solid var(--text-color);
+    }
 }
