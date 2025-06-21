@@ -27,21 +27,23 @@
     background-color: #ddd;
     border-radius: 8px 8px 0px 0px;
 }
-.admin-modal-form {
+.modal-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5rem;
+}
+.admin-modal-form {
     padding: 25px 40px;
 }
-.admin-modal-input-group {
+.modal-input-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-.admin-modal-label {
+.modal-label {
     text-align: left;
 }
-.admin-modal-input {
+.modal-input {
     font-family: "Poppins", sans-serif;
     padding: 10px;
     border: 1px solid #ccc;
@@ -109,8 +111,8 @@ input[type=file] {
     resize: none;
     height: 42px;
 }
-.admin-modal-input[type=number]::-webkit-inner-spin-button,
-.admin-modal-input[type=number]::-webkit-outer-spin-button {
+.modal-input[type=number]::-webkit-inner-spin-button,
+.modal-input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }

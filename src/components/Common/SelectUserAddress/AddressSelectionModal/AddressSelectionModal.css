@@ -11,6 +11,9 @@
     z-index: 9999;
 }
 .address-modal {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
     background: white;
     border-radius: 12px;
     padding: 2rem;
@@ -19,9 +22,11 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .address-list {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
 }
 .address-selection-modal-add-new {
     display: flex;
@@ -42,5 +47,5 @@
 .address-modal-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }

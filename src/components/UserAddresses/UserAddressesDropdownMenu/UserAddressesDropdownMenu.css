@@ -1,0 +1,30 @@
+.user-addresses-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 140%;
+    right: -13%;
+    width: 150px;
+    border-radius: 8px;
+    background-color: white;
+    user-select: none;
+    border: 1px solid #ccc;
+    padding: .3rem 0 .3rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+.user-addresses-dropdown-menu.open {
+    display: block;
+}
+.user-addresses-dropdown-menu-item-container {
+    padding: .8rem;
+    line-height: 1rem;
+
+    &:hover {
+        background-color: #ebebeb;
+    }
+}
+.user-addresses-dropdown-menu-item-text {
+    font-size: .9rem;
+    color: var(--text-color);
+}
+

@@ -1,22 +1,20 @@
 .user-addresses-container {
     padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    min-height: 50dvh;
+    max-width: 750px;
+    margin: 100px auto 120px auto;
 }
-
 .user-addresses-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
-
 .user-addresses-title {
     font-size: 1.8rem;
     font-weight: 600;
     color: #222;
 }
-
 .user-addresses-add-button {
     padding: 0.5rem 1rem;
     background-color: #111;
@@ -27,36 +25,22 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
 .user-addresses-add-button:hover {
     background-color: #333;
 }
-
-/* .user-addresses-list {
-    display: flex;
-
-} */
-
 .user-address-card.default {
     border: 2px solid #4caf50;
 }
-
-/* .user-address-card:hover {
-    transform: translateY(-3px);
-} */
-
 .user-address-name {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
-
 .user-address-line {
     font-size: 0.95rem;
     color: #555;
     margin: 2px 0;
 }
-
 .user-address-fav-button {
     margin-top: 1rem;
     padding: 0.4rem 0.8rem;
@@ -67,11 +51,9 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
 .user-address-fav-button:hover:not(:disabled) {
     background-color: #ccc;
 }
-
 .user-address-fav-button:disabled {
     background-color: #4caf50;
     color: white;

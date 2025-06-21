@@ -29,7 +29,7 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
 
     useEffect(() => {
         setIsOpen(false);
-    }, [location.pathname]);
+    }, [location.pathname, setIsOpen]);
 
     const { isAdmin } = useUser();
     const { language, toggleLanguage } = useLanguage();

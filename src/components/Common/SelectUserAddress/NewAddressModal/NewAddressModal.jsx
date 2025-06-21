@@ -38,58 +38,37 @@ const handleSubmit = async (e) => {
 
     return (
         <div className="address-modal-overlay">
-            <div className="address-modal">
+            <div className="address-modal new-address-modal">
                 <h2>Agregar nueva dirección</h2>
-                <form onSubmit={handleSubmit} className="new-address-form">
-                    <label>
-                        Calle:
-                        <input
-                            type="text"
-                            name="street"
-                            value={formData.street}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Barrio:
-                        <input
-                            type="text"
-                            name="neighborhood"
-                            value={formData.neighborhood}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Provincia:
-                        <input
-                            type="text"
-                            name="province"
-                            value={formData.province}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Código Postal:
-                        <input
-                            type="text"
-                            name="zipCode"
-                            value={formData.zipCode}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label className="checkbox-label">
-                        <input
-                            type="checkbox"
-                            name="isDefault"
-                            checked={formData.isDefault}
-                            onChange={handleChange}
-                        />
-                        ¿Establecer como dirección principal?
-                    </label>
+                <form onSubmit={handleSubmit} className="modal-form">
+                    <div className="modal-input-group">
+                        <label className="modal-label" htmlFor="street">{t('street')}</label>
+                        <input className="modal-input" type="text" id="street" value={formData.street} onChange={handleChange} required />
+                    </div>
+                    <div className="modal-input-group">
+                        <label className="modal-label" htmlFor="neighborhood">{t('neighborhood')}</label>
+                        <input className="modal-input" type="text" id="neighborhood" value={formData.neighborhood} onChange={handleChange} required />
+                    </div>
+                    <div className="modal-input-group">
+                        <label className="modal-label" htmlFor="province">{t('province')}</label>
+                        <input className="modal-input" type="text" id="province" value={formData.province} onChange={handleChange} required />
+                    </div>
+                    <div className="modal-input-group">
+                        <label className="modal-label" htmlFor="zipCode">{t('Zip Code')}</label>
+                        <input className="modal-input" type="text" id="zipCode" value={formData.province} onChange={handleChange} required />
+                    </div>
+                    <div className="modal-input-group modal-checkbox-group">
+                        <label className="checkbox-label">
+                            <input
+                                className="modal-checkbox"
+                                type="checkbox"
+                                name="isDefault"
+                                checked={formData.isDefault}
+                                onChange={handleChange}
+                            />
+                            ¿Establecer como dirección principal?
+                        </label>
+                    </div>
 
                     <div className="address-modal-buttons">
                         <Button

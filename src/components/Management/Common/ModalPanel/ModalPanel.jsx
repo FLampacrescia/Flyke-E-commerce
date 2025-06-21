@@ -146,20 +146,20 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                         : t('management_add_word')}
                 </h2>
 
-                <form className="admin-modal-form" onSubmit={handleSubmit(onSubmit)}>
+                <form className="modal-form admin-modal-form" onSubmit={handleSubmit(onSubmit)}>
                     {selectedSection === "products" ? (
                         <>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_products_title2')}</label>
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_products_title2')}</label>
                                 <input
                                     type="text"
-                                    className="admin-modal-input"
+                                    className="modal-input"
                                     {...register("title", { required: true })}
                                 />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">
+                            <div className="modal-input-group">
+                                <label className="modal-label">
                                     {t('management_modal_panel_image_title')}
                                 </label>
 
@@ -183,13 +183,13 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                                     </div>
                                 ) : (
                                     <div className="input-file-type-container">
-                                        <label className="admin-modal-label" htmlFor="image">
+                                        <label className="modal-label" htmlFor="image">
                                             <div className="file-upload-container">
                                                 <FontAwesomeIcon icon={faUpload} className="file-upload-icon" />
                                             </div>
                                         </label>
                                         <input
-                                            className="admin-modal-input"
+                                            className="modal-input"
                                             type="file"
                                             accept="image/*"
                                             id="image"
@@ -199,49 +199,49 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                                 )}
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_products_title3')}</label>
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_products_title3')}</label>
                                 <input
                                     type="text"
-                                    className="admin-modal-input"
+                                    className="modal-input"
                                     {...register("category", { required: true })}
                                 />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_products_title5')}</label>
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_products_title5')}</label>
                                 <input
                                     type="number"
-                                    className="admin-modal-input"
+                                    className="modal-input"
                                     {...register("price", { required: true })}
                                 />
                             </div>
                         </>
                     ) : selectedSection === "users" ? (
                         <>
-                        <div className="admin-modal-input-group">
-                            <label className="admin-modal-label" htmlFor="name">{t('management_page_table_users_title1')}</label>
-                            <input className="admin-modal-input" type="text" id="name" {...register("name", { required: true })} />
+                        <div className="modal-input-group">
+                            <label className="modal-label" htmlFor="name">{t('management_page_table_users_title1')}</label>
+                            <input className="modal-input" type="text" id="name" {...register("name", { required: true })} />
                         </div>
 
-                        <div className="admin-modal-input-group">
-                            <label className="admin-modal-label" htmlFor="lastName">{t('management_page_table_users_title2')}</label>
-                            <input className="admin-modal-input" type="text" id="lastName" {...register("lastName", { required: true })} />
+                        <div className="modal-input-group">
+                            <label className="modal-label" htmlFor="lastName">{t('management_page_table_users_title2')}</label>
+                            <input className="modal-input" type="text" id="lastName" {...register("lastName", { required: true })} />
                         </div>
 
-                        <div className="admin-modal-input-group">
-                            <label className="admin-modal-label" htmlFor="email">{t('management_page_table_users_title3')}</label>
-                            <input className="admin-modal-input" type="email" id="email" {...register("email", { required: true })} />
+                        <div className="modal-input-group">
+                            <label className="modal-label" htmlFor="email">{t('management_page_table_users_title3')}</label>
+                            <input className="modal-input" type="email" id="email" {...register("email", { required: true })} />
                         </div>
 
-                        <div className="admin-modal-input-group">
-                            <label className="admin-modal-label" htmlFor="birthDate">{t('register_page_input3_label')}</label>
-                            <input className="admin-modal-input" type="date" id="birthDate" {...register("birthDate", { required: true })} />
+                        <div className="modal-input-group">
+                            <label className="modal-label" htmlFor="birthDate">{t('register_page_input3_label')}</label>
+                            <input className="modal-input" type="date" id="birthDate" {...register("birthDate", { required: true })} />
                         </div>
 
-                        <div className="admin-modal-input-group">
-                            <label className="admin-modal-label" htmlFor="province">{t('register_page_input4_label')}</label>
-                            <select className="admin-modal-input" id="province" {...register("province", { required: true })}>
+                        <div className="modal-input-group">
+                            <label className="modal-label" htmlFor="province">{t('register_page_input4_label')}</label>
+                            <select className="modal-input" id="province" {...register("province", { required: true })}>
                                 <option value="">{t('register_page_input_select')}</option>
                                 <option value="Buenos Aires">Buenos Aires</option>
                                 <option value="Catamarca">Catamarca</option>
@@ -270,42 +270,42 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                         </div>
 
                         {!dataToEdit && (
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label" htmlFor="password">{t('register_page_input7_label')}</label>
-                                <input className="admin-modal-input" type="password" id="password" {...register("password", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label" htmlFor="password">{t('register_page_input7_label')}</label>
+                                <input className="modal-input" type="password" id="password" {...register("password", { required: true })} />
                             </div>
                         )}
                     </>
                     ) : (
                         <>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title1')}</label>
-                                <input type="text" className="admin-modal-input" {...register("name", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title1')}</label>
+                                <input type="text" className="modal-input" {...register("name", { required: true })} />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title2')}</label>
-                                <input type="text" className="admin-modal-input" {...register("address", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title2')}</label>
+                                <input type="text" className="modal-input" {...register("address", { required: true })} />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title3')}</label>
-                                <input type="text" className="admin-modal-input" {...register("neighborhood", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title3')}</label>
+                                <input type="text" className="modal-input" {...register("neighborhood", { required: true })} />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title4')}</label>
-                                <input type="text" className="admin-modal-input" {...register("province", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title4')}</label>
+                                <input type="text" className="modal-input" {...register("province", { required: true })} />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title5')}</label>
-                                <input type="text" className="admin-modal-input" {...register("timetable", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title5')}</label>
+                                <input type="text" className="modal-input" {...register("timetable", { required: true })} />
                             </div>
 
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_stores_title6')}</label>
-                                <input type="text" className="admin-modal-input" {...register("mapsLink", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_stores_title6')}</label>
+                                <input type="text" className="modal-input" {...register("mapsLink", { required: true })} />
                             </div>
                         </>
                     )}

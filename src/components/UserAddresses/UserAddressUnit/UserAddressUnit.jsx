@@ -1,11 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from '../../../hooks/useTranslations';
 import "./UserAddressUnit.css";
-import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useRef, useState } from "react";
+import UserAddressesDropdownMenu from "../UserAddressesDropdownMenu/UserAddressesDropdownMenu";
 
 export default function UserAddressUnit({ address, onSetFavorite, onDeleteAddress }) {
 
     const { t } = useTranslation();
+    const menuRef = useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [rippleId, setRippleId] = useState(0);
+
+    const handleDropdownMenuClick = () => {
+        setIsDropdownOpen(prev => !prev);
+    };
+
+    const handleClick = () => {
+        setRippleId(prev => prev + 1);
+    };
 
     return (
         <div className={`user-address-card ${address.isDefault ? "default" : ""}`}>
@@ -26,14 +39,23 @@ export default function UserAddressUnit({ address, onSetFavorite, onDeleteAddres
                     </div>
                     <div
                         className={`address-selection-unit-icon-container`}
+                        ref={menuRef}
                         onClick={(e) => {
                             e.stopPropagation();
-                            onDeleteAddress(address._id);
+                            handleClick();
+                            handleDropdownMenuClick();
                         }}
                     >
-                        <FontAwesomeIcon icon={faTrash} className="fa-regular fa-trash address-selection-unit-heart-icon" />
+                        {<span key={rippleId} className="ripple-overlay" />}
+                        <FontAwesomeIcon icon={faEllipsisVertical} />
+                        <UserAddressesDropdownMenu
+                            isOpen={isDropdownOpen}
+                            setIsOpen={setIsDropdownOpen}
+                            menuRef={menuRef}
+                            onDeleteAddress={onDeleteAddress}
+                            address={address}
+                        />
                     </div>
-
 
                 </div>
             </div>
