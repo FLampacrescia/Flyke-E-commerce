@@ -3,7 +3,7 @@ import { useTranslation } from '../../../hooks/useTranslations';
 import UserAddressesDropdownMenuItem from '../UserAddressesDropdownMenuItem/UserAddressesDropdownMenuItem';
 import "./UserAddressesDropdownMenu.css"
 
-export default function UserAddressesDropdownMenu({ isOpen, setIsOpen, menuRef, address, onDeleteAddress }) {
+export default function UserAddressesDropdownMenu({ isOpen, setIsOpen, menuRef, address, onEditAddress, onDeleteAddress }) {
 
     const { t } = useTranslation();
     const dropdownRef = useRef(null);
@@ -24,9 +24,11 @@ export default function UserAddressesDropdownMenu({ isOpen, setIsOpen, menuRef, 
 
     return (
         <div className={`user-addresses-dropdown-menu ${isOpen ? 'open' : ''}`} ref={dropdownRef}>
-            <UserAddressesDropdownMenuItem text={t('Editar')} isLast={false} />
-            <UserAddressesDropdownMenuItem text={t('Eliminar')} 
-                isLast={true} 
+            <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_edit')} onClick={() => {
+                onEditAddress(address);
+                setIsOpen(false);
+            }} />
+            <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_delete')} 
                 onClick={() => onDeleteAddress(address._id)} />
         </div>
     )

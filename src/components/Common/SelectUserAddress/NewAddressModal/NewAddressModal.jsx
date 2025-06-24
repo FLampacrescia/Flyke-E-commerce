@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
             onClose();
         }
     } catch (err) {
-        console.error("Error al guardar la dirección:", err);
+        console.error(`${t('user_addresses_new_address_error')}`, err);
     }
 };
 
@@ -39,23 +39,23 @@ const handleSubmit = async (e) => {
     return (
         <div className="address-modal-overlay">
             <div className="address-modal new-address-modal">
-                <h2>Agregar nueva dirección</h2>
+                <h2>{t('address_selection_modal_add_new_address')}</h2>
                 <form onSubmit={handleSubmit} className="modal-form">
                     <div className="modal-input-group">
-                        <label className="modal-label" htmlFor="street">{t('street')}</label>
-                        <input className="modal-input" type="text" id="street" value={formData.street} onChange={handleChange} required />
+                        <label className="modal-label" htmlFor="street">{t('checkout_user_address')}</label>
+                        <input className="modal-input" type="text" id="street" name="street" value={formData.street} onChange={handleChange} required />
                     </div>
                     <div className="modal-input-group">
-                        <label className="modal-label" htmlFor="neighborhood">{t('neighborhood')}</label>
-                        <input className="modal-input" type="text" id="neighborhood" value={formData.neighborhood} onChange={handleChange} required />
+                        <label className="modal-label" htmlFor="neighborhood">{t('checkout_user_neighborhood')}</label>
+                        <input className="modal-input" type="text" id="neighborhood" name="neighborhood" value={formData.neighborhood} onChange={handleChange} required />
                     </div>
                     <div className="modal-input-group">
-                        <label className="modal-label" htmlFor="province">{t('province')}</label>
-                        <input className="modal-input" type="text" id="province" value={formData.province} onChange={handleChange} required />
+                        <label className="modal-label" htmlFor="province">{t('checkout_user_province')}</label>
+                        <input className="modal-input" type="text" id="province" name="province" value={formData.province} onChange={handleChange} required />
                     </div>
                     <div className="modal-input-group">
-                        <label className="modal-label" htmlFor="zipCode">{t('Zip Code')}</label>
-                        <input className="modal-input" type="text" id="zipCode" value={formData.province} onChange={handleChange} required />
+                        <label className="modal-label" htmlFor="zipCode">{t('checkout_user_zip_code')}</label>
+                        <input className="modal-input" type="text" id="zipCode" name="zipCode" value={formData.zipCode} onChange={handleChange} required />
                     </div>
                     <div className="modal-input-group modal-checkbox-group">
                         <label className="checkbox-label">
@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
                                 checked={formData.isDefault}
                                 onChange={handleChange}
                             />
-                            ¿Establecer como dirección principal?
+                            {t('user_addresses_new_address_set_favorite')}
                         </label>
                     </div>
 

@@ -5,7 +5,7 @@ import { faEllipsisVertical, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
 import UserAddressesDropdownMenu from "../UserAddressesDropdownMenu/UserAddressesDropdownMenu";
 
-export default function UserAddressUnit({ address, onSetFavorite, onDeleteAddress }) {
+export default function UserAddressUnit({ address, onSetFavorite, onEditAddress, onDeleteAddress }) {
 
     const { t } = useTranslation();
     const menuRef = useRef(null);
@@ -52,6 +52,7 @@ export default function UserAddressUnit({ address, onSetFavorite, onDeleteAddres
                             isOpen={isDropdownOpen}
                             setIsOpen={setIsDropdownOpen}
                             menuRef={menuRef}
+                            onEditAddress={onEditAddress}
                             onDeleteAddress={onDeleteAddress}
                             address={address}
                         />

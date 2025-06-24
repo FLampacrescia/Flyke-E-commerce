@@ -6,17 +6,12 @@ import AvatarExample from "../../../assets/features-banner.webp";
 import { useState } from "react";
 import AccountEditModal from "../AccountEditModal/AccountEditModal";
 import MyAccountInput from "../MyAccountInput/MyAccountInput";
-// import SelectUserAddressWrapper from "../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
-// import toast from "react-hot-toast";
-// import axios from "axios";
-// import config from '../../../config/env.config';
 import { Link } from "react-router-dom";
 
 export default function MyAccountSection({ section }) {
     const { user } = useUser();
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [mainAddressId, setMainAddressId] = useState(null);
 
     const sectionTitles = {
         personalData: t("title_personal_data"),
@@ -29,27 +24,14 @@ export default function MyAccountSection({ section }) {
 
     const defaultAddress = user?.addresses?.find(addr => addr.isDefault);
 
-    // const updateMainAddressInBackend = async (newMainId) => {
-    //     try {
-    //         const token = localStorage.getItem("token");
+    const isEditingAddress = section === "shippingData";
+    const isEditingPersonalData = section === "personalData";
 
-    //         await axios.put(
-    //             `${config.API_URL}/users/${user._id}/addresses/${newMainId}/set-default`,
-    //             {},
-    //             {
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                     ...(token && { access_token: token }),
-    //                 },
-    //             }
-    //         );
-
-    //         toast.success("Dirección principal actualizada");
-    //     } catch (error) {
-    //         console.error("Error al actualizar la dirección principal:", error);
-    //         toast.error("No se pudo actualizar la dirección principal");
-    //     }
-    // };
+    const userDataToEdit = isEditingPersonalData
+        ? user
+        : isEditingAddress && defaultAddress
+            ? { ...defaultAddress, userId: user._id }
+            : null;
 
     return (
         <div className="my-account-section-container">
@@ -63,36 +45,33 @@ export default function MyAccountSection({ section }) {
                             <FontAwesomeIcon icon={faPenToSquare} />
                     </button> ) : (
                         <Link to="/user-addresses"> 
-                            <span className="my-account-section-addresses-btn">Ver Direcciones</span>
+                            <span className="my-account-section-addresses-btn">{t('myaccount_addresses_button')}</span>
                         </Link>
                     )}
             </div>
 
             {user && (
                 <div className="my-account-section-content">
-                    {section === "personalData" && (
+                    {isEditingPersonalData && (
                         <>
                             <div className="avatar-container">
                                 <img src={AvatarExample} alt="Avatar" className="avatar-image" />
                                 <FontAwesomeIcon icon={faImage} className="avatar-edit-icon" />
                             </div>
-                            <MyAccountInput
-                                label="Nombre Completo"
-                                value={`${user.name} ${user.lastName}`}
-                            />
+                            <MyAccountInput label="Nombre Completo" value={`${user.name} ${user.lastName}`} />
                             <MyAccountInput label="Correo electrónico" value={user.email} />
                             <MyAccountInput label="DNI" value={user.dni} />
                         </>
                     )}
 
-                    {section === "shippingData" && user.addresses?.length > 0 && (
+                    {isEditingAddress && defaultAddress && (
                         <>
-                            
-                                <MyAccountInput
+                            <MyAccountInput
                                 label="Dirección"
-                                value={`${defaultAddress?.street}, ${defaultAddress?.neighborhood}`} />
-                                <MyAccountInput label="Provincia" value={defaultAddress?.province} />
-                                <MyAccountInput label="Código Postal" value={defaultAddress?.zipCode} />
+                                value={`${defaultAddress.street}, ${defaultAddress.neighborhood}`}
+                            />
+                            <MyAccountInput label="Provincia" value={defaultAddress.province} />
+                            <MyAccountInput label="Código Postal" value={defaultAddress.zipCode} />
                         </>
                     )}
 
@@ -102,13 +81,11 @@ export default function MyAccountSection({ section }) {
                 </div>
             )}
 
-            {isModalOpen && (
+            {isModalOpen && userDataToEdit && (
                 <AccountEditModal
                     closeModal={closeEditModal}
-                    userData={section === "personalData" ? user : user?.addresses?.[0]}
-                    isAddress={section === "shippingData"}
-                    onUpdate={() => {
-                    }}
+                    userData={userDataToEdit}
+                    isAddress={isEditingAddress}
                 />
             )}
         </div>

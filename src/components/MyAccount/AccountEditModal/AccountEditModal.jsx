@@ -6,7 +6,7 @@ import { useTranslation } from "../../../hooks/useTranslations";
 import config from "../../../config/env.config";
 import { useUser } from "../../../context/UserContext";
 
-export default function AccountEditModal({ closeModal, userData, isAddress = false, onUpdate }) {
+export default function AccountEditModal({ closeModal, userData, isAddress = false }) {
     const { register, handleSubmit, setValue, reset } = useForm();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
@@ -32,13 +32,14 @@ export default function AccountEditModal({ closeModal, userData, isAddress = fal
         }
     }, [userData, isAddress, reset, setValue]);
 
-    const onSubmit = async (data) => {
+const onSubmit = async (data) => {
     const token = localStorage.getItem("token");
     setLoading(true);
 
     try {
-        const endpoint = isAddress ? "addresses" : "users";
-        const url = `${config.API_URL}/${endpoint}/${userData._id}`;
+        const url = isAddress
+            ? `${config.API_URL}/users/${userData.userId}/addresses/${userData._id}`
+            : `${config.API_URL}/users/${userData._id}`;
 
         await toast.promise(
             axios({
@@ -58,8 +59,6 @@ export default function AccountEditModal({ closeModal, userData, isAddress = fal
         );
 
         await getUserData();
-
-        onUpdate();
         closeModal();
     } catch (error) {
         console.error("Error al actualizar:", error?.response || error);

@@ -70,6 +70,28 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         }
     };
 
+    const updateAddress = async (addressId) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            await axios.put(`${config.API_URL}/users/${user._id}/addresses/${addressId}`,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        ...(token && { access_token: token }),
+                    },
+                }
+            );
+
+            toast.success("Dirección editada correctamente.");
+            getUserData();
+        } catch (error) {
+            console.error("Error al editar la dirección:", error);
+            toast.error("Error al editar la dirección.");
+        }
+    }
+
     const deleteAddress = async (addressId) => {
         try {
             const token = localStorage.getItem("token");
@@ -103,6 +125,7 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         closeNewAddressModal: () => setIsNewAddressModalOpen(false),
         setAddressAsDefault,
         handleSaveNewAddress,
+        updateAddress,
         deleteAddress
     };
 }
