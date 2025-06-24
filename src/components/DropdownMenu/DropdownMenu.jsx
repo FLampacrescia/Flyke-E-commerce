@@ -80,7 +80,7 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
                 <>
                     <Button
                         text={t('menu_logout')}
-                        type="btn-secondary menu-btn"
+                        variant="btn-secondary menu-btn"
                         onClick={() => setIsLogoutModalOpen(true)}
                     />
                     {isLogoutModalOpen && (
@@ -97,8 +97,8 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
                 </>
             ) : (
                 <>
-                    <Button text={t('menu_login')} type="btn-primary menu-btn" url="/login" />
-                    <Button text={t('menu_register')} type="btn-secondary menu-btn" url="/register" />
+                    <Button text={t('menu_login')} variant="btn-primary menu-btn" url="/login" />
+                    <Button text={t('menu_register')} variant="btn-secondary menu-btn" url="/register" />
                 </>
             )}
         </div>

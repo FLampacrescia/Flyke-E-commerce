@@ -1,6 +1,7 @@
 .button {
     font-family: "Poppins", sans-serif !important;
     text-align: center;
+    font-size: 1rem;
     font-weight: 500;
     border-radius: 9999px;
     cursor: pointer;
@@ -10,6 +11,7 @@
 }
 .menu-btn {
     display: block;
+    width: 100%;
 }
 .order-button {
     font-family: "Poppins", sans-serif;
@@ -75,6 +77,7 @@
 }
 .modal-btn {
     padding: 10px 25px;
+    font-size: .9rem;
 }
 .checkout-btn {
     width: 11rem;

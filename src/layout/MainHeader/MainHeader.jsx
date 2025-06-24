@@ -53,8 +53,8 @@ export default function MainHeader() {
                     )}
                     <hr className="user-menu-line" />
                     <div className="navbar-btn-container">
-                        <Button text="Inicio de Sesión" type="btn-primary" url="/login" />
-                        <Button text="Registro" type="btn-secondary" url="/register" />
+                        <Button text="Inicio de Sesión" variant="btn-primary" url="/login" />
+                        <Button text="Registro" variant="btn-secondary" url="/register" />
                     </div>
                 </div>
             </nav>

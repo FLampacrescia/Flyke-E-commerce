@@ -1,8 +1,8 @@
 import '../Button.css';
 
-export default function OrderButton({ text, type, type2, onClick }) {
+export default function OrderButton({ text, variant, variant2, onClick }) {
     return (
-        <button className={`button ${type} ${type2}`} onClick={() => onClick()}>
+        <button className={`button ${variant} ${variant2}`} onClick={() => onClick()}>
             {text}
         </button>
     )

@@ -18,8 +18,8 @@ export default function ConfirmationModal({
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
         <h3 className="confirmation-modal-title">{title}</h3>
         <div className="modal-buttons">
-          <Button text={t('modal_confirmation_cancel')} type={cancelType} onClick={onClose} />
-          <Button text={t('modal_confirmation_confirm')} type={confirmType} onClick={onConfirm} />
+          <Button text={t('modal_confirmation_cancel')} variant={cancelType} onClick={onClose} />
+          <Button text={t('modal_confirmation_confirm')} variant={confirmType} onClick={onConfirm} />
         </div>
       </div>
     </div>,
