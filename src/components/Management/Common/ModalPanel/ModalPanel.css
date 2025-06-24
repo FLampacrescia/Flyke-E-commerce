@@ -27,6 +27,12 @@
     background-color: #ddd;
     border-radius: 8px 8px 0px 0px;
 }
+.modal-title {
+    text-align: center;
+}
+.my-account-modal-title {
+    font-size: 1.6rem;
+}
 .modal-form {
     display: flex;
     flex-direction: column;

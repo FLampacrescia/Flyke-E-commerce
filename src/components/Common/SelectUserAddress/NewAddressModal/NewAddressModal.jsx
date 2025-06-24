@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
     return (
         <div className="address-modal-overlay">
             <div className="address-modal new-address-modal">
-                <h2>{t('address_selection_modal_add_new_address')}</h2>
+                <h2 className="modal-title my-account-modal-title">{t('address_selection_modal_add_new_address')}</h2>
                 <form onSubmit={handleSubmit} className="modal-form">
                     <div className="modal-input-group">
                         <label className="modal-label" htmlFor="street">{t('checkout_user_address')}</label>

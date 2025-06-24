@@ -16,7 +16,7 @@ export default function ConfirmationModal({
   return createPortal(
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <h3 className="modal-title">{title}</h3>
+        <h3 className="confirmation-modal-title">{title}</h3>
         <div className="modal-buttons">
           <Button text={t('modal_confirmation_cancel')} type={cancelType} onClick={onClose} />
           <Button text={t('modal_confirmation_confirm')} type={confirmType} onClick={onConfirm} />

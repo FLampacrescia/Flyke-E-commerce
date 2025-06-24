@@ -69,48 +69,48 @@ const onSubmit = async (data) => {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
-                <h2 className="admin-modal-upper-title">
-                    {t('management_edit_word')}
+            <div className="address-modal new-address-modal">
+                <h2 className="modal-title">
+                    {t('myaccount_modal_edit_user_data_title')}
                 </h2>
 
-                <form className="admin-modal-form" onSubmit={handleSubmit(onSubmit)}>
+                <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
                     {!isAddress ? (
                         <>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_users_title1')}</label>
-                                <input className="admin-modal-input" {...register("name", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_users_title1')}</label>
+                                <input className="modal-input" {...register("name", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_users_title2')}</label>
-                                <input className="admin-modal-input" {...register("lastName", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_users_title2')}</label>
+                                <input className="modal-input" {...register("lastName", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('management_page_table_users_title3')}</label>
-                                <input type="email" className="admin-modal-input" {...register("email", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('management_page_table_users_title3')}</label>
+                                <input type="email" className="modal-input" {...register("email", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('register_page_input3_label')}</label>
-                                <input type="date" className="admin-modal-input" {...register("birthDate", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('register_page_input3_label')}</label>
+                                <input type="date" className="modal-input" {...register("birthDate", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">{t('register_page_input4_label')}</label>
-                                <input className="admin-modal-input" {...register("dni", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">{t('register_page_input4_label')}</label>
+                                <input className="modal-input" {...register("dni", { required: true })} />
                             </div>
                         </>
                     ) : (
                         <>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">Calle</label>
-                                <input className="admin-modal-input" {...register("street", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">Calle</label>
+                                <input className="modal-input" {...register("street", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">Barrio o Localidad</label>
-                                <input className="admin-modal-input" {...register("neighborhood", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">Barrio o Localidad</label>
+                                <input className="modal-input" {...register("neighborhood", { required: true })} />
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">Provincia</label>
-                                <select className="admin-modal-input" {...register("province", { required: true })}>
+                            <div className="modal-input-group">
+                                <label className="modal-label">Provincia</label>
+                                <select className="modal-input" {...register("province", { required: true })}>
                                     <option value="">{t('register_page_input_select')}</option>
                                     {[
                                         "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba",
@@ -123,9 +123,9 @@ const onSubmit = async (data) => {
                                     ))}
                                 </select>
                             </div>
-                            <div className="admin-modal-input-group">
-                                <label className="admin-modal-label">Código Postal</label>
-                                <input className="admin-modal-input" {...register("zipCode", { required: true })} />
+                            <div className="modal-input-group">
+                                <label className="modal-label">Código Postal</label>
+                                <input className="modal-input" {...register("zipCode", { required: true })} />
                             </div>
                         </>
                     )}
