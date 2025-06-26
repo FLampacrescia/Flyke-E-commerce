@@ -143,8 +143,8 @@ async function deleteProduct(id) {
             />
             <OrderButton
               text={selectedSection === "products" ? t('management_page_btn1') : selectedSection === "users" ? t('management_page_btn2') : t('management_page_btn3')}
-              type="btn-primary"
-              type2="admin-add-product-btn"
+              variant="btn-primary"
+              variant2="admin-add-product-btn"
               onClick={() => {
                 setIsModalOpen(true);
                 selectedSection === "products" ? setProductToEdit(null) : selectedSection === "users" ? setUserToEdit(null) : setStoreToEdit(null);

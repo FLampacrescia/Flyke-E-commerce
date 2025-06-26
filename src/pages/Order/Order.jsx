@@ -51,8 +51,8 @@ export default function Order() {
               </span> 
         </div>
       <div className="order-buttons">
-        <OrderButton text={t('cart_btn_primary')} type="btn-primary" type2="order-button" onClick={()=>checkout()} />
-        <OrderButton text={t('cart_btn_secondary')} type="btn-secondary" type2="order-button"  onClick={clearCart}/>
+        <OrderButton text={t('cart_btn_primary')} variant="btn-primary" variant2="order-button" onClick={()=>checkout()} />
+        <OrderButton text={t('cart_btn_secondary')} variant="btn-secondary" variant2="order-button"  onClick={clearCart}/>
       </div>
     </div>
   );

@@ -53,7 +53,7 @@ export default function AddressSelectionModal({
                     </div>
                 </div>
 
-                <div className="address-modal-buttons">
+                <div className="modal-buttons">
                     <Button text={t('modal_confirmation_cancel')} variant={cancelType} onClick={() => onSelect(selectedAddressId)} />
                     <Button text={t('modal_confirmation_confirm')} variant={confirmType} onClick={handleConfirm} />
                 </div>

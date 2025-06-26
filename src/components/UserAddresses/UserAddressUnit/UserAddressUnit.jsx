@@ -49,6 +49,7 @@ export default function UserAddressUnit({ address, onSetFavorite, onEditAddress,
                         {<span key={rippleId} className="ripple-overlay" />}
                         <FontAwesomeIcon icon={faEllipsisVertical} />
                         <UserAddressesDropdownMenu
+                            className="address-selection-unit-dropdown-menu-component"
                             isOpen={isDropdownOpen}
                             setIsOpen={setIsDropdownOpen}
                             menuRef={menuRef}

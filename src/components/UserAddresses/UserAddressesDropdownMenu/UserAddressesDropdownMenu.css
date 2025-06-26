@@ -13,7 +13,6 @@
 }
 .user-addresses-dropdown-menu.open {
     display: block;
-    text-align: center;
 }
 .user-addresses-dropdown-menu-item-container {
     display: flex;
@@ -25,7 +24,7 @@
     line-height: 1rem;
 
     &:hover {
-        background-color: #ebebeb;
+        background-color: #f0f0f0;
     }
 }
 .user-addresses-dropdown-menu-item-text, .user-addresses-dropdown-menu-item-icon {

@@ -70,15 +70,15 @@ const handleSubmit = async (e) => {
                         </label>
                     </div>
 
-                    <div className="address-modal-buttons">
+                    <div className="modal-buttons">
                         <Button
                             text={t('modal_confirmation_cancel')}
-                            type="modal-btn btn-secondary"
+                            variant="modal-btn btn-secondary"
                             onClick={onClose}
                         />
                         <Button
                             text={t('modal_confirmation_confirm')}
-                            type="modal-btn btn-primary"
+                            variant="modal-btn btn-primary"
                             buttonType="submit"
                         />
                     </div>
