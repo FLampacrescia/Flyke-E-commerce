@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from '../../../hooks/useTranslations';
 import UserAddressesDropdownMenuItem from '../UserAddressesDropdownMenuItem/UserAddressesDropdownMenuItem';
 import "./UserAddressesDropdownMenu.css"
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 export default function UserAddressesDropdownMenu({ isOpen, setIsOpen, menuRef, address, onEditAddress, onDeleteAddress }) {
 
@@ -24,11 +25,11 @@ export default function UserAddressesDropdownMenu({ isOpen, setIsOpen, menuRef, 
 
     return (
         <div className={`user-addresses-dropdown-menu ${isOpen ? 'open' : ''}`} ref={dropdownRef}>
-            <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_edit')} onClick={() => {
-                onEditAddress(address);
-                setIsOpen(false);
-            }} />
-            <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_delete')} 
+                <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_edit')} icon={faPenToSquare} onClick={() => {
+                    onEditAddress(address);
+                    setIsOpen(false);
+                }} />
+            <UserAddressesDropdownMenuItem text={t('user_addresses_dropdown_menu_delete')} icon={faTrashCan}
                 onClick={() => onDeleteAddress(address._id)} />
         </div>
     )
