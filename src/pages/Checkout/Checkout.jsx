@@ -108,6 +108,7 @@ const getOrders = async () => {
       <CheckoutUserSummary 
         user={user}
         address={address}
+        cart={cart}
         selectedSection={selectedSection}
         setSelectedSection={setSelectedSection}
         selectedStore={selectedStore}
