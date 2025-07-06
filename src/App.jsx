@@ -14,6 +14,7 @@ import OrderSidebar from "./layout/OrderSidebar/OrderSidebar";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import UserProtectedRoute from "./context/UserProtectedRoute";
 import UserAddresses from "./pages/UserAddresses/UserAddresses";
+import OrderSuccess from "./pages/Checkout/OrderSuccess/OrderSuccess";
 
 export default function App() {
   return (
@@ -40,6 +41,11 @@ export default function App() {
         <Route path="/checkout" element={
           <UserProtectedRoute>
             <Checkout />
+          </UserProtectedRoute>
+        } />
+        <Route path="/checkout/order-success" element={
+          <UserProtectedRoute>
+            <OrderSuccess />
           </UserProtectedRoute>
         } />
         <Route path="/product-detail/:id" element={<ProductDetail />} />

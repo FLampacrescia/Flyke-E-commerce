@@ -1,11 +1,15 @@
 const {
     VITE_API_URL,
     VITE_FILES_URL,
+    MERCADO_PAGO_PUBLIC_KEY,
+    MERCADO_PAGO_ACCESS_TOKEN,
 } = import.meta.env;
 
 const config = {
     API_URL: VITE_API_URL,
     FILES_URL: VITE_FILES_URL,
+    MP_PUBLIC_KEY: MERCADO_PAGO_PUBLIC_KEY,
+    MP_ACCESS_TOKEN: MERCADO_PAGO_ACCESS_TOKEN,
 };
 
 export default config;

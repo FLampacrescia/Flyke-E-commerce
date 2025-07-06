@@ -21,6 +21,7 @@ export default function Checkout() {
   const token = localStorage.getItem("token");
   const [selectedStore, setSelectedStore] = useState(null);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
+  const [orderData, setOrderData] = useState(null);
 
   const handleSubmitOrder = async () => {
   try {
@@ -38,6 +39,7 @@ export default function Checkout() {
       user: user._id,
       products: cart.map(item => ({
         product: item._id,
+        title: item.title,
         quantity: item.quantity,
         price: item.price
       })),
@@ -102,6 +104,25 @@ const getOrders = async () => {
   }
 };
 
+useEffect(() => {
+  if (!user || cart.length === 0) return;
+
+  const builtOrderData = {
+    user: user._id,
+    products: cart.map(item => ({
+      product: item._id,
+      quantity: item.quantity,
+      price: item.price
+    })),
+    total,
+    shipping: selectedSection,
+    store: selectedSection === "pickup" ? selectedStore?.name : null,
+    selectedAddressId: selectedSection === "delivery" ? selectedAddressId : null,
+  };
+
+  setOrderData(builtOrderData);
+}, [user, cart, total, selectedSection, selectedStore, selectedAddressId]);
+
   return (
     <div className='checkout-main-container'>
       
@@ -116,6 +137,7 @@ const getOrders = async () => {
         selectedAddressId={selectedAddressId}
         setSelectedAddressId={setSelectedAddressId}
         handleSubmitOrder={handleSubmitOrder}
+        orderData={orderData}
       />
 
       <CheckoutCartSummary
