@@ -38,8 +38,8 @@ export default function ProductMainInfo({ product }) {
                 </div>
                     <OrderButton
                         text="Agregar al Carrito"
-                        type="btn-primary"
-                        type2="product-detail-add"
+                        variant="btn-primary"
+                        variant2="product-detail-add"
                         onClick={() => {
                             addToCart(product, quantity);
                             console.log("Producto agregado al carrito:", product, quantity);
