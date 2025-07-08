@@ -1,0 +1,250 @@
+.order-success-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .order-success-container {
+        padding: 2rem;
+    }
+}
+
+.order-success-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.order-success-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+}
+
+.order-success-search-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.order-success-search-button:hover {
+    background-color: #e5e7eb;
+}
+
+.order-success-id {
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.order-success-message {
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.order-success-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.order-success-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.order-success-right-column {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .order-success-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .order-success-left-column {
+        grid-column: span 2;
+    }
+}
+
+.order-success-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); */
+}
+
+.order-success-unit-row {
+        display: flex;
+    /* padding: 1.2rem 1rem; */
+    transition: background-color 0.2s ease-in-out;
+}
+.order-success-product-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+}
+.order-success-product-card-category {
+    font-size: .9rem;
+    font-weight: 500;
+    color: #6b7280;
+    width: 100%;
+}
+.order-success-product-card-quantity-counter {
+    font-size: .8rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+.order-success-product-card-total {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.order-success-summary-header,
+.order-success-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-success-product-info {
+    display: flex;
+    align-items: center;
+}
+
+.order-success-product-image {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    margin-right: 1.5rem;
+}
+
+.order-success-product-category {
+    color: #6b7280;
+}
+
+.order-success-product-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.order-success-product-color {
+    display: flex;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.order-success-color-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.order-success-color-swatch {
+    width: 1rem;
+    height: 1rem;
+    background-color: #000000;
+    border-radius: 9999px;
+    margin-left: 0.5rem;
+}
+
+.order-success-price-delete {
+    display: flex;
+    align-items: center;
+}
+
+.order-success-product-price {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.order-success-delete-button {
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.order-success-delete-button:hover {
+    color: #ef4444;
+}
+
+.order-success-summary-toggle,
+.order-success-customer-toggle,
+.order-success-billing-toggle {
+    cursor: pointer;
+}
+
+.order-success-summary-list {
+    margin-top: 1.5rem;
+    display: grid;
+    row-gap: 1rem;
+}
+
+.order-success-summary-item {
+    display: flex;
+    justify-content: space-between;
+    color: #4b5563;
+}
+
+.order-success-summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.order-success-summary-divider {
+    border-top: 1px solid #e5e7eb;
+    margin: 1rem 0;
+}
+
+.order-success-customer-info,
+.order-success-customer-order,
+.order-success-customer-email,
+.order-success-customer-phone {
+    display: flex;
+    align-items: center;
+    color: #4b5563;
+}
+
+.order-success-customer-order,
+.order-success-customer-phone {
+    margin-top: 0.5rem;
+}
+
+.order-success-icon {
+    margin-right: 0.75rem;
+}
+
+.order-success-edit-button {
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.order-success-edit-button:hover {
+    color: #3b82f6;
+}
+
+.order-success-shipping-text {
+    color: #4b5563;
+    margin-left: 2.25rem;
+}
+
+.order-success-map-button {
+    display: flex;
+    align-items: center;
+    color: #2563eb;
+    margin-top: 1rem;
+    transition: text-decoration 0.2s;
+}
+
+.order-success-map-button:hover {
+    text-decoration: underline;
+}
+
+.order-success-footer {
+    margin-top: 2rem;
+}
