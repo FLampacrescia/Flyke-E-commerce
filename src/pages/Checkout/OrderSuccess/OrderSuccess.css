@@ -10,16 +10,10 @@
     }
 }
 
-.order-success-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
 .order-success-title {
     font-size: 1.875rem;
     font-weight: bold;
+    margin-bottom: 1.5rem;
 }
 
 .order-success-search-button {
@@ -39,7 +33,7 @@
 }
 
 .order-success-message {
-    color: #6b7280;
+    color: var(--text-color-gray);
     margin-bottom: 2rem;
 }
 
@@ -77,17 +71,35 @@
     border-radius: 0.5rem;
 }
 
-.order-success-summary-header,
 .order-success-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
 }
 
-.order-success-summary-toggle,
-.order-success-customer-toggle,
-.order-success-billing-toggle {
+.order-success-card-body {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.2s ease-in-out;
+}
+
+.order-success-card-body.closed {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    pointer-events: none;
+}
+
+.order-success-chevron {
+    transition: transform 0.3s ease;
+}
+
+.order-success-chevron.rotate {
+    transform: rotate(-180deg);
+}
+
+.order-success-toggle {
     cursor: pointer;
 }
 
@@ -96,7 +108,7 @@
     row-gap: 1rem;
 }
 
-.order-success-summary-item {
+.order-success-summary-card-item {
     display: flex;
     justify-content: space-between;
     color: var(--text-color-gray);
@@ -114,17 +126,10 @@
     margin: 1rem 0;
 }
 
-.order-success-customer-info,
-.order-success-customer-order,
-.order-success-customer-email,
-.order-success-customer-phone {
+.order-success-card-item {
     display: flex;
     align-items: center;
     color: var(--text-color-gray);
-}
-
-.order-success-customer-order,
-.order-success-customer-phone {
     margin-top: 0.5rem;
 }
 
@@ -132,33 +137,12 @@
     margin-right: 0.75rem;
 }
 
-.order-success-edit-button {
+.order-success-billing-address-message {
     color: var(--text-color-gray);
-    transition: color 0.2s;
-}
-
-.order-success-edit-button:hover {
-    color: #3b82f6;
 }
 
 .order-success-address-icon {
     align-self: baseline;
     text-align: center;
     width: 14px;
-}
-
-.order-success-map-button {
-    display: flex;
-    align-items: center;
-    color: #2563eb;
-    margin-top: 1rem;
-    transition: text-decoration 0.2s;
-}
-
-.order-success-map-button:hover {
-    text-decoration: underline;
-}
-
-.order-success-footer {
-    margin-top: 2rem;
 }

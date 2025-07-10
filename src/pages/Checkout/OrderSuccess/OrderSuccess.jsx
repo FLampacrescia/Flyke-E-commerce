@@ -5,11 +5,11 @@ import config from "../../../config/env.config";
 import { useEffect, useState } from "react";
 import { useTranslation } from '../../../hooks/useTranslations';
 import OrderSuccessUnit from '../../../components/Checkout/OrderSuccess/OrderSuccessUnit/OrderSuccessUnit'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBagShopping, faChevronDown, faLocationDot, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { faBagShopping, faLocationDot, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
 import CheckoutUserEditButton from "../../../components/Checkout/Common/CheckoutUserEditButton/CheckoutUserEditButton";
-import MediumTitle from "../../../components/Common/Titles/MediumTitle/MediumTitle";
+import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuccessCard/OrderSuccessCard";
+import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
+import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
 
 export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
@@ -59,9 +59,7 @@ export default function OrderSuccess() {
 
     return (
         <div className="order-success-container">
-            <div className="order-success-header">
-                <h1 className="order-success-title">{t('order_success_your_order')}</h1>
-            </div>
+            <h1 className="order-success-title">{t('order_success_your_order')}</h1>
             <p className="order-success-id">{`${t('order_success_order_id')} ${orderCode}`}</p>
             <p className="order-success-message">
                 {t('order_success_confirmation_message')}
@@ -69,111 +67,72 @@ export default function OrderSuccess() {
 
             <div className="order-success-grid">
                 <div className="order-success-left-column">
-                    <div className="order-success-card">
+                    <OrderSuccessCard>
                         <table className="checkout-cart-summary-table">
                             <tbody>
                                 {products.map((product) => (
-                                    <OrderSuccessUnit
-                                        key={product._id}
-                                        product={product}
-                                    />
+                                    <OrderSuccessUnit key={product._id} product={product} />
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </OrderSuccessCard>
 
-                    <div className="order-success-card">
-                        <div className="order-success-summary-header order-success-summary-toggle">
-                            <MediumTitle title={t('order_success_order_summary_title')} location="OrderSuccess"/>
-                            <span><FontAwesomeIcon icon={faChevronDown} /></span>
-                        </div>
+                    <OrderSuccessCard
+                        title={t("order_success_order_summary_title")}
+                        showToggle
+                        defaultOpen={true}
+                    >
                         <div className="order-success-summary-list">
-                            <div className="order-success-summary-item">
-                                <span>Subtotal</span>
-                                <span>${new Intl.NumberFormat('es-AR').format(subtotal)}</span>
-                            </div>
-                            <div className="order-success-summary-item">
-                                <span>{t('order_success_order_summary_shipping_charge')}</span>
-                                <span>{t('order_success_order_summary_shipping_free')}</span>
-                            </div>
-                            <div className="order-success-summary-item">
-                                <span>{t('order_success_order_summary_discount')}</span>
-                                <span>{`$${discount}`}</span>
-                            </div>
+                            <OrderSuccessSummaryCardItem 
+                            span1="Subtotal" 
+                            span2={`$${new Intl.NumberFormat('es-AR').format(subtotal)}`} />
+                            <OrderSuccessSummaryCardItem 
+                            span1={t('order_success_order_summary_shipping_charge')} 
+                            span2={t('order_success_order_summary_shipping_free')} />
+                            <OrderSuccessSummaryCardItem 
+                            span1={t('order_success_order_summary_discount')} 
+                            span2={`$${discount}`} />
                             <div className="order-success-summary-divider"></div>
                             <div className="order-success-summary-total">
                                 <span>Total</span>
                                 <span>${new Intl.NumberFormat('es-AR').format(total)}</span>
                             </div>
                         </div>
-                    </div>
+                    </OrderSuccessCard>
                 </div>
 
                 <div className="order-success-right-column">
-                    <div className="order-success-card">
-                        <div className="order-success-section-header order-success-customer-toggle">
-                            <MediumTitle title={t('order_success_customer_title')} location="OrderSuccess"/>
-                            <span><FontAwesomeIcon icon={faChevronDown} /></span>
-                        </div>
-                        <div className="order-success-customer-info">
-                            <span className="order-success-icon"><FontAwesomeIcon icon={faUser} /></span>
-                            <span>{`${userData.name} ${userData.lastName}`}</span>
-                        </div>
-                        <div className="order-success-customer-order">
-                            <span className="order-success-icon"><FontAwesomeIcon icon={faBagShopping} /></span>
-                            <span>{`${totalItems} ${t('order_success_customer_order_counter')}`}</span>
-                        </div>
-                    </div>
+                    <OrderSuccessCard title={t('order_success_customer_title')}>
+                        <OrderSuccessCardItem variant="General-Type" icon={faUser} span={`${userData.name} ${userData.lastName}`} />
+                        <OrderSuccessCardItem variant="General-Type" icon={faBagShopping} span={`${totalItems} ${t('order_success_customer_order_counter')}`} />
+                    </OrderSuccessCard>
 
-                    <div className="order-success-card">
-                        <div className="order-success-section-header">
-                            <MediumTitle title={t('order_success_customer_information_title')} location="OrderSuccess"/>
-                        </div>
-                        <div className="order-success-customer-email">
-                            <span className="order-success-icon"><FontAwesomeIcon icon={faEnvelope} /></span>
-                            <span>{userData.email}</span>
-                        </div>
-                        <div className="order-success-customer-phone">
-                            <span className="order-success-icon"><FontAwesomeIcon icon={faPhone} /></span>
-                            <span>+91 94256 32056</span>
-                        </div>
-                    </div>
+                    <OrderSuccessCard title={t('order_success_customer_information_title')}>
+                        <OrderSuccessCardItem variant="General-Type" icon={faEnvelope} span={userData.email} />
+                        <OrderSuccessCardItem variant="General-Type" icon={faPhone} span="1112341234" />
+                    </OrderSuccessCard>
 
-                    <div className="order-success-card">
-                        <div className="order-success-section-header">
-                            <MediumTitle title={t('order_success_shipping_address_title')} location="OrderSuccess"/>
-                            <CheckoutUserEditButton />
-                        </div>
-                        <div className="order-success-shipping-address">
-                            <div className="order-success-customer-info">
-                                <span className="order-success-icon"><FontAwesomeIcon icon={faUser} /></span>
-                                <p>{shippingAddressData.name}</p>
-                            </div>
-                            <div className="order-success-customer-info">
-                                <span className="order-success-icon order-success-address-icon"><FontAwesomeIcon icon={faLocationDot} /></span>
-                                <p>
-                                    {shippingAddressData.street}
-                                    <br />
-                                    {`${shippingAddressData.neighborhood}, ${shippingAddressData.province}`}
-                                    <br />
-                                    {`${t('address_selection_modal_zip_code_subtitle')} ${shippingAddressData.zipCode}`}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <OrderSuccessCard
+                        title={t("order_success_shipping_address_title")}
+                        rightElement={<CheckoutUserEditButton />}
+                    >
+                        <OrderSuccessCardItem variant="General-Type" icon={faUser} span={shippingAddressData.name} />
+                        <OrderSuccessCardItem 
+                            variant="Address-Type" 
+                            icon={faLocationDot} 
+                            address1={shippingAddressData.street} 
+                            address2={`${shippingAddressData.neighborhood}, ${shippingAddressData.province}`} 
+                            address3={`${t('address_selection_modal_zip_code_subtitle')} ${shippingAddressData.zipCode}`} />
+                    </OrderSuccessCard>
 
-                    <div className="order-success-card">
-                        <div className="order-success-section-header order-success-billing-toggle">
-                            <MediumTitle title={t('order_success_billing_address_title')} location="OrderSuccess"/>
-                            <span><FontAwesomeIcon icon={faChevronDown} /></span>
-                        </div>
-                        <p>{t('order_success_billing_address_message')}</p>
-                    </div>
+                    <OrderSuccessCard
+                        title={t('order_success_billing_address_title')}
+                        showToggle
+                        defaultOpen={true}
+                    >
+                        <p className="order-success-billing-address-message">{t('order_success_billing_address_message')}</p>
+                    </OrderSuccessCard>
                 </div>
-            </div>
-
-            <div className="order-success-footer">
-
             </div>
         </div>
     );
