@@ -26,7 +26,7 @@ export default function CheckoutCartSummary({ cart, total }) {
                     </div>
                     <div className="checkout-cart-summary-footer">
                         <span>TOTAL</span>
-                        <span>${total.toFixed(2)}</span>
+                        <span>${new Intl.NumberFormat('es-AR').format(total)}</span>
                     </div>
                 </div>
             </div>

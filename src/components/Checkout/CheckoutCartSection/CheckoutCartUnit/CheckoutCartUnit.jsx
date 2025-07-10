@@ -16,7 +16,7 @@ export default function CheckoutCartUnit( { product }) {
                     <span className='checkout-quantity-counter'>{`${t('checkout_cart_summary_quantity')}:`} {product.quantity}</span>
                 </td>
                 <td className="checkout-summary">
-                    <span className="checkout-total">${(product.price * product.quantity).toFixed(2)}</span>
+                    <span className="checkout-total">${new Intl.NumberFormat('es-AR').format(product.price * product.quantity)}</span>
                 </td>
             </tr>
         </>

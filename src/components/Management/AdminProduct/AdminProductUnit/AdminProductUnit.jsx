@@ -33,7 +33,7 @@ export default function AdminProductUnit({ product, deleteProduct, editProduct, 
                         {t('management_modal_description_view')}
                     </button>
                 </td>
-                <td className="admin-table-datacell">${product.price}</td>
+                <td className="admin-table-datacell">${new Intl.NumberFormat('es-AR').format(product.price)}</td>
                 <td className="admin-table-datacell flex-center">
                     <div className="actions">
                         <button className="admin-action-btn edit-btn" onClick={() => editProduct(product)}>

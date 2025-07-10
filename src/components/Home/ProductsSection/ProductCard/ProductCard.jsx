@@ -54,7 +54,7 @@ export default function ProductCard({ product }) {
                 <div className="card-info">
                     <h3 className="card-title">{product.title}</h3>
                     <h4 className="card-category">{product.category}</h4>
-                    <h3 className="card-price">${product.price}</h3>
+                    <h3 className="card-price">${new Intl.NumberFormat('es-AR').format(product.price)}</h3>
                 </div>
             </Link>
             <Toaster 
