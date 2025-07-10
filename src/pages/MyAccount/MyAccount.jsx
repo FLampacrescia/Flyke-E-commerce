@@ -1,4 +1,4 @@
-import MainTitle from "../../components/Common/MainTitle/MainTitle";
+import MainTitle from "../../components/Common/Titles/MainTitle/MainTitle";
 import MyAccountSection from "../../components/MyAccount/MyAccountSection/MyAccountSection";
 import "./MyAccount.css"
 import { useTranslation } from '../../hooks/useTranslations';

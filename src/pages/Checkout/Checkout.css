@@ -43,10 +43,6 @@
   border-radius: 999px;
   border: 1px solid var(--text-color);
 }
-.checkout-user-summary-title {
-  margin: 0;
-  font-weight: bold;
-}
 .checkout-edit-button {
   all: unset;
   font-size: 1.3rem;

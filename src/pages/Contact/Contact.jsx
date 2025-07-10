@@ -1,5 +1,5 @@
 import ContactForm from "../../components/Common/Forms/ContactForm/ContactForm";
-import MainTitle from "../../components/Common/MainTitle/MainTitle";
+import MainTitle from "../../components/Common/Titles/MainTitle/MainTitle";
 import ContactInfo from "../../components/Contact/ContactInfo/ContactInfo";
 import "./Contact.css";
 import { useTranslation } from '../../hooks/useTranslations';

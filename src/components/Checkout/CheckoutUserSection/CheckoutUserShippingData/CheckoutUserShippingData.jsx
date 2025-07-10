@@ -1,4 +1,3 @@
-import CheckoutUserSectionTitle from "../../Common/CheckoutUserSectionTitle/CheckoutUserSectionTitle";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import CheckoutUserDataItem from "../../Common/CheckoutUserDataItem/CheckoutUserDataItem";
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
@@ -6,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import config from '../../../../config/env.config';
 import SelectUserAddressWrapper from "../../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
-
+import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 
 export default function CheckoutUserShippingData({ user, activeSection, setActiveSection, selectedSection, setSelectedSection, selectedStore, setSelectedStore, selectedAddressId, setSelectedAddressId }) {
 
@@ -29,7 +28,8 @@ export default function CheckoutUserShippingData({ user, activeSection, setActiv
 
     return (
         <div className={`checkout-section ${activeSection === "shipping" ? "expanded" : "collapsed"}`}>
-            <CheckoutUserSectionTitle
+            <MediumTitle
+                location="Checkout-User"
                 number="2"
                 title={t("title_shipping_data")} />
 

@@ -1,3 +1,4 @@
+import "./OrderSuccessUnit.css"
 import config from '../../../../config/env.config';
 import { useTranslation } from '../../../../hooks/useTranslations';
 
@@ -16,7 +17,7 @@ export default function OrderSuccessUnit( { product }) {
                     <span className='order-success-product-card-quantity-counter'>{`${t('checkout_cart_summary_quantity')}:`} {product.quantity}</span>
                 </td>
                 <td className="checkout-summary">
-                    <span className="order-success-product-card-total">${(product.price * product.quantity).toFixed(2)}</span>
+                    <span className="order-success-product-card-total">${new Intl.NumberFormat('es-AR').format(product.price * product.quantity)}</span>
                 </td>
             </tr>
         </>

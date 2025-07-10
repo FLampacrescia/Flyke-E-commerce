@@ -1,6 +1,6 @@
 
 import LoginForm from '../../components/Common/Forms/LoginForm/LoginForm'
-import MainTitle from '../../components/Common/MainTitle/MainTitle'
+import MainTitle from '../../components/Common/Titles/MainTitle/MainTitle'
 import "./Login.css"
 
 export default function Login() {

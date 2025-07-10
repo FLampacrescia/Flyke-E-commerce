@@ -1,5 +1,5 @@
 import RegisterForm from "../../components/Common/Forms/RegisterForm/RegisterForm";
-import MainTitle from "../../components/Common/MainTitle/MainTitle";
+import MainTitle from "../../components/Common/Titles/MainTitle/MainTitle";
 import "./Register.css";
 import { useTranslation } from '../../hooks/useTranslations';
 

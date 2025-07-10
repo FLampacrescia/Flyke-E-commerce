@@ -1,6 +1,7 @@
 import "./CheckoutCartSummary.css"
 import CheckoutCartUnit from '../CheckoutCartUnit/CheckoutCartUnit'
 import { useTranslation } from '../../../../hooks/useTranslations';
+import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 
 export default function CheckoutCartSummary({ cart, total }) {
 
@@ -9,7 +10,10 @@ export default function CheckoutCartSummary({ cart, total }) {
     return (
         <div className="checkout-cart-summary">
             <div className="checkout-cart-summary-main-container">
-                <h3 className="checkout-cart-summary-title">{t('checkout_cart_summary_title')}</h3>
+                <MediumTitle
+                                location="Checkout-Cart"
+                                classAdd="checkout-cart-summary-title"
+                                title={t('checkout_cart_summary_title')} />
                 <div className="checkout-cart-summary-container">
                     <div className="checkout-cart-summary-sub-container">
                         <table className="checkout-cart-summary-table">

@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductManagement from "../../components/Management/AdminProduct/ProductManagement/ProductManagement";
 import UserManagement from "../../components/Management/AdminUsers/UserManagement/UserManagement";
 import StoresManagement from "../../components/Management/AdminStores/StoresManagement/StoresManagement";
-import MainTitle from "../../components/Common/MainTitle/MainTitle";
+import MainTitle from "../../components/Common/Titles/MainTitle/MainTitle";
 import OrderButton from "../../components/Buttons/OrderButton/OrderButton";
 import "./Management.css";
 import Counter from "../../components/Management/Common/Counter/Counter";

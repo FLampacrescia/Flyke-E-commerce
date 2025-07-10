@@ -1,11 +1,10 @@
-import CheckoutUserSectionTitle from "../../Common/CheckoutUserSectionTitle/CheckoutUserSectionTitle";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
 import "./CheckoutUserPaymentData.css"
 import axios from "axios";
 import config from '../../../../config/env.config';
 import { useState } from "react";
-import mercadoPagoLogo from "../../../../assets/Mercado Pago Logo.webp"
+import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 
 export default function CheckoutUserPaymentData({ user, orderData, activeSection }) {
     const { t } = useTranslation();
@@ -40,16 +39,16 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
 
     return (
         <div className={`checkout-section ${activeSection === "payment" ? "expanded" : "collapsed"}`}>
-            <CheckoutUserSectionTitle
+            <MediumTitle
+                location="Checkout-User"
                 number="3"
                 title={t("title_payment_data")} />
 
             {activeSection === "payment" && user && (
                 <div className="checkout-section-content">
-                    <div className="checkout-section-payment-method-container">
-                        <img src={mercadoPagoLogo} className="mercado-pago-logo" alt="Mercado Pago Logo" />
-                        <p>Serás redirigido a la página de <strong>Mercado Pago</strong> para finalizar tu compra.</p>
-                    </div>
+                    <p className="checkout-section-payment-method-message">
+                        Serás redirigido a la página de <strong>Mercado Pago</strong> para finalizar tu compra.
+                    </p>
 
                     <div className="checkout-user-buttons">
                         <CheckoutButton

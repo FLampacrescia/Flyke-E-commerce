@@ -1,8 +1,8 @@
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
 import CheckoutUserDataItem from "../../Common/CheckoutUserDataItem/CheckoutUserDataItem";
 import CheckoutUserEditButton from "../../Common/CheckoutUserEditButton/CheckoutUserEditButton";
-import CheckoutUserSectionTitle from "../../Common/CheckoutUserSectionTitle/CheckoutUserSectionTitle";
 import { useTranslation } from '../../../../hooks/useTranslations';
+import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 
 
 export default function CheckoutUserPersonalData({ user, activeSection, setActiveSection }) {
@@ -12,7 +12,8 @@ export default function CheckoutUserPersonalData({ user, activeSection, setActiv
     return (
         <div className={`checkout-section ${activeSection === "personal" ? "expanded" : "collapsed"}`}>
             <div className="checkout-user-summary-title-main-container">
-                <CheckoutUserSectionTitle
+                <MediumTitle
+                    location="Checkout-User"
                     number="1"
                     title={t("title_personal_data")} />
 

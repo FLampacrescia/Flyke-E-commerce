@@ -2,7 +2,7 @@ import { faBox, faCreditCard, faTruckFast } from "@fortawesome/free-solid-svg-ic
 import FeaturesBackgroundImg from "../../../assets/features-banner.webp"
 import "./FeaturesSection.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import MainTitle from "../../Common/MainTitle/MainTitle"
+import MainTitle from "../../Common/Titles/MainTitle/MainTitle"
 import { useTranslation } from '../../../hooks/useTranslations';
 
 export default function FeaturesSection() {

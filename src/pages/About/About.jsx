@@ -1,7 +1,7 @@
 import "./About.css";
 import SmallTextGroup from "../../components/About/SmallTextGroup/SmallTextGroup";
 import SocialIcons from "../../components/Common/SocialIcons/SocialIcons";
-import MainTitle from "../../components/Common/MainTitle/MainTitle";
+import MainTitle from "../../components/Common/Titles/MainTitle/MainTitle";
 import AboutImg from "../../assets/about1.jpg";
 import { useTranslation } from '../../hooks/useTranslations';
 
