@@ -19,7 +19,6 @@ export default function OrderSuccess() {
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
 
-    const paymentType = searchParams.get("payment_type");
     const token = localStorage.getItem("token");
 
     const { t } = useTranslation();

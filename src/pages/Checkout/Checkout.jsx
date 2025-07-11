@@ -1,11 +1,7 @@
 import "./Checkout.css"
-import { useTranslation } from '../../hooks/useTranslations';
 import { useUser } from "../../context/UserContext";
 import { useOrder } from "../../context/OrderContext";
 import { useState, useEffect } from "react";
-import axios from "axios"
-import toast from "react-hot-toast";
-import config from '../../config/env.config';
 import CheckoutCartSummary from "../../components/Checkout/CheckoutCartSection/CheckoutCartSummary/CheckoutCartSummary";
 import CheckoutUserSummary from "../../components/Checkout/CheckoutUserSection/CheckoutUserSummary/CheckoutUserSummary";
 
@@ -18,7 +14,7 @@ export default function Checkout() {
   const [selectedAddressId, setSelectedAddressId] = useState(null);
   
   const address = user?.addresses?.[0];
-  
+
 useEffect(() => {
   if (selectedSection === "delivery") {
     setSelectedStore(null);
