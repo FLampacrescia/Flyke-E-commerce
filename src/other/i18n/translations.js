@@ -199,6 +199,7 @@ export const translations = {
         checkout_confirm: "Confirmar",
         checkout_cart_summary_title: "Resúmen de la compra",
         checkout_cart_summary_quantity: "Cantidad",
+        checkout_pickup_no_address_selected: "Por favor, seleccione una dirección de envío válida.",
         checkout_pickup_no_store_selected: "Por favor, seleccione un local para retirar.",
         checkout_order_success: "Órden creada con éxito",
         checkout_order_error: "Error al crear la órden",

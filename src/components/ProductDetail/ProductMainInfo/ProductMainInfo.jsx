@@ -42,7 +42,6 @@ export default function ProductMainInfo({ product }) {
                         variant2="product-detail-add"
                         onClick={() => {
                             addToCart(product, quantity);
-                            console.log("Producto agregado al carrito:", product, quantity);
                             notify();
                         }}
                     />

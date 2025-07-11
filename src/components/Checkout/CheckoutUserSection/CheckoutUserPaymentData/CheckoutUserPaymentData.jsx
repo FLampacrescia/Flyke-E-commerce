@@ -5,8 +5,18 @@ import axios from "axios";
 import config from '../../../../config/env.config';
 import { useState } from "react";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
+import toast from 'react-hot-toast';
 
-export default function CheckoutUserPaymentData({ user, orderData, activeSection }) {
+export default function CheckoutUserPaymentData({
+    user,
+    cart,
+    clearCart,
+    total,
+    selectedSection,
+    selectedStore,
+    selectedAddressId,
+    activeSection
+}) {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
 
@@ -15,6 +25,35 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
         setLoading(true);
 
         try {
+            if (selectedSection === "delivery" && !selectedAddressId) {
+                toast.error(t("checkout_pickup_no_address_selected"));
+                return;
+            }
+
+            if (selectedSection === "pickup" && !selectedStore) {
+                toast.error(t("checkout_pickup_no_store_selected"));
+                return;
+            }
+
+            if (cart.length === 0) {
+                toast.error(t("cart_empty_warning"));
+                return;
+            }
+
+            const orderData = {
+                user: user._id,
+                products: cart.map(item => ({
+                    product: item._id,
+                    title: item.title,
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+                total,
+                shipping: selectedSection,
+                store: selectedSection === "pickup" ? selectedStore?.name : null,
+                selectedAddressId: selectedSection === "delivery" ? selectedAddressId : null,
+            };
+
             const response = await axios.post(`${config.API_URL}/orders`, orderData, {
                 headers: {
                     "Content-Type": "application/json",
@@ -25,6 +64,8 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
             const initPoint = response.data?.init_point;
 
             if (initPoint) {
+                toast.success(t("checkout_order_success"));
+                clearCart();
                 window.location.href = initPoint;
             } else {
                 console.error("No se recibió init_point desde el backend.");
@@ -32,6 +73,7 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
 
         } catch (error) {
             console.error("Error al crear preferencia de MercadoPago:", error);
+            toast.error(t("checkout_order_error"));
         } finally {
             setLoading(false);
         }
@@ -39,10 +81,7 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
 
     return (
         <div className={`checkout-section ${activeSection === "payment" ? "expanded" : "collapsed"}`}>
-            <MediumTitle
-                location="Checkout-User"
-                number="3"
-                title={t("title_payment_data")} />
+            <MediumTitle location="Checkout-User" number="3" title={t("title_payment_data")} />
 
             {activeSection === "payment" && user && (
                 <div className="checkout-section-content">
@@ -54,10 +93,11 @@ export default function CheckoutUserPaymentData({ user, orderData, activeSection
                         <CheckoutButton
                             onClick={handleMercadoPagoPayment}
                             text={t("checkout_confirm")}
+                            disabled={loading}
                         />
                     </div>
                 </div>
             )}
         </div>
-    )
+    );
 }

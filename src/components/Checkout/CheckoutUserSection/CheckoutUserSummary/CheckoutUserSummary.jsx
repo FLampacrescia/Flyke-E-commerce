@@ -3,7 +3,7 @@ import CheckoutUserPersonalData from '../CheckoutUserPersonalData/CheckoutUserPe
 import CheckoutUserShippingData from '../CheckoutUserShippingData/CheckoutUserShippingData';
 import CheckoutUserPaymentData from "../CheckoutUserPaymentData/CheckoutUserPaymentData";
 
-export default function CheckoutUserSummary({ user, address, cart, orderData, selectedSection, setSelectedSection, selectedStore, setSelectedStore, selectedAddressId, setSelectedAddressId, handleSubmitOrder }) {
+export default function CheckoutUserSummary({ user, address, cart, clearCart, selectedSection, setSelectedSection, selectedStore, setSelectedStore, selectedAddressId, setSelectedAddressId, total }) {
 
     const [activeSection, setActiveSection] = useState("personal");
 
@@ -30,12 +30,15 @@ export default function CheckoutUserSummary({ user, address, cart, orderData, se
                     setSelectedAddressId={setSelectedAddressId}
                 />
 
-                <CheckoutUserPaymentData 
+                <CheckoutUserPaymentData
                     user={user}
                     cart={cart}
+                    clearCart={clearCart}
+                    total={total}
+                    selectedSection={selectedSection}
+                    selectedStore={selectedStore}
+                    selectedAddressId={selectedAddressId}
                     activeSection={activeSection}
-                    handleSubmitOrder={handleSubmitOrder}
-                    orderData={orderData}
                 />
             </div>
         </div>
