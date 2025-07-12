@@ -1,6 +1,5 @@
 import "./OrderSuccess.css";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios";
 import config from "../../../config/env.config";
 import { useEffect, useState } from "react";
 import { useTranslation } from '../../../hooks/useTranslations';
@@ -10,6 +9,7 @@ import CheckoutUserEditButton from "../../../components/Checkout/Common/Checkout
 import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuccessCard/OrderSuccessCard";
 import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
 import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
+import api from "../../../config/axiosInstance";
 
 export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
@@ -18,8 +18,6 @@ export default function OrderSuccess() {
     const [shippingAddressData, setShippingAddressData] = useState([]);
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
-
-    const token = localStorage.getItem("token");
 
     const { t } = useTranslation();
 
@@ -36,9 +34,7 @@ export default function OrderSuccess() {
 
     async function getOrder(orderCode) {
         try {
-            const response = await axios.get(`${config.API_URL}/orders/${orderCode}`, {
-                headers: { "Content-Type": "application/json", ...(token && { access_token: token }) }
-            });
+            const response = await api.get(`${config.API_URL}/orders/${orderCode}`);
             
             const products = response.data.products;
             const userData = response.data.user;

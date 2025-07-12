@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import config from "../../config/env.config";
 import ProductDescription from "../../components/ProductDetail/ProductDescription/ProductDescription";
 import ProductMainInfo from "../../components/ProductDetail/ProductMainInfo/ProductMainInfo";
 import "./ProductDetail.css";
+import api from "../../config/axiosInstance";
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -14,7 +14,7 @@ export default function ProductDetail() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`${config.API_URL}/products/${id}`);
+                const response = await api.get(`${config.API_URL}/products/${id}`);
                 setProduct(response.data);
             } catch (error) {
                 console.error("Error al cargar el producto:", error);

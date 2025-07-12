@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import ProductManagement from "../../components/Management/AdminProduct/ProductManagement/ProductManagement";
 import UserManagement from "../../components/Management/AdminUsers/UserManagement/UserManagement";
 import StoresManagement from "../../components/Management/AdminStores/StoresManagement/StoresManagement";
@@ -11,6 +10,7 @@ import Counter from "../../components/Management/Common/Counter/Counter";
 import ModalPanel from "../../components/Management/Common/ModalPanel/ModalPanel";
 import config from '../../config/env.config';
 import { useTranslation } from '../../hooks/useTranslations';
+import api from "../../config/axiosInstance";
 
 export default function Management() {
   const [selectedSection, setSelectedSection] = useState("products");
@@ -35,7 +35,7 @@ export default function Management() {
 
   async function getProducts() {
     try {
-      const response = await axios.get(`${config.API_URL}/products`);
+      const response = await api.get(`${config.API_URL}/products`);
       
       setProducts(response.data.products);
       
@@ -48,7 +48,7 @@ export default function Management() {
 
   async function getUsers() {
     try {
-      const response = await axios.get(`${config.API_URL}/users`);
+      const response = await api.get(`${config.API_URL}/users`);
       setUsers(response.data.users);
       
       setUserCount(response.data.users.length);
@@ -59,7 +59,7 @@ export default function Management() {
   }
   async function getStores() {
     try {
-      const response = await axios.get(`${config.API_URL}/stores`);
+      const response = await api.get(`${config.API_URL}/stores`);
       setStores(response.data.stores);
       
       setStoreCount(response.data.stores.length);
@@ -71,14 +71,11 @@ export default function Management() {
 
 async function deleteProduct(id) {
   try {
-    const token = localStorage.getItem("token");
-    await axios.delete(`${config.API_URL}/products/${id}`, {
-      headers: {
-        ...(token && { access_token: token }),
-      },
-    });
+    await api.delete(`${config.API_URL}/products/${id}`);
+
     setProducts(products.filter((product) => product._id !== id));
     setProductCount((prevCount) => prevCount - 1);
+
     toast.success(t('management_product_delete_success'));
   } catch (error) {
     console.log(error);
@@ -88,14 +85,11 @@ async function deleteProduct(id) {
   
   async function deleteUser(id) {
     try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`${config.API_URL}/users/${id}`, {
-      headers: {
-        ...(token && { access_token: token }),
-      },
-    });
+      await api.delete(`${config.API_URL}/users/${id}`);
+
       setUsers(users.filter((user) => user._id !== id));
       setUserCount((prevCount) => prevCount - 1);
+
       toast.success(t('management_user_delete_success'));
     } catch (error) {
       console.log(error);
@@ -105,14 +99,11 @@ async function deleteProduct(id) {
 
   async function deleteStore(id) {
     try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`${config.API_URL}/stores/${id}`, {
-      headers: {
-        ...(token && { access_token: token }),
-      },
-    });
+      await api.delete(`${config.API_URL}/stores/${id}`);
+
       setStores(stores.filter((store) => store._id !== id));
       setStoreCount((prevCount) => prevCount - 1);
+      
       toast.success(t('management_store_delete_success'));
     } catch (error) {
       console.log(error);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
-import axios from "axios";
 import toast from "react-hot-toast";
 import config from "../config/env.config";
+import api from "../config/axiosInstance";
 
 export function useUserAddresses({ defaultToFirst = true, selectedAddressId, setSelectedAddressId }) {
     const { user, getUserData } = useUser();
@@ -25,18 +25,9 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
 
     const setAddressAsDefault = async (addressId) => {
         try {
-            const token = localStorage.getItem("token");
-
-            await axios.put(
+            await api.put(
                 `${config.API_URL}/users/${user._id}/addresses/${addressId}/set-default`,
-                {},
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
-                }
-            );
+                {});
 
             toast.success("Dirección marcada como principal");
             getUserData();
@@ -48,18 +39,9 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
 
     const handleSaveNewAddress = async (newAddressData) => {
         try {
-            const token = localStorage.getItem("token");
-
-            await axios.post(
+            await api.post(
                 `${config.API_URL}/users/${user._id}/addresses`,
-                newAddressData,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
-                }
-            );
+                newAddressData);
 
             toast.success("Dirección agregada correctamente");
             setIsNewAddressModalOpen(false);
@@ -72,17 +54,7 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
 
     const updateAddress = async (addressId) => {
         try {
-            const token = localStorage.getItem("token");
-
-            await axios.put(`${config.API_URL}/users/${user._id}/addresses/${addressId}`,
-
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
-                }
-            );
+            await api.put(`${config.API_URL}/users/${user._id}/addresses/${addressId}`);
 
             toast.success("Dirección editada correctamente.");
             getUserData();
@@ -94,17 +66,7 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
 
     const deleteAddress = async (addressId) => {
         try {
-            const token = localStorage.getItem("token");
-
-            await axios.delete(`${config.API_URL}/users/${user._id}/addresses/${addressId}`,
-
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        ...(token && { access_token: token }),
-                    },
-                }
-            );
+            await api.delete(`${config.API_URL}/users/${user._id}/addresses/${addressId}`);
 
             toast.success("Dirección eliminada correctamente.");
             getUserData();

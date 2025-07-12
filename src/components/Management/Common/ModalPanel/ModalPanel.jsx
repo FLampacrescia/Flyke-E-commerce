@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 import "./ModalPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import api from "../../../../config/axiosInstance";
 
 export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSection }) {
     const { register, handleSubmit, reset, setValue, watch } = useForm();
@@ -77,7 +77,6 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
             ? `${config.API_URL}/${sectionEndpoint}/${dataToEdit._id}`
             : `${config.API_URL}/${sectionEndpoint}`;
         const method = isEdit ? "put" : "post";
-        const token = localStorage.getItem("token");
 
         const actionPromise = (async () => {
             if (selectedSection === "products") {
@@ -91,17 +90,16 @@ export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSe
                 
                 
 
-                await axios({ method, url, data: formData, headers: { ...(token && { access_token: token }) } });
+                await api({ method, url, data: formData });
             } else {
                 const payload = { ...data };
                 if (!isEdit) payload.createdAt = new Date().toISOString();
                 else if (selectedSection === "users") delete payload.password;
 
-                await axios({
+                await api({
                     method,
                     url,
                     data: payload,
-                    headers: { "Content-Type": "application/json", ...(token && { access_token: token }) },
                 });
             }
 

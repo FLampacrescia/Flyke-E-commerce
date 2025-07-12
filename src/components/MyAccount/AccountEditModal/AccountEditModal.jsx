@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useTranslation } from "../../../hooks/useTranslations";
 import config from "../../../config/env.config";
 import { useUser } from "../../../context/UserContext";
+import api from "../../../config/axiosInstance";
 
 export default function AccountEditModal({ closeModal, userData, isAddress = false }) {
     const { register, handleSubmit, setValue, reset } = useForm();
@@ -33,7 +33,6 @@ export default function AccountEditModal({ closeModal, userData, isAddress = fal
     }, [userData, isAddress, reset, setValue]);
 
 const onSubmit = async (data) => {
-    const token = localStorage.getItem("token");
     setLoading(true);
 
     try {
@@ -42,14 +41,10 @@ const onSubmit = async (data) => {
             : `${config.API_URL}/users/${userData._id}`;
 
         await toast.promise(
-            axios({
+            api({
                 method: "put",
                 url,
                 data,
-                headers: {
-                    "Content-Type": "application/json",
-                    ...(token && { access_token: token }),
-                },
             }),
             {
                 loading: t("modal_confirmation_saving"),

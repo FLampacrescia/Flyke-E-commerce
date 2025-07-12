@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import FormInput from "../FormInput/FormInput";
 import "./RegisterForm.css";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import config from '../../../../config/env.config';
+import api from "../../../../config/axiosInstance";
 
 export default function RegisterForm() {
     const {
@@ -38,9 +38,11 @@ export default function RegisterForm() {
         };
         
         try {
-            const response = await axios.post(`${config.API_URL}/register`, newUser);
+            const response = await api.post(`${config.API_URL}/register`, newUser);
+
             toast.success("Registro exitoso!");
             console.log(`${t('register_success_log')}`, response.data);
+            
             reset();
         } catch (error) {
             console.error(`${t('register_error_log')}`, error);

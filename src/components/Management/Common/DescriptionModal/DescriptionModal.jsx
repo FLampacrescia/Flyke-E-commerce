@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from 'react-dom';
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 import "./DescriptionModal.css";
+import api from "../../../../config/axiosInstance";
 
 export default function DescriptionModal({ product, onClose, onUpdateProduct }) {
     const { t } = useTranslation();
@@ -12,7 +12,6 @@ export default function DescriptionModal({ product, onClose, onUpdateProduct }) 
     const [description, setDescription] = useState("");
     const [loading, setLoading] = useState(false);
     const textareaRef = useRef();
-    const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (product.description) {
@@ -20,7 +19,7 @@ export default function DescriptionModal({ product, onClose, onUpdateProduct }) 
         } else {
             (async () => {
                 try {
-                    const res = await axios.get(`${config.API_URL}/products/${product._id}`);
+                    const res = await api.get(`${config.API_URL}/products/${product._id}`);
                     const desc = res.data.product?.description ?? res.data.description ?? "";
                     setDescription(desc);
                 } catch (err) {
@@ -42,14 +41,12 @@ export default function DescriptionModal({ product, onClose, onUpdateProduct }) 
     const handleSave = async () => {
         setLoading(true);
         try {
-            const res = await axios.patch(
+            const res = await api.patch(
                         `${config.API_URL}/products/${product._id}`,
-                        { description },
-                        {
-                            headers: { "Content-Type": "application/json", ...(token && { access_token: token }) }
-                        }
-                    );
+                        { description });
+                        
             toast.success(t('management_description_edit_success'));
+
             onUpdateProduct(res.data.product);
             setIsEditing(false);
         } catch (error) {

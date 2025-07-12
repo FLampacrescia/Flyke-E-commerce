@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import config from '../../../../config/env.config';
 import ProductCard from "../ProductCard/ProductCard";
+import api from "../../../../config/axiosInstance";
 
 export default function ProductList() {
 
@@ -13,7 +13,7 @@ export default function ProductList() {
 
     async function getProducts() {
         try {
-            const response = await axios.get(`${config.API_URL}/products`);
+            const response = await api.get(`${config.API_URL}/products`);
             const products = response.data.products;
             setProducts(products);
         } catch (error) {

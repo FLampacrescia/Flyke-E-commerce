@@ -1,11 +1,11 @@
 import { useTranslation } from '../../../../hooks/useTranslations';
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
 import "./CheckoutUserPaymentData.css"
-import axios from "axios";
 import config from '../../../../config/env.config';
 import { useState } from "react";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 import toast from 'react-hot-toast';
+import api from '../../../../config/axiosInstance';
 
 export default function CheckoutUserPaymentData({
     user,
@@ -21,7 +21,6 @@ export default function CheckoutUserPaymentData({
     const [loading, setLoading] = useState(false);
 
     const handleMercadoPagoPayment = async () => {
-        const token = localStorage.getItem("token");
         setLoading(true);
 
         try {
@@ -54,12 +53,7 @@ export default function CheckoutUserPaymentData({
                 selectedAddressId: selectedSection === "delivery" ? selectedAddressId : null,
             };
 
-            const response = await axios.post(`${config.API_URL}/orders`, orderData, {
-                headers: {
-                    "Content-Type": "application/json",
-                    ...(token && { access_token: token }),
-                },
-            });
+            const response = await api.post(`${config.API_URL}/orders`, orderData);
 
             const initPoint = response.data?.init_point;
 

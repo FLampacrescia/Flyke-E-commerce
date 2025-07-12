@@ -2,10 +2,10 @@ import { useTranslation } from '../../../../hooks/useTranslations';
 import CheckoutUserDataItem from "../../Common/CheckoutUserDataItem/CheckoutUserDataItem";
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import config from '../../../../config/env.config';
 import SelectUserAddressWrapper from "../../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
+import api from '../../../../config/axiosInstance';
 
 export default function CheckoutUserShippingData({ user, activeSection, setActiveSection, selectedSection, setSelectedSection, selectedStore, setSelectedStore, selectedAddressId, setSelectedAddressId }) {
 
@@ -19,7 +19,7 @@ export default function CheckoutUserShippingData({ user, activeSection, setActiv
 
     async function getStores() {
         try {
-            const response = await axios.get(`${config.API_URL}/stores`);
+            const response = await api.get(`${config.API_URL}/stores`);
             setStores(response.data.stores);
         } catch (error) {
             console.error(error);
