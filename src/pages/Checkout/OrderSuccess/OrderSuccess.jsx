@@ -10,6 +10,8 @@ import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuc
 import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
 import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
 import api from "../../../config/axiosInstance";
+import { useUserAddresses } from "../../../hooks/useUserAddresses";
+import AddressSelectionModal from "../../../components/Common/SelectUserAddress/AddressSelectionModal/AddressSelectionModal"
 
 export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
@@ -18,8 +20,27 @@ export default function OrderSuccess() {
     const [shippingAddressData, setShippingAddressData] = useState([]);
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
+    const [selectedAddressId, setSelectedAddressId] = useState(null);
 
     const { t } = useTranslation();
+
+    const {
+        isAddressModalOpen,
+        openAddressModal,
+        closeAddressModal,
+        addresses,
+        handleSaveNewAddress,
+        setAddressAsDefault,
+        updateAddress,
+        deleteAddress,
+        isNewAddressModalOpen,
+        openNewAddressModal,
+        closeNewAddressModal,
+    } = useUserAddresses({
+        defaultToFirst: true,
+        selectedAddressId,
+        setSelectedAddressId
+    });
 
     const discount = 0;
     const total = subtotal - discount
@@ -51,6 +72,8 @@ export default function OrderSuccess() {
     }
 
     const totalItems = products.reduce((acc, prod) => acc + prod.quantity, 0);
+
+
 
     return (
         <div className="order-success-container">
@@ -109,7 +132,7 @@ export default function OrderSuccess() {
 
                     <OrderSuccessCard
                         title={t("order_success_shipping_address_title")}
-                        rightElement={<CheckoutUserEditButton />}
+                        rightElement={<CheckoutUserEditButton onClick={openAddressModal} />}
                     >
                         <OrderSuccessCardItem variant="General-Type" icon={faUser} span={shippingAddressData.name} />
                         <OrderSuccessCardItem 
@@ -129,6 +152,21 @@ export default function OrderSuccess() {
                     </OrderSuccessCard>
                 </div>
             </div>
+            {isAddressModalOpen && (
+                <AddressSelectionModal
+                    addresses={addresses}
+                    selectedAddressId={selectedAddressId}
+                    onSelect={setSelectedAddressId}
+                    onSave={handleSaveNewAddress}
+                    onClose={closeAddressModal}
+                    onSetFavorite={setAddressAsDefault}
+                    onDeleteAddress={deleteAddress}
+                    onUpdateAddress={updateAddress}
+                    isNewAddressModalOpen={isNewAddressModalOpen}
+                    openNewAddressModal={openNewAddressModal}
+                    closeNewAddressModal={closeNewAddressModal}
+                />
+            )}
         </div>
     );
 }
