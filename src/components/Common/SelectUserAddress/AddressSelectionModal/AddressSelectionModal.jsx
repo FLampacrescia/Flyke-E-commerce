@@ -14,7 +14,7 @@ export default function AddressSelectionModal({
     addresses,
     selectedAddressId,
     onSelect,
-    setAddressAsDefault,
+    onSetFavorite,
     deleteAddress,
     updateAddress,
     handleSaveNewAddress,
@@ -58,7 +58,7 @@ export default function AddressSelectionModal({
                             localSelectedId={localSelectedId}
                             setLocalSelectedId={setLocalSelectedId}
                             onClick={() => setLocalSelectedId(address._id)}
-                            onSetFavorite={setAddressAsDefault}
+                            onSetFavorite={onSetFavorite}
                             onDeleteAddress={deleteAddress}
                             onEditAddress={openEditAddressModal} />
                     ))}
@@ -72,7 +72,7 @@ export default function AddressSelectionModal({
                 </div>
 
                 <div className="modal-buttons">
-                    <Button text={t('modal_confirmation_cancel')} variant={cancelType} onClick={() => onSelect(selectedAddressId)} />
+                    <Button text={t('modal_confirmation_cancel')} variant={cancelType} onClick={onClose} />
                     <Button text={t('modal_confirmation_confirm')} variant={confirmType} onClick={handleConfirm} />
                 </div>
 
@@ -82,7 +82,7 @@ export default function AddressSelectionModal({
                         userData={editingAddress}
                         isAddress={true}
                         onUpdate={async () => {
-                            await updateAddress();
+                            await updateAddress(editingAddress._id);
                             closeEditAddressModal();
                         }}
                     />

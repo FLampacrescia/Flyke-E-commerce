@@ -73,8 +73,6 @@ export default function OrderSuccess() {
 
     const totalItems = products.reduce((acc, prod) => acc + prod.quantity, 0);
 
-
-
     return (
         <div className="order-success-container">
             <h1 className="order-success-title">{t('order_success_your_order')}</h1>
