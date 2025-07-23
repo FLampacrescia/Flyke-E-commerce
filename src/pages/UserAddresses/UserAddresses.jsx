@@ -12,7 +12,6 @@ export default function UserAddresses() {
         addresses,
         handleSaveNewAddress,
         setAddressAsDefault,
-        updateAddress,
         deleteAddress,
         isNewAddressModalOpen,
         openNewAddressModal,
@@ -52,10 +51,6 @@ export default function UserAddresses() {
                     closeModal={closeEditAddressModal}
                     userData={editingAddress}
                     isAddress={true}
-                    onUpdate={async () => {
-                        await updateAddress();
-                        closeEditAddressModal();
-                    }}
                 />
             )}
 

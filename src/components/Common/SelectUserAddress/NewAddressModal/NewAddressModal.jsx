@@ -3,7 +3,7 @@ import "./NewAddressModal.css";
 import Button from "../../../Buttons/MenuButton/Button";
 import { useTranslation } from "../../../../hooks/useTranslations";
 
-export default function NewAddressModal({ isOpen, onClose, onSave }) {
+export default function NewAddressModal({ closeNewAddressModal, onSave }) {
     const { t } = useTranslation();
     const [formData, setFormData] = useState({
         street: "",
@@ -27,14 +27,12 @@ const handleSubmit = async (e) => {
     try {
         if (onSave) {
             await onSave(formData);
-            onClose();
+            closeNewAddressModal();
         }
     } catch (err) {
         console.error(`${t('user_addresses_new_address_error')}`, err);
     }
 };
-
-    if (!isOpen) return null;
 
     return (
         <div className="address-modal-overlay">
@@ -74,7 +72,7 @@ const handleSubmit = async (e) => {
                         <Button
                             text={t('modal_confirmation_cancel')}
                             variant="modal-btn btn-secondary"
-                            onClick={onClose}
+                            onClick={closeNewAddressModal}
                         />
                         <Button
                             text={t('modal_confirmation_confirm')}

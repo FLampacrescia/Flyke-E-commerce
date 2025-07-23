@@ -5,7 +5,6 @@ export default function OrderSuccessCard({
     children, 
     title, 
     showToggle = false, 
-    rightElement = null, 
     defaultOpen = true, 
 }) {
 
@@ -21,7 +20,6 @@ export default function OrderSuccessCard({
                 <OrderSuccessCardHeader 
                     title={title}
                     showToggle={showToggle}
-                    rightElement={rightElement}
                     handleToggle={handleToggle}
                     isOpen={isOpen}
                 />

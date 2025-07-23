@@ -6,7 +6,7 @@ import config from '../../../../config/env.config';
 import "./ModalPanel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import api from "../../../../config/axiosInstance";
+import api from "../../../../utils/axiosInstance";
 
 export default function ModalPanel({ closeModal, getData, dataToEdit, selectedSection }) {
     const { register, handleSubmit, reset, setValue, watch } = useForm();

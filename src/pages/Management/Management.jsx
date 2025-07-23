@@ -10,7 +10,7 @@ import Counter from "../../components/Management/Common/Counter/Counter";
 import ModalPanel from "../../components/Management/Common/ModalPanel/ModalPanel";
 import config from '../../config/env.config';
 import { useTranslation } from '../../hooks/useTranslations';
-import api from "../../config/axiosInstance";
+import api from "../../utils/axiosInstance";
 
 export default function Management() {
   const [selectedSection, setSelectedSection] = useState("products");

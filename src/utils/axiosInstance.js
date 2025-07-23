@@ -1,5 +1,5 @@
 import axios from "axios";
-import config from "./env.config";
+import config from "../config/env.config";
 import { toast } from "react-hot-toast";
 
 const api = axios.create({

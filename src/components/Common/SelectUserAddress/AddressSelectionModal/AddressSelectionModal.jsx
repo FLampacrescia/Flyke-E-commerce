@@ -15,13 +15,12 @@ export default function AddressSelectionModal({
     selectedAddressId,
     onSelect,
     onSetFavorite,
-    deleteAddress,
-    updateAddress,
-    handleSaveNewAddress,
     onClose, 
     isNewAddressModalOpen,
     openNewAddressModal,
     closeNewAddressModal,
+    onSave,
+    deleteAddress,
     confirmType = "modal-btn btn-primary",
     cancelType = "modal-btn btn-secondary",
 }) {
@@ -59,8 +58,8 @@ export default function AddressSelectionModal({
                             setLocalSelectedId={setLocalSelectedId}
                             onClick={() => setLocalSelectedId(address._id)}
                             onSetFavorite={onSetFavorite}
-                            onDeleteAddress={deleteAddress}
-                            onEditAddress={openEditAddressModal} />
+                            onEditAddress={openEditAddressModal} 
+                            onDeleteAddress={deleteAddress} />
                     ))}
                 </ul>
 
@@ -81,18 +80,13 @@ export default function AddressSelectionModal({
                         closeModal={closeEditAddressModal}
                         userData={editingAddress}
                         isAddress={true}
-                        onUpdate={async () => {
-                            await updateAddress(editingAddress._id);
-                            closeEditAddressModal();
-                        }}
                     />
                 )}
 
                 {isNewAddressModalOpen && (
                     <NewAddressModal
-                        isOpen={isNewAddressModalOpen}
-                        onClose={closeNewAddressModal}
-                        onSave={handleSaveNewAddress}
+                        closeNewAddressModal={closeNewAddressModal}
+                        onSave={onSave}
                     />
                 )}
             </div>

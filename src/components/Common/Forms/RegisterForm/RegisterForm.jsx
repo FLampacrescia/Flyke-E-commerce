@@ -6,7 +6,7 @@ import { useTranslation } from '../../../../hooks/useTranslations';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 import config from '../../../../config/env.config';
-import api from "../../../../config/axiosInstance";
+import api from "../../../../utils/axiosInstance";
 
 export default function RegisterForm() {
     const {

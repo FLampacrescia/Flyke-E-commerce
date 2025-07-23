@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
 import toast from "react-hot-toast";
 import config from "../config/env.config";
-import api from "../config/axiosInstance";
+import api from "../utils/axiosInstance";
+import { useTranslation } from '../hooks/useTranslations';
 
 export function useUserAddresses({ defaultToFirst = true, selectedAddressId, setSelectedAddressId }) {
     const { user, getUserData } = useUser();
     const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
     const [isNewAddressModalOpen, setIsNewAddressModalOpen] = useState(false);
     const [addresses, setAddresses] = useState([]);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (user?.addresses) {
@@ -52,18 +55,6 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         }
     };
 
-    const updateAddress = async (addressId) => {
-        try {
-            await api.put(`${config.API_URL}/users/${user._id}/addresses/${addressId}`);
-
-            toast.success("Dirección editada correctamente.");
-            getUserData();
-        } catch (error) {
-            console.error("Error al editar la dirección:", error);
-            toast.error("Error al editar la dirección.");
-        }
-    }
-
     const deleteAddress = async (addressId) => {
         try {
             await api.delete(`${config.API_URL}/users/${user._id}/addresses/${addressId}`);
@@ -82,12 +73,11 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         isAddressModalOpen,
         openAddressModal: () => setIsAddressModalOpen(true),
         closeAddressModal: () => setIsAddressModalOpen(false),
+        setAddressAsDefault,
         isNewAddressModalOpen,
         openNewAddressModal: () => setIsNewAddressModalOpen(true),
         closeNewAddressModal: () => setIsNewAddressModalOpen(false),
-        setAddressAsDefault,
         handleSaveNewAddress,
-        updateAddress,
         deleteAddress
     };
 }

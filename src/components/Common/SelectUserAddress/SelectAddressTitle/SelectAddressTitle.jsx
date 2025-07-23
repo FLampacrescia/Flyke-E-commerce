@@ -8,9 +8,12 @@ export default function SelectAddressTitle({
     addresses,
     selectedAddressId,
     onSelect,
-    onAddNewAddress,
-    handleSaveNewAddress,
-    onSetDefault
+    onSetFavorite,
+    isNewAddressModalOpen,
+    openNewAddressModal,
+    closeNewAddressModal,
+    onSave,
+    deleteAddress
 }) {
     const { t } = useTranslation();
 
@@ -31,13 +34,13 @@ export default function SelectAddressTitle({
                         onSelect(id);
                         closeModal();
                     }}
-                    onAddNewAddress={() => {
-                        closeModal();
-                        onAddNewAddress();
-                    }}
+                    onSetFavorite={onSetFavorite}
                     onClose={closeModal}
-                    onSave={handleSaveNewAddress}
-                    onSetDefault={onSetDefault}
+                    isNewAddressModalOpen={isNewAddressModalOpen}
+                    openNewAddressModal={openNewAddressModal}
+                    closeNewAddressModal={closeNewAddressModal}
+                    onSave={onSave}
+                    deleteAddress={deleteAddress}
                 />
             )}
         </>

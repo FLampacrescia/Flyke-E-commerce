@@ -7,9 +7,13 @@ import OrderProvider from './context/OrderContext.jsx';
 import { Toaster } from 'react-hot-toast';
 import { LanguageProvider } from './context/LanguageContext.jsx';
 import { UserProvider } from './context/UserContext.jsx';
+import { LoaderProvider } from './context/LoaderContext.jsx';
+import { PrefetchProvider } from "./context/PrefetchContext.jsx";
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
+  <LoaderProvider>
+  <PrefetchProvider>
   <UserProvider>
   <LanguageProvider>
   <OrderProvider>
@@ -20,5 +24,7 @@ createRoot(document.getElementById('root')).render(
   </OrderProvider>
   </LanguageProvider>
   </UserProvider>
+  </PrefetchProvider>
+  </LoaderProvider>
   </BrowserRouter>
 )

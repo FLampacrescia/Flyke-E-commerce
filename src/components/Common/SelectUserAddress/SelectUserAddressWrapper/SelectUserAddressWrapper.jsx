@@ -1,5 +1,4 @@
 import SelectAddressTitle from "../SelectAddressTitle/SelectAddressTitle";
-import NewAddressModal from "../NewAddressModal/NewAddressModal";
 import { useUserAddresses } from "../../../../hooks/useUserAddresses";
 
 export default function SelectUserAddressWrapper({
@@ -18,30 +17,26 @@ export default function SelectUserAddressWrapper({
         closeNewAddressModal,
         handleSaveNewAddress,
         setAddressAsDefault,
+        deleteAddress
     } = useUserAddresses({ defaultToFirst, selectedAddressId, setSelectedAddressId });
 
     return (
         <>
             <SelectAddressTitle
+                addresses={addresses}
                 isModalOpen={isAddressModalOpen}
                 openModal={openAddressModal}
                 closeModal={closeAddressModal}
-                addresses={addresses}
                 selectedAddressId={selectedAddressId}
                 onSelect={setSelectedAddressId}
-                handleSaveNewAddress={handleSaveNewAddress}
-                onAddNewAddress={openNewAddressModal}
-                onSetDefault={setAddressAsDefault}
+                onSetFavorite={setAddressAsDefault}
+                openNewAddressModal={openNewAddressModal}
+                isNewAddressModalOpen={isNewAddressModalOpen}
+                closeNewAddressModal={closeNewAddressModal}
+                onSave={handleSaveNewAddress}
+                deleteAddress={deleteAddress}
                 label={label}
             />
-
-            {isNewAddressModalOpen && (
-                <NewAddressModal
-                    isOpen={isNewAddressModalOpen}
-                    onClose={closeNewAddressModal}
-                    onSave={handleSaveNewAddress}
-                />
-            )}
         </>
     );
 }

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import config from '../../../../config/env.config';
 import SelectUserAddressWrapper from "../../../Common/SelectUserAddress/SelectUserAddressWrapper/SelectUserAddressWrapper";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
-import api from '../../../../config/axiosInstance';
+import api from '../../../../utils/axiosInstance';
 
 export default function CheckoutUserShippingData({ user, activeSection, setActiveSection, selectedSection, setSelectedSection, selectedStore, setSelectedStore, selectedAddressId, setSelectedAddressId }) {
 

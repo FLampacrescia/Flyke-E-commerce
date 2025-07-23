@@ -1,0 +1,41 @@
+.progress-loader-container {
+    top: 60px;
+    left: 0;
+    position: sticky;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(206, 206, 206, 0.253);
+    height: 5px;
+    border-radius: 7px;
+}
+.progress-loader {
+    content: '';
+    width: 1px;
+    height: 4px;
+    border-radius: 7px;
+    background: var(--text-color);
+    transition: 1s;
+    animation: loading 1s ease infinite;
+}
+
+@keyframes loading {
+    0% {
+        width: 0%;
+    }
+
+    10% {
+        width: 10%;
+    }
+
+    50% {
+        width: 40%;
+    }
+
+    60% {
+        width: 60%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}

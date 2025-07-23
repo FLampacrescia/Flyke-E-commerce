@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from "../../../hooks/useTranslations";
 import config from "../../../config/env.config";
 import { useUser } from "../../../context/UserContext";
-import api from "../../../config/axiosInstance";
+import api from "../../../utils/axiosInstance";
 
 export default function AccountEditModal({ closeModal, userData, isAddress = false }) {
     const { register, handleSubmit, setValue, reset } = useForm();

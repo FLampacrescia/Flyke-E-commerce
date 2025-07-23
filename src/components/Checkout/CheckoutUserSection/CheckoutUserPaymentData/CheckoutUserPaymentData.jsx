@@ -5,7 +5,7 @@ import config from '../../../../config/env.config';
 import { useState } from "react";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 import toast from 'react-hot-toast';
-import api from '../../../../config/axiosInstance';
+import api from '../../../../utils/axiosInstance';
 
 export default function CheckoutUserPaymentData({
     user,

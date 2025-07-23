@@ -5,13 +5,10 @@ import { useEffect, useState } from "react";
 import { useTranslation } from '../../../hooks/useTranslations';
 import OrderSuccessUnit from '../../../components/Checkout/OrderSuccess/OrderSuccessUnit/OrderSuccessUnit'
 import { faBagShopping, faLocationDot, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
-import CheckoutUserEditButton from "../../../components/Checkout/Common/CheckoutUserEditButton/CheckoutUserEditButton";
 import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuccessCard/OrderSuccessCard";
-import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
+import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
 import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
-import api from "../../../config/axiosInstance";
-import { useUserAddresses } from "../../../hooks/useUserAddresses";
-import AddressSelectionModal from "../../../components/Common/SelectUserAddress/AddressSelectionModal/AddressSelectionModal"
+import api from "../../../utils/axiosInstance";
 
 export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
@@ -20,27 +17,8 @@ export default function OrderSuccess() {
     const [shippingAddressData, setShippingAddressData] = useState([]);
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
-    const [selectedAddressId, setSelectedAddressId] = useState(null);
 
     const { t } = useTranslation();
-
-    const {
-        isAddressModalOpen,
-        openAddressModal,
-        closeAddressModal,
-        addresses,
-        handleSaveNewAddress,
-        setAddressAsDefault,
-        updateAddress,
-        deleteAddress,
-        isNewAddressModalOpen,
-        openNewAddressModal,
-        closeNewAddressModal,
-    } = useUserAddresses({
-        defaultToFirst: true,
-        selectedAddressId,
-        setSelectedAddressId
-    });
 
     const discount = 0;
     const total = subtotal - discount
@@ -128,10 +106,7 @@ export default function OrderSuccess() {
                         <OrderSuccessCardItem variant="General-Type" icon={faPhone} span="1112341234" />
                     </OrderSuccessCard>
 
-                    <OrderSuccessCard
-                        title={t("order_success_shipping_address_title")}
-                        rightElement={<CheckoutUserEditButton onClick={openAddressModal} />}
-                    >
+                    <OrderSuccessCard title={t("order_success_shipping_address_title")}>
                         <OrderSuccessCardItem variant="General-Type" icon={faUser} span={shippingAddressData.name} />
                         <OrderSuccessCardItem 
                             variant="Address-Type" 
@@ -150,21 +125,6 @@ export default function OrderSuccess() {
                     </OrderSuccessCard>
                 </div>
             </div>
-            {isAddressModalOpen && (
-                <AddressSelectionModal
-                    addresses={addresses}
-                    selectedAddressId={selectedAddressId}
-                    onSelect={setSelectedAddressId}
-                    onSave={handleSaveNewAddress}
-                    onClose={closeAddressModal}
-                    onSetFavorite={setAddressAsDefault}
-                    onDeleteAddress={deleteAddress}
-                    onUpdateAddress={updateAddress}
-                    isNewAddressModalOpen={isNewAddressModalOpen}
-                    openNewAddressModal={openNewAddressModal}
-                    closeNewAddressModal={closeNewAddressModal}
-                />
-            )}
         </div>
     );
 }

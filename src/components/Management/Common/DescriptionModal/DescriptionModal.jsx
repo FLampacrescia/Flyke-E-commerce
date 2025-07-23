@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 import "./DescriptionModal.css";
-import api from "../../../../config/axiosInstance";
+import api from "../../../../utils/axiosInstance";
 
 export default function DescriptionModal({ product, onClose, onUpdateProduct }) {
     const { t } = useTranslation();
