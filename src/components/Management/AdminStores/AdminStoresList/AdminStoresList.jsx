@@ -1,7 +1,8 @@
 import AdminStoresUnit from "../AdminStoresUnit/AdminStoresUnit";
 import { useTranslation } from '../../../../hooks/useTranslations';
+import CircleLoader from "../../../Common/Loaders/CircleLoader/CircleLoader";
 
-export default function AdminStoresList({ stores, deleteStore, editStore }) {
+export default function AdminStoresList({ stores, deleteStore, editStore, loading }) {
 
     const { t } = useTranslation();
 
@@ -18,7 +19,13 @@ export default function AdminStoresList({ stores, deleteStore, editStore }) {
                 </tr>
             </thead>
             <tbody className="admin-table-body">
-                {stores && stores.length > 0 ? (
+                {loading ? (
+                    <tr className="admin-table-row-empty">
+                        <td colSpan={6} className="admin-table-empty-message text-center">
+                            <CircleLoader />
+                        </td>
+                    </tr>
+                ) : stores && stores.length > 0 ? (
                     stores.map((store) => (
                         <AdminStoresUnit
                             key={store._id}

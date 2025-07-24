@@ -1,7 +1,8 @@
 import AdminProductUnit from "../AdminProductUnit/AdminProductUnit";
 import { useTranslation } from '../../../../hooks/useTranslations';
+import CircleLoader from "../../../Common/Loaders/CircleLoader/CircleLoader";
 
-export default function AdminProductList({ products, deleteProduct, editProduct, onUpdateProduct }) {
+export default function AdminProductList({ products, deleteProduct, editProduct, onUpdateProduct, loading }) {
 
     const { t } = useTranslation();
 
@@ -18,7 +19,13 @@ export default function AdminProductList({ products, deleteProduct, editProduct,
                 </tr>
             </thead>
             <tbody className="admin-table-body">
-                {products && products.length > 0 ? (
+                {loading ? (
+                    <tr className="admin-table-row-empty">
+                        <td colSpan={6} className="admin-table-empty-message text-center">
+                            <CircleLoader />
+                        </td>
+                    </tr>
+                ) : products && products.length > 0 ? (
                     products.map((product) => (
                         <AdminProductUnit
                             key={product._id}

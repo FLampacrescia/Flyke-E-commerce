@@ -1,7 +1,8 @@
 import AdminUserUnit from "../AdminUsersUnit/AdminUsersUnit";
 import { useTranslation } from '../../../../hooks/useTranslations';
+import CircleLoader from "../../../Common/Loaders/CircleLoader/CircleLoader";
 
-export default function AdminUsersList({ users, deleteUser, editUser }) {
+export default function AdminUsersList({ users, deleteUser, editUser, loading }) {
 
     const { t } = useTranslation();
 
@@ -17,7 +18,13 @@ export default function AdminUsersList({ users, deleteUser, editUser }) {
                 </tr>
             </thead>
             <tbody className="admin-table-body">
-                {users && users.length > 0 ? (
+                {loading ? (
+                    <tr className="admin-table-row-empty">
+                        <td colSpan={6} className="admin-table-empty-message text-center">
+                            <CircleLoader />
+                        </td>
+                    </tr>
+                ) : users && users.length > 0 ? (
                     users.map((user) => (
                         <AdminUserUnit
                             key={user._id}

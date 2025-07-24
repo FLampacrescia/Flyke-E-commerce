@@ -24,6 +24,9 @@ export default function Management() {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
   const [stores, setStores] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+  const [loadingStores, setLoadingStores] = useState(true);
 
   useEffect(() => {
     getProducts();
@@ -35,37 +38,50 @@ export default function Management() {
 
   async function getProducts() {
     try {
+      setLoadingProducts(true);
       const response = await api.get(`${config.API_URL}/products`);
-      
-      setProducts(response.data.products);
-      
-      setProductCount(response.data.products.length);
+      setTimeout(() => {
+        setProducts(response.data.products);
+        setProductCount(response.data.products.length);
+        setLoadingProducts(false);
+      }, 700);
     } catch (error) {
       console.error(error);
       toast.error(t('management_products_load_error'));
+      setLoadingProducts(false);
     }
   }
 
   async function getUsers() {
     try {
+      setLoadingUsers(true);
       const response = await api.get(`${config.API_URL}/users`);
-      setUsers(response.data.users);
-      
-      setUserCount(response.data.users.length);
+
+      setTimeout(() => {
+        setUsers(response.data.users);
+        setUserCount(response.data.users.length);
+        setLoadingUsers(false);
+      }, 1000);
     } catch (error) {
       console.error(error);
       toast.error(t('management_users_load_error'));
+      setLoadingUsers(false);
     }
   }
   async function getStores() {
     try {
+      setLoadingStores(true);
       const response = await api.get(`${config.API_URL}/stores`);
-      setStores(response.data.stores);
-      
-      setStoreCount(response.data.stores.length);
+
+      setTimeout(() => {
+        setStores(response.data.stores);
+        setStoreCount(response.data.stores.length);
+        setLoadingStores(false);
+      }, 1000);
     } catch (error) {
       console.error(error);
       toast.error(t('management_stores_load_error'));
+      setLoadingStores(false);
     }
   }
 
@@ -176,6 +192,7 @@ async function deleteProduct(id) {
               )
             );
           }}
+          loading={loadingProducts}
         />
       ) : selectedSection === "users" ? (
         <UserManagement
@@ -184,6 +201,7 @@ async function deleteProduct(id) {
           setUserToEdit={setUserToEdit}
           setIsModalOpen={setIsModalOpen}
           deleteUser={deleteUser}
+          loading={loadingUsers}
         />
       ) : (
         <StoresManagement
@@ -192,6 +210,7 @@ async function deleteProduct(id) {
           setStoreToEdit={setStoreToEdit}
           setIsModalOpen={setIsModalOpen}
           deleteStore={deleteStore}
+          loading={loadingStores}
         />
       )}
 

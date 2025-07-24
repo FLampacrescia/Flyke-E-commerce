@@ -2,12 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    background-color: #00000050;
     overflow: hidden;
     z-index: 1000;
     height: 100%;
-    width: 100vw;
+    width: 100%;
 }
 .circle-loader {
     width: 50px;
