@@ -32,11 +32,11 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
                 `${config.API_URL}/users/${user._id}/addresses/${addressId}/set-default`,
                 {});
 
-            toast.success("Dirección marcada como principal");
+            toast.success(t('user_addresses_new_address_set_favorite_success'));
             getUserData();
         } catch (error) {
-            console.error("Error al marcar como principal:", error);
-            toast.error("No se pudo marcar como principal");
+            console.error(`${t('user_addresses_new_address_set_favorite_console_error')}`, error);
+            toast.error(t('user_addresses_new_address_set_favorite_toast_error'));
         }
     };
 
@@ -46,12 +46,12 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
                 `${config.API_URL}/users/${user._id}/addresses`,
                 newAddressData);
 
-            toast.success("Dirección agregada correctamente");
+            toast.success(t('user_addresses_new_address_success'));
             setIsNewAddressModalOpen(false);
             getUserData();
         } catch (error) {
-            console.error("Error al agregar dirección:", error);
-            toast.error("Hubo un problema al guardar la dirección");
+            console.error(`${t('user_addresses_new_address_console_error')}`, error);
+            toast.error(t('user_addresses_new_address_toast_error'));
         }
     };
 
@@ -59,12 +59,12 @@ export function useUserAddresses({ defaultToFirst = true, selectedAddressId, set
         try {
             await api.delete(`${config.API_URL}/users/${user._id}/addresses/${addressId}`);
 
-            toast.success("Dirección eliminada correctamente.");
+            toast.success(t('user_addresses_address_delete_success'));
             getUserData();
             
         } catch (error) {
-            console.error("Error al eliminar la dirección:", error);
-            toast.error("Error al eliminar la dirección.");
+            console.error(`${t('user_addresses_address_delete_console_error')}`, error);
+            toast.error(t('user_addresses_address_delete_toast_error'));
         }
     }
 

@@ -57,7 +57,7 @@ export default function UserAddresses() {
             {isNewAddressModalOpen && (
                 <NewAddressModal
                     isOpen={isNewAddressModalOpen}
-                    onClose={closeNewAddressModal}
+                    closeNewAddressModal={closeNewAddressModal}
                     onSave={handleSaveNewAddress}
                 />
             )}

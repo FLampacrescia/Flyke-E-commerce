@@ -27,10 +27,10 @@ const handleSubmit = async (e) => {
     try {
         if (onSave) {
             await onSave(formData);
-            closeNewAddressModal();
+            closeNewAddressModal;
         }
     } catch (err) {
-        console.error(`${t('user_addresses_new_address_error')}`, err);
+        console.error(`${t('user_addresses_new_address_console_error')}`, err);
     }
 };
 
