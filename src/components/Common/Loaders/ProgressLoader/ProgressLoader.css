@@ -7,35 +7,13 @@
     background: rgba(206, 206, 206, 0.253);
     height: 5px;
     border-radius: 7px;
+    overflow: hidden;
 }
+
 .progress-loader {
-    content: '';
-    width: 1px;
-    height: 4px;
-    border-radius: 7px;
+    height: 100%;
     background: var(--text-color);
-    transition: 1s;
-    animation: loading 2s ease infinite;
-}
-
-@keyframes loading {
-    0% {
-        width: 0%;
-    }
-
-    10% {
-        width: 10%;
-    }
-
-    50% {
-        width: 40%;
-    }
-
-    60% {
-        width: 60%;
-    }
-
-    100% {
-        width: 100%;
-    }
+    border-radius: 7px;
+    width: 0%;
+    transition: width 0.3s ease-out;
 }
