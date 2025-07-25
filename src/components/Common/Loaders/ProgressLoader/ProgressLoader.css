@@ -15,7 +15,7 @@
     border-radius: 7px;
     background: var(--text-color);
     transition: 1s;
-    animation: loading 1s ease infinite;
+    animation: loading 2s ease infinite;
 }
 
 @keyframes loading {

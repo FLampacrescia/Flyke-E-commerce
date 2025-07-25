@@ -11,13 +11,14 @@ export const useNavigateWithPrefetch = () => {
     const navigateWithPrefetch = async ({
         apiCall,
         to,
-        delay = 1000,
+        delay = 2000,
         onError = () => toast.error("Ocurrió un error al cargar los datos."),
     }) => {
         setProgressLoading(true);
         try {
             const res = await apiCall();
             setData(res.data);
+            
             setTimeout(() => {
                 navigate(to);
             }, delay);
