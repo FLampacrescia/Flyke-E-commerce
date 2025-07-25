@@ -9,6 +9,14 @@
         flex-basis: 350px;
     }
 }
+.product-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 400px;
+}
 .card-container {
     width: 500px;
     color: var(--background-color-white);

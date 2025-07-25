@@ -7,6 +7,9 @@
     height: 100%;
     width: 100%;
 }
+.circle-loader-product-screen {
+    height: auto !important;
+}
 .circle-loader {
     width: 50px;
     aspect-ratio: 1;
