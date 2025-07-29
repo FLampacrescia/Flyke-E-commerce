@@ -7,7 +7,7 @@
     background-color: #00000050;
     z-index: 1000;
     top: 60px;
-    height: calc(100vh - 170px);
+    height: 100vh;
     width: 100vw;
 }
 .circle-loader-local-use {

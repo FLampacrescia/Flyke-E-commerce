@@ -9,6 +9,7 @@ import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuc
 import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
 import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
 import api from "../../../utils/axiosInstance";
+import { useLoader } from '../../../context/LoaderContext';
 
 export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
@@ -17,6 +18,7 @@ export default function OrderSuccess() {
     const [shippingAddressData, setShippingAddressData] = useState([]);
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
+    const { setCircleLoading } = useLoader();
 
     const { t } = useTranslation();
 
@@ -32,6 +34,7 @@ export default function OrderSuccess() {
     }, [searchParams]);
 
     async function getOrder(orderCode) {
+        setCircleLoading(true)
         try {
             const response = await api.get(`${config.API_URL}/orders/${orderCode}`);
             
@@ -39,13 +42,17 @@ export default function OrderSuccess() {
             const userData = response.data.user;
             const shippingAddressData = response.data.shippingAddress;
             const subtotal = response.data.total;
-
-            setProducts(products);
-            setUserData(userData);
-            setShippingAddressData(shippingAddressData);
-            setSubtotal(subtotal);
+            
+            setTimeout(() => {
+                setProducts(products);
+                setUserData(userData);
+                setShippingAddressData(shippingAddressData);
+                setSubtotal(subtotal);
+                setCircleLoading(false)
+            }, 1000);
         } catch (error) {
             console.error(error);
+            setCircleLoading(false);
         }
     }
 
