@@ -37,6 +37,7 @@ export default function ProductCard({ product }) {
                     <button
                         className="add-icon"
                         onClick={(e) => {
+                            e.stopPropagation();
                             e.preventDefault();
                             addToCart(product);
                             notify();

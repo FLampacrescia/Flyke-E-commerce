@@ -3,12 +3,18 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: fixed;
+    background-color: #00000050;
     z-index: 1000;
-    height: 100%;
-    width: 100%;
+    top: 60px;
+    height: calc(100vh - 170px);
+    width: 100vw;
 }
-.circle-loader-product-screen {
+.circle-loader-local-use {
+    background-color: inherit !important;
+    position: inherit !important;
     height: auto !important;
+    width: 100% !important;
 }
 .circle-loader {
     width: 50px;

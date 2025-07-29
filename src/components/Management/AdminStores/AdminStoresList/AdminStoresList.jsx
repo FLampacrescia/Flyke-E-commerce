@@ -22,7 +22,7 @@ export default function AdminStoresList({ stores, deleteStore, editStore, loadin
                 {loading ? (
                     <tr className="admin-table-row-empty">
                         <td colSpan={6} className="admin-table-empty-message text-center">
-                            <CircleLoader />
+                            <CircleLoader classAdd="circle-loader-local-use" />
                         </td>
                     </tr>
                 ) : stores && stores.length > 0 ? (

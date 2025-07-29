@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from '../../../../hooks/useTranslations';
 import config from '../../../../config/env.config';
 import ProductCard from "../ProductCard/ProductCard";
 import api from "../../../../utils/axiosInstance";
@@ -8,6 +9,8 @@ export default function ProductList() {
 
     const [products, setProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         getProducts();
@@ -32,8 +35,8 @@ export default function ProductList() {
         <div className="product-container">
             {loadingProducts ? (
                 <div className="product-loading-container">
-                    <CircleLoader classAdd="circle-loader-product-screen" />
-                    <p className="product-loading-message">Cargando Productos</p>
+                    <CircleLoader classAdd="circle-loader-local-use" />
+                    <p className="product-loading-message">{t('loader_loading_products_message')}</p>
                 </div>
             ) : (
                 products?.map((product) => (

@@ -2,10 +2,10 @@ import { useTranslation } from '../../../../hooks/useTranslations';
 import CheckoutButton from "../../../Buttons/CheckoutButton/CheckoutButton";
 import "./CheckoutUserPaymentData.css"
 import config from '../../../../config/env.config';
-import { useState } from "react";
 import MediumTitle from "../../../Common/Titles/MediumTitle/MediumTitle";
 import toast from 'react-hot-toast';
 import api from '../../../../utils/axiosInstance';
+import { useLoader } from '../../../../context/LoaderContext';
 
 export default function CheckoutUserPaymentData({
     user,
@@ -18,10 +18,10 @@ export default function CheckoutUserPaymentData({
     activeSection
 }) {
     const { t } = useTranslation();
-    const [loading, setLoading] = useState(false);
+    const { circleLoading, setCircleLoading } = useLoader();
 
     const handleMercadoPagoPayment = async () => {
-        setLoading(true);
+        setCircleLoading(true);
 
         try {
             if (selectedSection === "delivery" && !selectedAddressId) {
@@ -58,18 +58,22 @@ export default function CheckoutUserPaymentData({
             const initPoint = response.data?.init_point;
 
             if (initPoint) {
-                toast.success(t("checkout_order_success"));
-                clearCart();
+            toast.success(t("checkout_order_success"));
+            clearCart();
+
+            setTimeout(() => {
                 window.location.href = initPoint;
-            } else {
-                console.error("No se recibió init_point desde el backend.");
-            }
+            }, 1000);
+        } else {
+            console.error("No se recibió init_point desde el backend.");
+            toast.error(t("checkout_order_error"));
+        }
 
         } catch (error) {
             console.error("Error al crear preferencia de MercadoPago:", error);
             toast.error(t("checkout_order_error"));
         } finally {
-            setLoading(false);
+            setCircleLoading(false);
         }
     };
 
@@ -80,14 +84,16 @@ export default function CheckoutUserPaymentData({
             {activeSection === "payment" && user && (
                 <div className="checkout-section-content">
                     <p className="checkout-section-payment-method-message">
-                        Serás redirigido a la página de <strong>Mercado Pago</strong> para finalizar tu compra.
+                        {t('checkout_mercadopago_redirect_message1')}
+                        <strong>{t('checkout_mercadopago_redirect_message2')}</strong>
+                        {t('checkout_mercadopago_redirect_message3')}
                     </p>
 
                     <div className="checkout-user-buttons">
                         <CheckoutButton
                             onClick={handleMercadoPagoPayment}
                             text={t("checkout_confirm")}
-                            disabled={loading}
+                            disabled={circleLoading}
                         />
                     </div>
                 </div>

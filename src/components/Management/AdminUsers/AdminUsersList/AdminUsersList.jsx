@@ -21,7 +21,7 @@ export default function AdminUsersList({ users, deleteUser, editUser, loading })
                 {loading ? (
                     <tr className="admin-table-row-empty">
                         <td colSpan={6} className="admin-table-empty-message text-center">
-                            <CircleLoader />
+                            <CircleLoader classAdd="circle-loader-local-use" />
                         </td>
                     </tr>
                 ) : users && users.length > 0 ? (

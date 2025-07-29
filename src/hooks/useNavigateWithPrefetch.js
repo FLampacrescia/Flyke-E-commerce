@@ -11,7 +11,7 @@ export const useNavigateWithPrefetch = () => {
     const navigateWithPrefetch = async ({
         apiCall,
         to,
-        delay = 1000,
+        delay = 2000,
         onError = () => toast.error("Ocurrió un error al cargar los datos.")
     }) => {
         setProgressLoading(true);
@@ -20,13 +20,13 @@ export const useNavigateWithPrefetch = () => {
             setData(res.data);
 
             setTimeout(() => {
+                finishProgressLoader();
                 navigate(to);
-                finishProgressLoader(); // finaliza animación justo al navegar
             }, delay);
         } catch (error) {
             console.error("Error en navigateWithPrefetch:", error);
             onError(error);
-            finishProgressLoader(); // en caso de error, también cerrar loader
+            finishProgressLoader();
         }
     };
 
