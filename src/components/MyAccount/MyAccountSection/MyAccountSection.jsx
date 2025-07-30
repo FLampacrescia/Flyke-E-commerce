@@ -61,7 +61,7 @@ export default function MyAccountSection({ section }) {
 
     return (
         <div className="my-account-section-container">
-            <div className="my-account-section-title-container">
+            <div className={`my-account-section-title-container ${section === "shippingData" ? "my-account-section-shipping-data-title-container" : ""}`}>
                 <h3 className="my-account-section-title">{sectionTitles[section]}</h3>
                 {section === "personalData" || section === "password" ? (
                     <button

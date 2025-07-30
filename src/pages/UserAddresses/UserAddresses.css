@@ -59,3 +59,15 @@
     color: white;
     cursor: default;
 }
+
+@media screen and (max-width: 530px) {
+    .user-addresses-container {
+        margin: 70px auto 120px auto;
+    }
+    .user-addresses-header {
+    flex-direction: column;
+    gap: .5rem;
+    align-items: flex-start;
+    width: fit-content;
+}
+}

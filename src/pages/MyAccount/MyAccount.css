@@ -4,8 +4,8 @@
     justify-content: space-between;
     min-height: 60dvh;
     gap: 1.5rem;
-    width: 1200px;
-    margin: 100px auto;
+    width: 820px;
+    margin: 100px auto 120px auto;
 }
 .my-account-main-title-container {
     display: flex;
@@ -41,6 +41,9 @@
     display: flex;
     justify-content: space-between;
 }
+.my-account-section-shipping-data-title-container {
+    flex-direction: column;
+}
 .my-account-section-content {
     display: flex;
     flex-direction: column;
@@ -60,7 +63,7 @@
     position: relative;
     width: 127px;
     height: 127px;
-    margin: 0 auto;
+    margin: 0 auto 5px auto;
 }
 .avatar-image,
 .profile-avatar-icon {
@@ -146,5 +149,59 @@
 
     &:hover {
         color: var(--text-color);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .my-account-main-container {
+        width: 700px;
+        min-height: 56dvh;
+        margin: 75px auto 95px auto;
+    }
+    .my-account-bento-grid {
+        flex-direction: column;
+    }
+    .my-account-section-container {
+        width: 100%;
+    }
+    .my-account-section-content {
+        flex-direction: row;
+        gap: 4rem;
+    }
+    .avatar-container {
+        display: none;
+        width: 70px;
+        height: 70px;
+        margin: -30px 0 0 0;
+        order: 3;
+    }
+}
+@media screen and (max-width: 900px) {
+    .my-account-main-container {
+        min-height: 63dvh;
+        justify-content: flex-start;
+    }
+}
+@media screen and (max-width: 785px) {
+    .my-account-main-container {
+        width: 450px;
+        gap: 3rem;
+    }
+    .my-account-section-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+@media screen and (max-width: 525px) {
+    .my-account-main-container {
+        width: 350px;
+    }
+    .my-account-main-title {
+        font-size: clamp(2.7rem, 3vw, 3.5rem) !important;
+    }
+}
+@media screen and (max-width: 415px) {
+    .my-account-main-container {
+        width: 300px;
     }
 }

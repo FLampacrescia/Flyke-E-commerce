@@ -15,6 +15,7 @@ import { useLanguage } from '../../context/LanguageContext';
 
 export default function MainHeader() {
     const avatarRef = useRef(null);
+    const burgerCheckboxRef = useRef(null);
     const { user, isAdmin, logout } = useUser();
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const { count, toggleCart } = useOrder();
@@ -25,25 +26,31 @@ export default function MainHeader() {
         setIsDropdownOpen(prev => !prev);
     };
 
+    const closeBurgerMenu = () => {
+    if (burgerCheckboxRef.current) {
+        burgerCheckboxRef.current.checked = false;
+    }
+};
+
     const { t } = useTranslation();
 
     return (
         <header className="main-header">
-            <input type="checkbox" id="burger" className="input-burger" />
+            <input type="checkbox" id="burger" className="input-burger" ref={burgerCheckboxRef} />
             <label className="burger-btn" htmlFor="burger">
                 <span />
                 <span />
                 <span />
             </label>
-            <Link className="logo-link" to="/">
+            <Link className="logo-link" to="/" onClick={closeBurgerMenu}>
                 <img className="logo" src={LogoImg} alt="Logo" />
                 <div className="logo-container">
                 </div>
             </Link>
             <nav className="navbar">
-                <Link className="navlink" to="/">{t('home')}</Link>
-                <Link className="navlink" to="/about">{t('about')}</Link>
-                <Link className="navlink" to="/contact">{t('contact')}</Link>
+                <Link className="navlink" to="/" onClick={closeBurgerMenu}>{t('home')}</Link>
+                <Link className="navlink" to="/about" onClick={closeBurgerMenu}>{t('about')}</Link>
+                <Link className="navlink" to="/contact" onClick={closeBurgerMenu}>{t('contact')}</Link>
                 <hr className="user-menu-line line-menu-navbar" />
                 <div className="user-navbar">
                     {user && (
@@ -51,7 +58,7 @@ export default function MainHeader() {
                             <span className="user-menu-link">{t('menu_account')}</span>
                         </Link>
                     )}
-                    <Link className="user-menu-link-container" to="/wishlist">
+                    <Link className="user-menu-link-container" to="/wishlist" onClick={closeBurgerMenu}>
                         <span className="user-menu-link">{t('menu_wishlist')}</span>
                     </Link>
                     <Link className="user-menu-link-container" onClick={toggleLanguage}>
@@ -68,7 +75,7 @@ export default function MainHeader() {
                             </div>)}
                     </Link>
                     {isAdmin && (
-                        <Link className="user-menu-link-container" to="/management">
+                        <Link className="user-menu-link-container" to="/management" onClick={closeBurgerMenu}>
                             <span className="user-menu-link user-menu-admin-link">{t('menu_admin')}</span>
                             <FontAwesomeIcon icon={faDesktop} className="user-menu-icon" />
                         </Link>
@@ -80,7 +87,10 @@ export default function MainHeader() {
                                 <Button
                                     text={t('menu_logout')}
                                     variant="btn-secondary menu-btn"
-                                    onClick={() => setIsLogoutModalOpen(true)}
+                                    onClick={() => {
+                                        setIsLogoutModalOpen(true);
+                                        closeBurgerMenu();
+                                    }}
                                 />
                                 {isLogoutModalOpen && (
                                     <ConfirmationModal
@@ -96,8 +106,8 @@ export default function MainHeader() {
                             </>
                         ) : (
                             <>
-                                <Button text={t('menu_login')} variant="btn-primary menu-btn" url="/login" />
-                                <Button text={t('menu_register')} variant="btn-secondary menu-btn" url="/register" />
+                                <Button text={t('menu_login')} variant="btn-primary menu-btn" url="/login" onClick={closeBurgerMenu}/>
+                                <Button text={t('menu_register')} variant="btn-secondary menu-btn" url="/register" onClick={closeBurgerMenu}/>
                             </>
                         )}
                     </div>
