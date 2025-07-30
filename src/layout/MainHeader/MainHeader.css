@@ -38,6 +38,13 @@
         font-weight: 500;
     }
 }
+.btn-navlink {
+    all: unset;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
 .navbar:has(.navlink:hover) .navlink:not(:hover) {
     opacity: 0.6;
     color: var(--fourth-color);

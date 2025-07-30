@@ -8,16 +8,36 @@ export const useNavigateWithPrefetch = () => {
     const { setData } = usePrefetch();
     const navigate = useNavigate();
 
+    const preloadImages = (urls = []) => {
+        return Promise.all(
+            urls.map(src => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.src = src;
+                    img.onload = resolve;
+                    img.onerror = reject;
+                });
+            })
+        );
+    };
+
     const navigateWithPrefetch = async ({
-        apiCall,
+        apiCall = null,
+        imageUrls = [],
         to,
         delay = 2000,
-        onError = () => toast.error("Ocurrió un error al cargar los datos.")
+        onError = () => toast.error("Ocurrió un error al cargar los datos o las imágenes.")
     }) => {
         setProgressLoading(true);
         try {
-            const res = await apiCall();
-            setData(res.data);
+            if (apiCall) {
+                const res = await apiCall();
+                setData(res.data);
+            }
+
+            if (imageUrls.length > 0) {
+                await preloadImages(imageUrls);
+            }
 
             setTimeout(() => {
                 finishProgressLoader();

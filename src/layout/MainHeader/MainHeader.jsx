@@ -12,6 +12,7 @@ import { useUser } from '../../context/UserContext';
 import config from '../../config/env.config';
 import ConfirmationModal from '../../components/Common/ConfirmationModal/ConfirmationModal';
 import { useLanguage } from '../../context/LanguageContext';
+import { useNavigateWithPrefetch } from "../../hooks/useNavigateWithPrefetch";
 
 export default function MainHeader() {
     const avatarRef = useRef(null);
@@ -21,18 +22,34 @@ export default function MainHeader() {
     const { count, toggleCart } = useOrder();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { language, toggleLanguage } = useLanguage();
+    const navigateWithPrefetch = useNavigateWithPrefetch();
+
+    const { t } = useTranslation();
 
     const handleAvatarClick = () => {
         setIsDropdownOpen(prev => !prev);
     };
 
     const closeBurgerMenu = () => {
-    if (burgerCheckboxRef.current) {
-        burgerCheckboxRef.current.checked = false;
-    }
-};
+        if (burgerCheckboxRef.current) {
+            burgerCheckboxRef.current.checked = false;
+        }
+    };
 
-    const { t } = useTranslation();
+    const handleNavigate = (path) => {
+        let imageUrl = "";
+
+        if (path === "/about") {
+            imageUrl = `${config.FRONT_URL}/assets/about1-BfVz9ZFY.jpg`;
+        } else if (path === "/contact") {
+            imageUrl = `${config.FRONT_URL}/assets/contact1-S8wOewCm.webp`;
+        }
+
+        navigateWithPrefetch({
+            imageUrls: [imageUrl],
+            to: path,
+        });
+    };
 
     return (
         <header className="main-header">
@@ -49,8 +66,16 @@ export default function MainHeader() {
             </Link>
             <nav className="navbar">
                 <Link className="navlink" to="/" onClick={closeBurgerMenu}>{t('home')}</Link>
-                <Link className="navlink" to="/about" onClick={closeBurgerMenu}>{t('about')}</Link>
-                <Link className="navlink" to="/contact" onClick={closeBurgerMenu}>{t('contact')}</Link>
+                <button className="navlink btn-navlink" onClick={() => {
+                    closeBurgerMenu(); 
+                    handleNavigate("/about");}}>
+                        {t('about')}
+                </button>
+                <button className="navlink btn-navlink" onClick={() => {
+                    closeBurgerMenu();
+                    handleNavigate("/contact");}}>
+                        {t('contact')}
+                </button>
                 <hr className="user-menu-line line-menu-navbar" />
                 <div className="user-navbar">
                     {user && (
