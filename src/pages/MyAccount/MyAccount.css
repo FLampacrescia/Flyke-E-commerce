@@ -41,9 +41,6 @@
     display: flex;
     justify-content: space-between;
 }
-.my-account-section-shipping-data-title-container {
-    flex-direction: column;
-}
 .my-account-section-content {
     display: flex;
     flex-direction: column;
@@ -203,5 +200,8 @@
 @media screen and (max-width: 415px) {
     .my-account-main-container {
         width: 300px;
+    }
+    .my-account-section-shipping-data-title-container {
+        flex-direction: column;
     }
 }
