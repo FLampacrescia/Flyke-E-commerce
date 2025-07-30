@@ -9,6 +9,9 @@ import { useRef, useState } from 'react';
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import { useTranslation } from '../../hooks/useTranslations';
 import { useUser } from '../../context/UserContext';
+import config from '../../config/env.config';
+import ConfirmationModal from '../../components/Common/ConfirmationModal/ConfirmationModal';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function MainHeader() {
     const avatarRef = useRef(null);
@@ -16,6 +19,7 @@ export default function MainHeader() {
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const { count, toggleCart } = useOrder();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const { language, toggleLanguage } = useLanguage();
 
     const handleAvatarClick = () => {
         setIsDropdownOpen(prev => !prev);
@@ -42,8 +46,26 @@ export default function MainHeader() {
                 <Link className="navlink" to="/contact">{t('contact')}</Link>
                 <hr className="user-menu-line line-menu-navbar" />
                 <div className="user-navbar">
+                    {user && (
+                        <Link className="user-menu-link-container" to="/my-account">
+                            <span className="user-menu-link">{t('menu_account')}</span>
+                        </Link>
+                    )}
                     <Link className="user-menu-link-container" to="/wishlist">
                         <span className="user-menu-link">{t('menu_wishlist')}</span>
+                    </Link>
+                    <Link className="user-menu-link-container" onClick={toggleLanguage}>
+                        <span className="user-menu-link">{t('menu_language')}</span>
+                        {language === 'es' ? (
+                            <div className="user-menu-language-container">
+                                <span className="user-menu-language">ES</span>
+                                <img src="https://us.puma.com/_next/static/assets/icons/flag-ar.svg#icon" alt="arg-flag" className="user-menu-flag-icon" />
+                            </div>
+                        ) : (
+                            <div className="user-menu-language-container">
+                                <span className="user-menu-language">EN</span>
+                                <img src="https://us.puma.com/_next/static/assets/icons/flag-us.svg#icon" alt="usa-flag" className="user-menu-flag-icon" />
+                            </div>)}
                     </Link>
                     {isAdmin && (
                         <Link className="user-menu-link-container" to="/management">
@@ -53,15 +75,46 @@ export default function MainHeader() {
                     )}
                     <hr className="user-menu-line" />
                     <div className="navbar-btn-container">
-                        <Button text="Inicio de Sesión" variant="btn-primary" url="/login" />
-                        <Button text="Registro" variant="btn-secondary" url="/register" />
+                        {user ? (
+                            <>
+                                <Button
+                                    text={t('menu_logout')}
+                                    variant="btn-secondary menu-btn"
+                                    onClick={() => setIsLogoutModalOpen(true)}
+                                />
+                                {isLogoutModalOpen && (
+                                    <ConfirmationModal
+                                        title={t('menu_logout_confirmation')}
+                                        confirmText={t('menu_logout_confirmation_btn')}
+                                        onClose={() => setIsLogoutModalOpen(false)}
+                                        onConfirm={() => {
+                                            logout();
+                                            setIsLogoutModalOpen(false);
+                                        }}
+                                    />
+                                )}
+                            </>
+                        ) : (
+                            <>
+                                <Button text={t('menu_login')} variant="btn-primary menu-btn" url="/login" />
+                                <Button text={t('menu_register')} variant="btn-secondary menu-btn" url="/register" />
+                            </>
+                        )}
                     </div>
                 </div>
             </nav>
             <div className="user-info">
                 <div className="user-container">
                     <div ref={avatarRef} onClick={handleAvatarClick}>
-                        <FontAwesomeIcon icon={faUserCircle} className="user-avatar" />
+                        {user && user.profileImage ? (
+                            <img
+                                src={`${config.FILES_URL}/${user.profileImage}`}
+                                alt="Avatar"
+                                className="user-avatar user-avatar-profile-image"
+                            />
+                        ) : (
+                            <FontAwesomeIcon icon={faUserCircle} className="user-avatar" />
+                        )}
                     </div>
                     <DropdownMenu
                         isOpen={isDropdownOpen}

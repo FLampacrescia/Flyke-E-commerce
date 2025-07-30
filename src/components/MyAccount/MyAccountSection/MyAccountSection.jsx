@@ -1,17 +1,22 @@
-import { faImage, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslation } from '../../../hooks/useTranslations';
-import { useUser } from "../../../context/UserContext";
-import AvatarExample from "../../../assets/features-banner.webp";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser, faImage, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "../../../context/UserContext";
+import { useTranslation } from '../../../hooks/useTranslations';
 import AccountEditModal from "../AccountEditModal/AccountEditModal";
 import MyAccountInput from "../MyAccountInput/MyAccountInput";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import toast from "react-hot-toast";
+import CircleLoader from "../../../components/Common/Loaders/CircleLoader/CircleLoader";
+import config from "../../../config/env.config";
 
 export default function MyAccountSection({ section }) {
-    const { user } = useUser();
+    const { user, updateProfileImage } = useUser();
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+    const fileInputRef = useRef(null);
 
     const sectionTitles = {
         personalData: t("title_personal_data"),
@@ -32,6 +37,27 @@ export default function MyAccountSection({ section }) {
         : isEditingAddress && defaultAddress
             ? { ...defaultAddress, userId: user._id }
             : null;
+
+    const handleAvatarClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
+    const handleImageChange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        const result = await updateProfileImage(file);
+        setTimeout(() => {
+            setIsUploading(false);
+
+            result.success 
+            ? toast.success(t('myaccount_edit_profile_image_success'))
+            : toast.error(t('myaccount_edit_profile_image_error'));
+        }, 1000);
+    };
 
     return (
         <div className="my-account-section-container">
@@ -55,8 +81,36 @@ export default function MyAccountSection({ section }) {
                     {isEditingPersonalData && (
                         <>
                             <div className="avatar-container">
-                                <img src={AvatarExample} alt="Avatar" className="avatar-image" />
-                                <FontAwesomeIcon icon={faImage} className="avatar-edit-icon" />
+                                {user.profileImage ? (
+                                    <img
+                                    src={`${config.FILES_URL}/${user.profileImage}`}
+                                    alt="Avatar"
+                                    className={`avatar-image ${isUploading ? "avatar-image-loading-no-filter" : ""}`}
+                                />
+                                ) : (
+                                    <FontAwesomeIcon icon={faCircleUser} className={`avatar-image profile-avatar-icon ${isUploading ? "avatar-image-loading-no-filter" : ""}`} />
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={handleAvatarClick}
+                                    disabled={isUploading}
+                                    aria-label="Editar imagen de perfil"
+                                    className={`avatar-edit-button ${isUploading ? "avatar-edit-button-loading-no-display" : ""}`}
+                                >
+                                    <FontAwesomeIcon icon={faImage} className="avatar-edit-icon" />
+                                </button>
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    style={{ display: "none" }}
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                />
+                                {isUploading && (
+                                    <div className="avatar-loader-overlay">
+                                        <CircleLoader classAdd="circle-loader-avatar-use" />
+                                    </div>
+                                )}
                             </div>
                             <MyAccountInput label="Nombre Completo" value={`${user.name} ${user.lastName}`} />
                             <MyAccountInput label="Correo electrónico" value={user.email} />

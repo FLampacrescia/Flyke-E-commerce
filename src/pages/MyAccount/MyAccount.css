@@ -58,36 +58,73 @@
 }
 .avatar-container {
     position: relative;
+    width: 127px;
+    height: 127px;
     margin: 0 auto;
 }
-.avatar-image {
-    height: 127px;
-    width: 127px;
+.avatar-image,
+.profile-avatar-icon {
+    height: 100%;
+    width: 100%;
     border-radius: 999px;
-
-    &:hover {
-        filter: brightness(.4);
-    }
-    &:hover + .avatar-edit-icon {
-        display: inherit;
-    }
+    object-fit: cover;
+    transition: filter 0.1s;
 }
-.avatar-edit-icon {
+.avatar-edit-button {
     position: absolute;
-    height: 2rem;
     top: 50%;
     left: 50%;
-    transform: translate(-40%, -62%);
-    color: white;
-    display: none;
-
-    &:hover {
-        display: inherit;
-    }
-    &:hover ~ .avatar-image {
-        filter: brightness(.4);
-    }
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
 }
+.avatar-edit-button-loading-no-display {
+    display: none;
+}
+.avatar-edit-icon {
+    height: 2rem;
+    color: white;
+    transition: transform 0.1s ease;
+}
+.avatar-container:hover .avatar-image,
+.avatar-container:hover .profile-avatar-icon {
+    filter: brightness(0.3);
+}
+.avatar-container:hover .avatar-image-loading-no-filter {
+    filter: brightness(.7) !important;
+}
+.avatar-container:hover .avatar-edit-button {
+    opacity: 1;
+    pointer-events: auto;
+}
+.avatar-edit-button:hover .avatar-edit-icon {
+    transform: scale(1.1);
+}
+.profile-avatar-icon {
+    color: #777;
+    border-radius: 999px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar-loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 127px;
+    height: 127px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+} 
 .my-account-section-addresses-btn {
     font-family: inherit;
     font-size: .8rem;

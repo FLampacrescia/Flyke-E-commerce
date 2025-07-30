@@ -6,7 +6,6 @@
     position: fixed;
     background-color: #00000050;
     z-index: 1000;
-    top: 60px;
     height: 100vh;
     width: 100vw;
 }
@@ -15,6 +14,12 @@
     position: inherit !important;
     height: auto !important;
     width: 100% !important;
+}
+.circle-loader-avatar-use {
+    background-color: transparent !important;
+    position: unset !important;
+    height: unset !important;
+    width: unset !important;
 }
 .circle-loader {
     width: 50px;

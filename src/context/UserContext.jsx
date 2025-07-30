@@ -65,8 +65,31 @@ export function UserProvider({ children }) {
         }
     }
 
+    async function updateProfileImage(file) {
+        if (!user?._id || !token) return;
+
+        try {
+            const formData = new FormData();
+            formData.append("image", file);
+
+            const res = await api.put(`${config.API_URL}/users/${user._id}/profile-image`, formData);
+
+            if (res.data?.profileImage) {
+                setUser(prev => ({ ...prev, profileImage: res.data.profileImage }));
+            }
+
+            return { success: true };
+        } catch (error) {
+            console.error("Error al subir imagen de perfil", error);
+            return {
+                success: false,
+                message: error.response?.data?.message || "No se pudo actualizar la imagen",
+            };
+        }
+    }
+
     return (
-        <UserContext.Provider value={{ user, token, isAdmin, login, logout, getUserData }}>
+        <UserContext.Provider value={{ user, token, isAdmin, login, logout, getUserData, updateProfileImage }}>
             {children}
         </UserContext.Provider>
     );

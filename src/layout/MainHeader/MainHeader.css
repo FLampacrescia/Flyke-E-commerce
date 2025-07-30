@@ -88,6 +88,16 @@
         filter: brightness(.3) drop-shadow(4px 4px 15px var(--text-color));
     }
 }
+.user-avatar-profile-image {
+    height: 27px;
+    width: 27px;
+    border-radius: 9999px;
+    transform: unset !important;
+
+    &:hover {
+        filter: brightness(.8) drop-shadow(1px 1px 15px #12121270);
+    }
+}
 .user-cart {
     display: flex;
     align-items: center;

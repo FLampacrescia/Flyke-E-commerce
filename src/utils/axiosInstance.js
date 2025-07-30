@@ -10,7 +10,11 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token");
 
-        config.headers["Content-Type"] = "application/json";
+        const isFormData = config.data instanceof FormData;
+
+        if (!isFormData) {
+            config.headers["Content-Type"] = "application/json";
+        }
 
         if (token) {
             config.headers["access_token"] = token;
