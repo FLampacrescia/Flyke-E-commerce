@@ -27,6 +27,10 @@
 @media screen and (max-width: 478px) {
   .login-form-main-container {
       padding: 0 40px;
-      margin: 20px auto;
+      margin: 30px auto 50px auto;
+  }
+  .login-no-account-message, .login-no-account-link {
+    font-size: .95rem;
+    text-align: center;
   }
 }

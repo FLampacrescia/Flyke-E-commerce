@@ -92,6 +92,15 @@
         transform: translateY(-40px);
         transition: transform .2s ease-in-out;
     }
+    .in-wishlist {
+        background-color: crimson;
+        transform: translateY(-40px);
+        transition: transform .2s ease-in-out, background-color 0.3s ease;
+    
+        &:hover {
+            background-color: rgba(201, 18, 55);
+        }
+    }
 }
 .card-content:hover .card-icon-container {
     opacity: 1;
