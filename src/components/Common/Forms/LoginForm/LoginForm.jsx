@@ -86,7 +86,7 @@ export default function LoginForm() {
           />
         </div>
       </div>
-      <button type="submit" className="submit-btn btn-primary">
+      <button type="submit" className="submit-btn btn-primary login-btn">
         {t("login_page_btn")}
       </button>
     </form>

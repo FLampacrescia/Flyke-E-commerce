@@ -79,7 +79,7 @@ export default function MainHeader() {
                 <hr className="user-menu-line line-menu-navbar" />
                 <div className="user-navbar">
                     {user && (
-                        <Link className="user-menu-link-container" to="/my-account">
+                        <Link className="user-menu-link-container" to="/my-account" onClick={closeBurgerMenu}>
                             <span className="user-menu-link">{t('menu_account')}</span>
                         </Link>
                     )}

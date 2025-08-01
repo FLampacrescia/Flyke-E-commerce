@@ -6,6 +6,14 @@
   margin: 70px auto 100px auto;
   max-width: 500px;
 }
+.login-no-account-message {
+  margin-top: 1.5rem;
+}
+.login-no-account-link {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
 @media screen and (max-width: 984px) {
   .login-form-main-container {
       max-width: 600px;
