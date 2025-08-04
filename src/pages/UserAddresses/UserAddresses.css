@@ -1,8 +1,5 @@
 .user-addresses-container {
-    padding: 2rem;
-    min-height: 50dvh;
-    max-width: 750px;
-    margin: 100px auto 120px auto;
+    width: 700px;
 }
 .user-addresses-header {
     display: flex;

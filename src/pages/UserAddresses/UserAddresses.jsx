@@ -28,7 +28,6 @@ export default function UserAddresses() {
     return (
         <div className="user-addresses-container">
             <div className="user-addresses-header">
-                <h2 className="user-addresses-title">{t('user_addresses_my_addresses')}</h2>
                 <button className="user-addresses-add-button" onClick={openNewAddressModal}>
                     {t('user_addresses_new_address')}
                 </button>

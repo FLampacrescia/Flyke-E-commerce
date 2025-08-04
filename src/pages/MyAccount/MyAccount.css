@@ -1,11 +1,16 @@
 .my-account-main-container {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    justify-content: space-between;
     min-height: 60dvh;
     gap: 1.5rem;
-    width: 820px;
+    width: fit-content;
     margin: 100px auto 120px auto;
+    transition: width .7s cubic-bezier(.6,.05,.55,1);
+}
+.my-account-main-container.my-account-main-container-mid-size {
+    width: 1200px;
+    transition: width .7s cubic-bezier(.6,.05,.55,1);
 }
 .my-account-main-title-container {
     display: flex;

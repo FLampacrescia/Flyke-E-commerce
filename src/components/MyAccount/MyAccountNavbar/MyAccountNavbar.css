@@ -1,0 +1,74 @@
+.my-account-navbar-main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    width: 1580px;
+    margin-bottom: 1rem;
+}
+
+.my-account-subtitle {
+    text-wrap: nowrap;
+}
+
+.my-account-subtitle-opacity {
+    opacity: 0;
+    cursor: default;
+    user-select: none;
+}
+
+.my-account-navbar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 0.5rem;
+
+    &::after {
+    content: "";
+    position: absolute;
+    background-color: #ddd;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    transform: scale(0, 1);
+    transition: transform .7s cubic-bezier(.6,.05,.55,1);
+}
+
+    &.active-border::after {
+        transform: scale(1, 1);
+        transition: transform .7s cubic-bezier(.6,.05,.55,1);
+    }
+}
+
+.my-account-navbar {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+    transition: gap .7s ease-in-out;
+}
+
+.profile-section-gap {
+    gap: 2rem;
+}
+
+.my-account-navbar-link {
+    text-decoration: none;
+    padding: 0 1rem;
+    color: #555;
+    font-weight: 400;
+    transition: color .3s;
+}
+
+.my-account-navbar-link:hover {
+    color: #000;
+}
+
+.my-account-navbar-link.active {
+    font-weight: 600;
+    color: #000;
+}

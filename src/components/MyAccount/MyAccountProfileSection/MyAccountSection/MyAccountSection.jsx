@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser, faImage, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { useUser } from "../../../context/UserContext";
-import { useTranslation } from '../../../hooks/useTranslations';
-import AccountEditModal from "../AccountEditModal/AccountEditModal";
+import { useUser } from "../../../../context/UserContext";
+import { useTranslation } from '../../../../hooks/useTranslations';
+import AccountEditModal from "../../AccountEditModal/AccountEditModal";
 import MyAccountInput from "../MyAccountInput/MyAccountInput";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import toast from "react-hot-toast";
-import CircleLoader from "../../../components/Common/Loaders/CircleLoader/CircleLoader";
-import config from "../../../config/env.config";
+import CircleLoader from "../../../Common/Loaders/CircleLoader/CircleLoader";
+import config from "../../../../config/env.config";
 
 export default function MyAccountSection({ section }) {
     const { user, updateProfileImage } = useUser();
@@ -70,7 +70,7 @@ export default function MyAccountSection({ section }) {
                         onClick={openEditModal}>
                             <FontAwesomeIcon icon={faPenToSquare} />
                     </button> ) : (
-                        <Link to="/user-addresses"> 
+                        <Link to="/my-account/user-addresses"> 
                             <span className="my-account-section-addresses-btn">{t('myaccount_addresses_button')}</span>
                         </Link>
                     )}
@@ -112,8 +112,8 @@ export default function MyAccountSection({ section }) {
                                     </div>
                                 )}
                             </div>
-                            <MyAccountInput label="Nombre Completo" value={`${user.name} ${user.lastName}`} />
-                            <MyAccountInput label="Correo electrónico" value={user.email} />
+                            <MyAccountInput label={t('checkout_user_name')} value={`${user.name} ${user.lastName}`} />
+                            <MyAccountInput label={t('myaccount_profile_section_email_label')} value={user.email} />
                             <MyAccountInput label="DNI" value={user.dni} />
                         </>
                     )}
@@ -121,16 +121,16 @@ export default function MyAccountSection({ section }) {
                     {isEditingAddress && defaultAddress && (
                         <>
                             <MyAccountInput
-                                label="Dirección"
+                                label={t('myaccount_profile_section_address_label')}
                                 value={`${defaultAddress.street}, ${defaultAddress.neighborhood}`}
                             />
-                            <MyAccountInput label="Provincia" value={defaultAddress.province} />
-                            <MyAccountInput label="Código Postal" value={defaultAddress.zipCode} />
+                            <MyAccountInput label={t('myaccount_profile_section_province_label')} value={defaultAddress.province} />
+                            <MyAccountInput label={t('myaccount_profile_section_zipcode_label')} value={defaultAddress.zipCode} />
                         </>
                     )}
 
                     {section === "password" && (
-                        <MyAccountInput label="Contraseña" value="********" />
+                        <MyAccountInput label={t('myaccount_profile_section_password_label')} value="********" />
                     )}
                 </div>
             )}

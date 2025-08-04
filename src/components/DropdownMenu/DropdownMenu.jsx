@@ -46,7 +46,7 @@ export default function DropdownMenu({ isOpen, setIsOpen, user, logout, isLogout
                 </>
             )}
 
-            <Link className="user-menu-link-container" to="/wishlist">
+            <Link className="user-menu-link-container" to="/my-account/wishlist">
                 <span className="user-menu-link">{t('menu_wishlist')}</span>
             </Link>
             <hr className="user-menu-line" />

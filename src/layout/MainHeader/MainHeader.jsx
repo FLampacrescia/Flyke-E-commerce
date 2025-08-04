@@ -83,7 +83,7 @@ export default function MainHeader() {
                             <span className="user-menu-link">{t('menu_account')}</span>
                         </Link>
                     )}
-                    <Link className="user-menu-link-container" to="/wishlist" onClick={closeBurgerMenu}>
+                    <Link className="user-menu-link-container" to="/my-account/wishlist" onClick={closeBurgerMenu}>
                         <span className="user-menu-link">{t('menu_wishlist')}</span>
                     </Link>
                     <Link className="user-menu-link-container" onClick={toggleLanguage}>

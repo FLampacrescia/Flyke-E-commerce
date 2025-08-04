@@ -67,6 +67,9 @@
         background-color: #e7e7e7;
     }
 }
+.address-selection-unit-heart-icon {
+    transform: translateX(0.05rem);
+}
 .ripple-overlay {
     position: absolute;
     top: 0;

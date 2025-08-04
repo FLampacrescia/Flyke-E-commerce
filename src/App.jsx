@@ -16,6 +16,8 @@ import UserProtectedRoute from "./context/UserProtectedRoute";
 import UserAddresses from "./pages/UserAddresses/UserAddresses";
 import OrderSuccess from "./pages/Checkout/OrderSuccess/OrderSuccess";
 import Wishlist from "./pages/Wishlist/Wishlist";
+import MyAccountProfileSection from "./components/MyAccount/MyAccountProfileSection/MyAccountProfileSection"
+import MyAccountOrdersSection from "./components/MyAccount/MyAccountOrdersSection/MyAccountOrdersSection";
 
 export default function App() {
   return (
@@ -29,16 +31,36 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/my-account" element={
-          <UserProtectedRoute>
-            <MyAccount />
-          </UserProtectedRoute>
-          } />
-        <Route path="/user-addresses" element={
-          <UserProtectedRoute>
-            <UserAddresses />
-          </UserProtectedRoute>
-        } />
+
+          <Route
+            path="/my-account"
+            element={
+              <UserProtectedRoute>
+                <MyAccount />
+              </UserProtectedRoute>
+            }
+          >
+            <Route index element={
+              <UserProtectedRoute>
+                <MyAccountProfileSection />
+              </UserProtectedRoute>
+            } />
+            <Route path="wishlist" element={
+              <UserProtectedRoute>
+                <Wishlist />
+              </UserProtectedRoute>
+            } />
+            <Route path="user-addresses" element={
+              <UserProtectedRoute>
+                <UserAddresses />
+              </UserProtectedRoute>
+            } />
+            <Route path="orders" element={
+              <UserProtectedRoute>
+                <MyAccountOrdersSection />
+              </UserProtectedRoute>
+            } />
+          </Route>
         <Route path="/checkout" element={
           <UserProtectedRoute>
             <Checkout />
@@ -47,11 +69,6 @@ export default function App() {
         <Route path="/checkout/order-success" element={
           <UserProtectedRoute>
             <OrderSuccess />
-          </UserProtectedRoute>
-        } />
-        <Route path="/wishlist" element={
-          <UserProtectedRoute>
-            <Wishlist />
           </UserProtectedRoute>
         } />
         <Route path="/product-detail/:id" element={<ProductDetail />} />

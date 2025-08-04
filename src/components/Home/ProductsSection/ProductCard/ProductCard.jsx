@@ -9,7 +9,7 @@ import api from "../../../../utils/axiosInstance";
 import { useNavigateWithPrefetch } from "../../../../hooks/useNavigateWithPrefetch";
 import { useEffect, useState } from "react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onWishlistRemove }) {
 
     const { addToCart } = useOrder();
     const { t } = useTranslation();
@@ -45,6 +45,7 @@ export default function ProductCard({ product }) {
             if (isInWishlist) {
                 await api.delete(`${config.API_URL}/wishlist/${product._id}`);
                 setIsInWishlist(false);
+                if (onWishlistRemove) onWishlistRemove(product._id);
                 toast.success(t('wishlist_remove_success'));
             } else {
                 await api.post(`${config.API_URL}/wishlist/${product._id}`, {});
