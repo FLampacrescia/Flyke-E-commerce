@@ -1,0 +1,133 @@
+.order-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.order-card-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.order-card-title-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.order-card-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chevron-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+}
+
+.chevron-toggle.expanded {
+    transform: rotate(180deg);
+}
+
+.order-card-title-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.order-code {
+    font-weight: 500;
+    color: #000;
+    font-size: 1rem;
+}
+
+.order-status {
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1rem;
+    transform: translateY(-.03rem);
+    text-transform: capitalize;
+}
+
+.order-status.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.order-status.completed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.order-status.canceled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.order-details-summary {
+    color: var(--text-color-gray);
+    font-size: 0.9rem;
+}
+
+.order-total {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000;
+}
+
+.order-card-expanded-content {
+    overflow: hidden;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.order-card-expanded-shipping-section {
+    display: flex;
+}
+
+.order-card-expanded-shipping-title-container {
+    margin-right: 3rem;
+}
+
+.order-card-expanded-shipping-title {
+    color: var(--text-color-gray);
+}
+
+.order-card-expanded-shipping-info {
+    text-transform: capitalize;
+}
+
+.order-card-expanded-shipping-title, .order-card-expanded-shipping-info {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.order-card-expanded-cart-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
