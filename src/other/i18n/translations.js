@@ -225,6 +225,7 @@ export const translations = {
         order_success_customer_order_counter: "Productos",
         order_success_customer_information_title: "Información del usuario",
         order_success_shipping_address_title: "Dirección de envío",
+        order_success_pickup_store_title: "Dirección de retiro",
         order_success_billing_address_title: "Dirección de facturación",
         order_success_billing_address_message: "Misma que dirección de envío",
         myaccount_main_title: "MI CUENTA.",

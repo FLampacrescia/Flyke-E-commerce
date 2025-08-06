@@ -4,7 +4,7 @@ import config from "../../../config/env.config";
 import { useEffect, useState } from "react";
 import { useTranslation } from '../../../hooks/useTranslations';
 import OrderSuccessUnit from '../../../components/Checkout/OrderSuccess/OrderSuccessUnit/OrderSuccessUnit'
-import { faBagShopping, faLocationDot, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping, faLocationDot, faEnvelope, faPhone, faUser, faStore } from "@fortawesome/free-solid-svg-icons";
 import OrderSuccessCard from "../../../components/Checkout/OrderSuccess/OrderSuccessCard/OrderSuccessCard";
 import OrderSuccessSummaryCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessSummaryCardItem/OrderSuccessSummaryCardItem";
 import OrderSuccessCardItem from "../../../components/Checkout/OrderSuccess/OrderSuccessCardItem/OrderSuccessCardItem";
@@ -133,7 +133,7 @@ export default function OrderSuccess() {
 
                     {shipping === "pickup" && store && (
                         <OrderSuccessCard title={t("order_success_pickup_store_title")}>
-                            <OrderSuccessCardItem variant="General-Type" icon={faUser} span={store.name} />
+                            <OrderSuccessCardItem variant="General-Type" icon={faStore} span={store.name} />
                             <OrderSuccessCardItem
                                 variant="Address-Type"
                                 icon={faLocationDot}
