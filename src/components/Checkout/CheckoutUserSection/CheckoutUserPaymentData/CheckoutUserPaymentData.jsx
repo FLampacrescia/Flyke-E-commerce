@@ -49,7 +49,7 @@ export default function CheckoutUserPaymentData({
                 })),
                 total,
                 shipping: selectedSection,
-                store: selectedSection === "pickup" ? selectedStore?.name : null,
+                store: selectedSection === "pickup" ? selectedStore?._id : null,
                 selectedAddressId: selectedSection === "delivery" ? selectedAddressId : null,
             };
 

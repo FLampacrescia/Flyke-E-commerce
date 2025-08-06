@@ -15,7 +15,9 @@ export default function OrderSuccess() {
     const [searchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
     const [userData, setUserData] = useState([]);
+    const [shipping, setShipping] = useState("");
     const [shippingAddressData, setShippingAddressData] = useState([]);
+    const [store, setStore] = useState(null);
     const [subtotal, setSubtotal] = useState([]);
     const [orderCode, setOrderCode] = useState(searchParams.get("external_reference"));
     const { setCircleLoading } = useLoader();
@@ -40,13 +42,17 @@ export default function OrderSuccess() {
             
             const products = response.data.products;
             const userData = response.data.user;
+            const shipping = response.data.shipping;
             const shippingAddressData = response.data.shippingAddress;
+            const store = response.data.store;
             const subtotal = response.data.total;
             
             setTimeout(() => {
                 setProducts(products);
                 setUserData(userData);
+                setShipping(shipping);
                 setShippingAddressData(shippingAddressData);
+                setStore(store);
                 setSubtotal(subtotal);
                 setCircleLoading(false)
             }, 1000);
@@ -113,15 +119,29 @@ export default function OrderSuccess() {
                         <OrderSuccessCardItem variant="General-Type" icon={faPhone} span="1112341234" />
                     </OrderSuccessCard>
 
-                    <OrderSuccessCard title={t("order_success_shipping_address_title")}>
-                        <OrderSuccessCardItem variant="General-Type" icon={faUser} span={shippingAddressData.name} />
-                        <OrderSuccessCardItem 
-                            variant="Address-Type" 
-                            icon={faLocationDot} 
-                            address1={shippingAddressData.street} 
-                            address2={`${shippingAddressData.neighborhood}, ${shippingAddressData.province}`} 
-                            address3={`${t('address_selection_modal_zip_code_subtitle')} ${shippingAddressData.zipCode}`} />
-                    </OrderSuccessCard>
+                    {shipping === "delivery" && shippingAddressData && (
+                        <OrderSuccessCard title={t("order_success_shipping_address_title")}>
+                            <OrderSuccessCardItem variant="General-Type" icon={faUser} span={shippingAddressData.name} />
+                            <OrderSuccessCardItem
+                                variant="Address-Type"
+                                icon={faLocationDot}
+                                address1={shippingAddressData.street}
+                                address2={`${shippingAddressData.neighborhood}, ${shippingAddressData.province}`}
+                                address3={`${t('address_selection_modal_zip_code_subtitle')} ${shippingAddressData.zipCode}`} />
+                        </OrderSuccessCard>
+                    )}
+
+                    {shipping === "pickup" && store && (
+                        <OrderSuccessCard title={t("order_success_pickup_store_title")}>
+                            <OrderSuccessCardItem variant="General-Type" icon={faUser} span={store.name} />
+                            <OrderSuccessCardItem
+                                variant="Address-Type"
+                                icon={faLocationDot}
+                                address1={store.address}
+                                address2={store.neighborhood}
+                                address3={store.province} />
+                        </OrderSuccessCard>
+                    )}
 
                     <OrderSuccessCard
                         title={t('order_success_billing_address_title')}

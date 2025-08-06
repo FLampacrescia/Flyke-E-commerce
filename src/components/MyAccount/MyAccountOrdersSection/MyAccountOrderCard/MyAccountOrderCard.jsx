@@ -77,7 +77,7 @@ export default function MyAccountOrderCard({ order }) {
                                     <p className="order-card-expanded-shipping-info">{order.shipping}</p>
                                     <p className="order-card-expanded-shipping-info">
                                         {order.shipping === "pickup"
-                                            ? `${order.store.name} - ${order.store.address}`
+                                            ? `${order.store.name} - ${order.store.address}, ${order.store.neighborhood}, ${order.store.province}`
                                             : order.shippingAddress
                                                 ? `${order.shippingAddress.street}, ${order.shippingAddress.neighborhood}, ${order.shippingAddress.province}, CP ${order.shippingAddress.zipCode}`
                                                 : "-"}
