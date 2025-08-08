@@ -6,17 +6,20 @@ import Wishlist from "../../pages/Wishlist/Wishlist";
 import UserAddresses from "../../pages/UserAddresses/UserAddresses";
 import MyAccountOrdersSection from "../../components/MyAccount/MyAccountOrdersSection/MyAccountOrdersSection";
 import "./MyAccount.css";
+import MyAccountMobileHeader from "../../components/MyAccount/MyAccountMobile/MyAccountMobileHeader/MyAccountMobileHeader";
+import { useResponsive } from "../../hooks/useResponsive";
+import MyAccountMobilePage from "./MyAccountMobilePage/MyAccountMobilePage";
 
 export default function MyAccount() {
     const location = useLocation();
     const path = location.pathname;
-
-    const midSizeRoutes = ["/my-account/user-addresses"];
-    const isMidSize = midSizeRoutes.includes(path);
+    const isMobile = useResponsive(415);
 
     const renderSection = () => {
         switch (path) {
             case "/my-account":
+                return isMobile ? <MyAccountMobilePage key="mobile-home" /> : <MyAccountProfileSection key="profile" />;
+            case "/my-account/profile":
                 return <MyAccountProfileSection key="profile" />;
             case "/my-account/wishlist":
                 return <Wishlist key="wishlist" />;
@@ -30,8 +33,10 @@ export default function MyAccount() {
     };
 
     return (
-        <div className={`my-account-main-container ${isMidSize ? "my-account-main-container-mid-size" : ""}`}>
-            <MyAccountNavbar />
+        <div className={`my-account-main-container ${isMobile ? "my-account-mobile-main-container" : ""}`}>
+            {!isMobile && <MyAccountNavbar />}
+            
+            {isMobile && <MyAccountMobileHeader />}
 
             <AnimatePresence mode="wait" initial={false}>
                 <motion.div

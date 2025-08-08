@@ -1,0 +1,13 @@
+.my-account-mobile-menu-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.my-account-mobile-menu-section-title {
+    font-weight: 600;
+}
+.my-account-mobile-menu-section-subtitle {
+    font-size: .9rem;
+    color: var(--text-color-gray);
+}

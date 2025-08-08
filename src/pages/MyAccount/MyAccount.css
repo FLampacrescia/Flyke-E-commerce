@@ -154,6 +154,30 @@
     }
 }
 
+@media screen and (max-width: 1660px) {
+    .my-account-navbar-main-container {
+        width: 1040px;
+    }
+    .wishlist-main-container {
+        width: 1040px;
+    }
+}
+@media screen and (max-width: 1177px) {
+    .my-account-navbar-main-container {
+        width: 700px;
+        transform: translateY(17px);
+        margin-bottom: 3.2rem;
+    }
+    .my-account-navbar-container::after {
+        top: 320%;
+    }
+    .my-account-subtitle  {
+        display: none;
+    }
+    .wishlist-main-container {
+        width: 500px;
+    }
+}
 @media screen and (max-width: 1000px) {
     .my-account-main-container {
         width: 700px;
@@ -170,12 +194,8 @@
         flex-direction: row;
         gap: 4rem;
     }
-    .avatar-container {
+    .avatar-lg-device-container {
         display: none;
-        width: 70px;
-        height: 70px;
-        margin: -30px 0 0 0;
-        order: 3;
     }
 }
 @media screen and (max-width: 900px) {
@@ -184,27 +204,148 @@
         justify-content: flex-start;
     }
 }
+@media screen and (max-width: 837px) {
+    .my-account-navbar-main-container {
+        width: 600px;
+    }
+    .my-account-orders-main-container, .user-addresses-container {
+        width: 500px;
+    }
+}
 @media screen and (max-width: 785px) {
-    .my-account-main-container {
-        width: 450px;
-        gap: 3rem;
+    .my-account-main-container, .my-account-bento-grid {
+        width: 600px;
     }
     .my-account-section-content {
         flex-direction: column;
         gap: 1.5rem;
     }
 }
-@media screen and (max-width: 525px) {
+@media screen and (max-width: 697px) {
+    .my-account-navbar-main-container {
+        width: 500px;
+    }
+    .my-account-navbar {
+        gap: .5rem;
+    }
+    .my-account-navbar-link {
+        font-size: .95rem;
+    }
+    .my-account-main-container, .my-account-bento-grid {
+        width: 480px;
+    }
+}
+@media screen and (max-width: 540px) {
+    .my-account-navbar-main-container {
+        width: 400px;
+        margin-bottom: 2rem;
+    }
+    .my-account-navbar-container::after {
+        top: 280%;
+    }
+    .my-account-navbar {
+        gap: 0;
+    }
+    .my-account-navbar-link {
+        font-size: .85rem;
+        padding: 0 .62rem;
+    }
     .my-account-main-container {
+        margin: 30px auto;
+    }
+    .my-account-main-container, .my-account-bento-grid, .my-account-orders-main-container, .user-addresses-container {
         width: 350px;
     }
     .my-account-main-title {
         font-size: clamp(2.7rem, 3vw, 3.5rem) !important;
     }
+    .order-code {
+        font-size: .9rem;
+    }
+    .order-status {
+        padding: .2rem .4rem;
+        font-size: .75rem;
+    }
+    .order-details-summary {
+        font-size: .8rem;
+    }
+    .order-total {
+        font-size: .9rem;
+    }
+    .order-card-expanded-content {
+        display: none;
+    }
+    .wishlist-main-container {
+        width: 400px;
+        gap: 20px;
+    }
+    .card-info {
+        padding: 0;
+
+        .card-title, .card-price {
+            font-size: 1rem;
+        }
+        .card-category {
+            font-size: .9rem;
+        }
+    }
 }
 @media screen and (max-width: 415px) {
     .my-account-main-container {
-        width: 300px;
+        align-items: initial;
+    }
+    .my-account-navbar-main-container {
+        display: none;
+    }
+    .my-account-mobile-header-container {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        height: 75px;
+        gap: 1rem;
+    }
+    .header-placeholder {
+        visibility: hidden;
+    }
+    .my-account-mobile-header-account-main-page {
+        margin-top: -6rem;
+    }
+    .my-account-chevron {
+        font-size: 1.3rem;
+        align-self: flex-start;
+    }
+    .my-account-mobile-upscale-title {
+        font-size: 1.8rem;
+    }
+    .my-account-mobile-account-summary {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: -1rem;
+    }
+    .avatar-container {
+        height: 80px;
+        width: 80px;
+        margin: 0;
+    }
+    .my-account-mobile-username {
+        font-weight: 600;
+    }
+    .my-account-mobile-email {
+        font-size: .9rem;
+        color: var(--text-color-gray);
+    }
+    .my-account-mobile-menu-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 2.5rem 0 1rem 0;
+    }
+    .user-addresses-add-button {
+    padding: 0.5rem .8rem;
+    font-size: 0.85rem;
+    }
+    .address-selection-unit-heart-icon {
+        transform: translateX(-0.02rem);
     }
     .my-account-section-shipping-data-title-container {
         flex-direction: column;

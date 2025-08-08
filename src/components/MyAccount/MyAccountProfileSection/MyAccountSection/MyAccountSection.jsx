@@ -80,7 +80,7 @@ export default function MyAccountSection({ section }) {
                 <div className="my-account-section-content">
                     {isEditingPersonalData && (
                         <>
-                            <div className="avatar-container">
+                            <div className="avatar-container avatar-lg-device-container">
                                 {user.profileImage ? (
                                     <img
                                     src={`${config.FILES_URL}/${user.profileImage}`}

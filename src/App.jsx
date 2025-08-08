@@ -18,6 +18,7 @@ import OrderSuccess from "./pages/Checkout/OrderSuccess/OrderSuccess";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import MyAccountProfileSection from "./components/MyAccount/MyAccountProfileSection/MyAccountProfileSection"
 import MyAccountOrdersSection from "./components/MyAccount/MyAccountOrdersSection/MyAccountOrdersSection";
+import NotFound from "./pages/NotFound/NotFound";
 
 export default function App() {
   return (
@@ -40,7 +41,7 @@ export default function App() {
               </UserProtectedRoute>
             }
           >
-            <Route index element={
+            <Route path="profile" element={
               <UserProtectedRoute>
                 <MyAccountProfileSection />
               </UserProtectedRoute>
@@ -61,24 +62,50 @@ export default function App() {
               </UserProtectedRoute>
             } />
           </Route>
-        <Route path="/checkout" element={
-          <UserProtectedRoute>
-            <Checkout />
-          </UserProtectedRoute>
-        } />
-        <Route path="/checkout/order-success" element={
-          <UserProtectedRoute>
-            <OrderSuccess />
-          </UserProtectedRoute>
-        } />
-        <Route path="/product-detail/:id" element={<ProductDetail />} />
+          {/* <Route path="/my-account" element={
+            <UserProtectedRoute>
+              <MyAccount />
+            </UserProtectedRoute>
+          } />
+          <Route path="my-account/profile" element={
+            <UserProtectedRoute>
+              <MyAccountProfileSection />
+            </UserProtectedRoute>
+          } />
+          <Route path="my-account/wishlist" element={
+            <UserProtectedRoute>
+              <Wishlist />
+            </UserProtectedRoute>
+          } />
+          <Route path="my-account/user-addresses" element={
+            <UserProtectedRoute>
+              <UserAddresses />
+            </UserProtectedRoute>
+          } />
+          <Route path="my-account/orders" element={
+            <UserProtectedRoute>
+              <MyAccountOrdersSection />
+            </UserProtectedRoute>
+          } /> */}
+          <Route path="/checkout" element={
+            <UserProtectedRoute>
+              <Checkout />
+            </UserProtectedRoute>
+          } />
+          <Route path="/checkout/order-success" element={
+            <UserProtectedRoute>
+              <OrderSuccess />
+            </UserProtectedRoute>
+          } />
+          <Route path="/product-detail/:id" element={<ProductDetail />} />
           <Route path="/management" element={
             <AdminProtectedRoute>
               <Management />
             </AdminProtectedRoute>
           } />
-      </Routes>
-    </main>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     <Footer />
       </>
   );
