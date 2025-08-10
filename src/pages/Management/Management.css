@@ -1,6 +1,6 @@
 .admin-main-container {
     width: 90%;
-    margin: 50px auto;
+    margin: 50px auto 100px auto;
     min-height: 83dvh;
 }
 .admin-layout-header-container {

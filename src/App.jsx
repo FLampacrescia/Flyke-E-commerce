@@ -62,31 +62,6 @@ export default function App() {
               </UserProtectedRoute>
             } />
           </Route>
-          {/* <Route path="/my-account" element={
-            <UserProtectedRoute>
-              <MyAccount />
-            </UserProtectedRoute>
-          } />
-          <Route path="my-account/profile" element={
-            <UserProtectedRoute>
-              <MyAccountProfileSection />
-            </UserProtectedRoute>
-          } />
-          <Route path="my-account/wishlist" element={
-            <UserProtectedRoute>
-              <Wishlist />
-            </UserProtectedRoute>
-          } />
-          <Route path="my-account/user-addresses" element={
-            <UserProtectedRoute>
-              <UserAddresses />
-            </UserProtectedRoute>
-          } />
-          <Route path="my-account/orders" element={
-            <UserProtectedRoute>
-              <MyAccountOrdersSection />
-            </UserProtectedRoute>
-          } /> */}
           <Route path="/checkout" element={
             <UserProtectedRoute>
               <Checkout />

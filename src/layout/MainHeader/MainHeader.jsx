@@ -141,7 +141,7 @@ export default function MainHeader() {
             <div className="user-info">
                 <div className="user-container">
                     <div ref={avatarRef} onClick={handleAvatarClick}>
-                        {user && user.profileImage ? (
+                        {user && user.profileImage?.trim() ? (
                             <img
                                 src={`${config.FILES_URL}/${user.profileImage}`}
                                 alt="Avatar"
