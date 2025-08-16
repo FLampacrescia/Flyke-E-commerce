@@ -272,15 +272,20 @@
     .order-total {
         font-size: .9rem;
     }
+    .chevron-btn-order-card {
+        display: none;
+    }
+    .open-new-btn-order-card {
+        display: inline-block;
+    }
     .order-card-expanded-content {
         display: none;
     }
     .wishlist-main-container {
-        width: 400px;
-        gap: 20px;
+        width: fit-content;
+        gap: 30px;
     }
     .card-info {
-        padding: 0;
 
         .card-title, .card-price {
             font-size: 1rem;

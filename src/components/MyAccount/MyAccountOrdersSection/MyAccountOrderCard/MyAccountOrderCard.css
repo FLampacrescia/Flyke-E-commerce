@@ -34,7 +34,12 @@
     align-items: center;
 }
 
-.chevron-toggle {
+.order-card-header-buttons-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.chevron-toggle, .open-new-btn-order-card {
     background: none;
     border: none;
     cursor: pointer;
@@ -44,6 +49,11 @@
 
 .chevron-toggle.expanded {
     transform: rotate(180deg);
+}
+
+.open-new-btn-order-card {
+    font-size: .9rem;
+    /* display: none; */
 }
 
 .order-card-title-container {

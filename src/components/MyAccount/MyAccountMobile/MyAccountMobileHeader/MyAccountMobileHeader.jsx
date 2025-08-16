@@ -20,11 +20,9 @@ export default function MyAccountMobileHeader({ variant }) {
     const isRoot = location.pathname === "/my-account";
 
     return (
-        // wrapper siempre montado — reserva el espacio del header
         <div className="my-account-mobile-header-wrapper">
             <AnimatePresence mode="wait" initial={false}>
                 {isRoot ? (
-                    // si estamos en /my-account y pasaron variant mostramos el título principal
                     variant === "MyAccountTitle" ? (
                         <motion.div
                             key="title"
@@ -39,7 +37,6 @@ export default function MyAccountMobileHeader({ variant }) {
                             </h2>
                         </motion.div>
                     ) : (
-                        // placeholder: invisible pero ocupa la misma altura -> evita saltos
                         <motion.div
                             key="placeholder"
                             className="my-account-mobile-header-container header-placeholder"
@@ -47,7 +44,6 @@ export default function MyAccountMobileHeader({ variant }) {
                         />
                     )
                 ) : (
-                    // cualquier otra sección: chevron + título dinámico
                     <motion.div
                         key={location.pathname}
                         className="my-account-mobile-header-container"

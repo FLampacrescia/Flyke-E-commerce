@@ -2,15 +2,26 @@ import "./MyAccountOrderCard.css";
 import { useState } from "react";
 import { useTranslation } from "../../../../hooks/useTranslations";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
-import OrderSuccessUnit from "../../../Checkout/OrderSuccess/OrderSuccessUnit/OrderSuccessUnit";
+import { useNavigateWithPrefetch } from "../../../../hooks/useNavigateWithPrefetch";
+import api from "../../../../utils/axiosInstance";
+import config from "../../../../config/env.config";
+import OrderUnit from "../../../Order/OrderUnit/OrderUnit";
 
 export default function MyAccountOrderCard({ order }) {
     const { t } = useTranslation();
+    const navigateWithPrefetch = useNavigateWithPrefetch();
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
+
+    const handleNavigate = () => {
+        navigateWithPrefetch({
+            apiCall: () => api.get(`${config.API_URL}/orders/${order.orderCode}`),
+            to: `/order/${order.orderCode}`,
+        });
+    };
 
     const totalItems = order.products.reduce((acc, item) => acc + item.quantity, 0);
     const date = new Date(order.createdAt);
@@ -46,13 +57,21 @@ export default function MyAccountOrderCard({ order }) {
                                 {t(`order_status_${order.status}`)}
                             </span>
                         </div>
-                        <button
-                            className={`chevron-toggle ${isExpanded ? "expanded" : ""}`}
-                            onClick={toggleExpand}
-                            aria-label={isExpanded ? t("hide_details") : t("show_details")}
-                        >
-                            <FontAwesomeIcon icon={faChevronDown} />
-                        </button>
+                        <div className="order-card-header-buttons-container">
+                            <button
+                                className="open-new-btn-order-card"
+                                onClick={handleNavigate}
+                                aria-label={t("myaccount_order_card_open_new_tab_aria_label")}>
+                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                            </button>
+                            <button
+                                className={`chevron-toggle chevron-btn-order-card ${isExpanded ? "expanded" : ""}`}
+                                onClick={toggleExpand}
+                                aria-label={isExpanded ? t("hide_details") : t("show_details")}
+                            >
+                                <FontAwesomeIcon icon={faChevronDown} />
+                            </button>
+                        </div>
                     </div>
                     <p className="order-details-summary">
                         {totalItems} {t("myaccount_order_card_products")} | {formattedDate}
@@ -86,7 +105,7 @@ export default function MyAccountOrderCard({ order }) {
                             </div>
                             <div className="order-card-expanded-cart-section">
                                 {order.products.map((product) => (
-                                    <OrderSuccessUnit key={product._id} product={product} />
+                                    <OrderUnit key={product._id} product={product} />
                                 ))}
                             </div>
                         </motion.div>

@@ -15,7 +15,7 @@
     text-align: center;
     width: 100%;
 }
-.order-quantity-input {
+.cart-quantity-input {
     border: 1px solid #ddd;
 }
 .product-quantity-input {
@@ -41,7 +41,7 @@
     
     cursor: pointer;
 }
-.order-quantity-btn {
+.cart-quantity-btn {
     background-color: #ddd;
 
     span {

@@ -1,24 +1,24 @@
-.order-success-unit-row {
+.order-page-unit-row {
     display: flex;
     transition: background-color 0.2s ease-in-out;
 }
-.order-success-product-card-title {
+.order-page-product-card-title {
     font-size: 1rem;
     font-weight: 600;
     width: 100%;
 }
-.order-success-product-card-category {
+.order-page-product-card-category {
     font-size: .9rem;
     font-weight: 500;
     color: var(--text-color-gray);
     width: 100%;
 }
-.order-success-product-card-quantity-counter {
+.order-page-product-card-quantity-counter {
     font-size: .8rem;
     font-weight: 500;
     color: var(--text-color-gray);
 }
-.order-success-product-card-total {
+.order-page-product-card-total {
     font-size: .9rem;
     font-weight: 600;
 }

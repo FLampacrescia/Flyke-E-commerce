@@ -41,11 +41,6 @@ export default function MyAccountMobilePage() {
 
     return (
         <>
-            {/* <div className="my-account-mobile-header-container">
-                <h2 className="my-account-mobile-title my-account-mobile-upscale-title">
-                    {t('myaccount_main_title')}
-                </h2>
-            </div> */}
             <MyAccountMobileHeader variant="MyAccountTitle" />
             <div className="my-account-mobile-account-summary">
                 <div className="avatar-container">

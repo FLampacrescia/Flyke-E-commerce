@@ -14,7 +14,7 @@ import OrderSidebar from "./layout/OrderSidebar/OrderSidebar";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import UserProtectedRoute from "./context/UserProtectedRoute";
 import UserAddresses from "./pages/UserAddresses/UserAddresses";
-import OrderSuccess from "./pages/Checkout/OrderSuccess/OrderSuccess";
+import Order from "./pages/Order/Order";
 import Wishlist from "./pages/Wishlist/Wishlist";
 import MyAccountProfileSection from "./components/MyAccount/MyAccountProfileSection/MyAccountProfileSection"
 import MyAccountOrdersSection from "./components/MyAccount/MyAccountOrdersSection/MyAccountOrdersSection";
@@ -69,10 +69,15 @@ export default function App() {
           } />
           <Route path="/checkout/order-success" element={
             <UserProtectedRoute>
-              <OrderSuccess />
+              <Order />
             </UserProtectedRoute>
           } />
           <Route path="/product-detail/:id" element={<ProductDetail />} />
+          <Route path="/order/:orderCode" element={
+            <UserProtectedRoute>
+              <Order />
+            </UserProtectedRoute>
+          } />
           <Route path="/management" element={
             <AdminProtectedRoute>
               <Management />

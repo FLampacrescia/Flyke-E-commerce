@@ -1,6 +1,7 @@
 .wishlist-main-container {
     display: flex;
     width: 1580px;
+    margin: 0 auto;
     flex-wrap: wrap;
     gap: 40px;
 
@@ -15,18 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.product-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
-    padding: 70px 70px;
-
-    .card {
-        flex-basis: 350px;
-    }
 }
 
 .wishlist-title {

@@ -16,7 +16,7 @@ export default function MediumTitle({ location, title, number, classAdd }) {
         return <h2 className={`medium-title ${classAdd}`}>{title}</h2>;
     }
 
-    if (location === "OrderSuccess") {
+    if (location === "OrderPage") {
         return <h2 className={`medium-title ${classAdd}`}>{title}</h2>;
     }
 

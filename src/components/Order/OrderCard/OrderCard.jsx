@@ -1,7 +1,7 @@
 import { useState } from "react";
-import OrderSuccessCardHeader from "../OrderSuccessCardHeader/OrderSuccessCardHeader";
+import OrderCardHeader from "../OrderCardHeader/OrderCardHeader";
 
-export default function OrderSuccessCard({ 
+export default function OrderCard({ 
     children, 
     title, 
     showToggle = false, 
@@ -15,9 +15,9 @@ export default function OrderSuccessCard({
     };
 
     return (
-        <div className="order-success-card">
+        <div className="order-page-card">
             {title && (
-                <OrderSuccessCardHeader 
+                <OrderCardHeader 
                     title={title}
                     showToggle={showToggle}
                     handleToggle={handleToggle}
@@ -25,7 +25,7 @@ export default function OrderSuccessCard({
                 />
             )}
 
-            <div className={`order-success-card-body ${isOpen ? "open" : "closed"}`}>
+            <div className={`order-page-card-body ${isOpen ? "open" : "closed"}`}>
                 {children}
             </div>
         </div>
